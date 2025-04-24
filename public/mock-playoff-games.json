@@ -1,0 +1,98 @@
+[
+  {
+    "teamA": "Golden State Warriors",
+    "teamB": "Los Angeles Lakers",
+    "dateTime": "2025-04-25T02:30:00",
+    "venue": "TBD"
+  },
+  {
+    "teamA": "Boston Celtics",
+    "teamB": "Philadelphia 76ers",
+    "dateTime": "2025-04-26T02:30:00",
+    "venue": "TBD"
+  },
+  {
+    "teamA": "Denver Nuggets",
+    "teamB": "Minnesota Timberwolves",
+    "dateTime": "2025-04-27T02:30:00",
+    "venue": "TBD"
+  },
+  {
+    "teamA": "New York Knicks",
+    "teamB": "Miami Heat",
+    "dateTime": "2025-04-28T02:30:00",
+    "venue": "TBD"
+  },
+  {
+    "teamA": "LA Clippers",
+    "teamB": "Phoenix Suns",
+    "dateTime": "2025-04-29T02:30:00",
+    "venue": "TBD"
+  },
+  {
+    "teamA": "Milwaukee Bucks",
+    "teamB": "Chicago Bulls",
+    "dateTime": "2025-04-30T02:30:00",
+    "venue": "TBD"
+  },
+  {
+    "teamA": "Cleveland Cavaliers",
+    "teamB": "Orlando Magic",
+    "dateTime": "2025-05-01T02:30:00",
+    "venue": "TBD"
+  },
+  {
+    "teamA": "Dallas Mavericks",
+    "teamB": "Oklahoma City Thunder",
+    "dateTime": "2025-05-02T02:30:00",
+    "venue": "TBD"
+  },
+  {
+    "teamA": "Golden State Warriors",
+    "teamB": "Los Angeles Lakers",
+    "dateTime": "2025-05-03T02:30:00",
+    "venue": "TBD"
+  },
+  {
+    "teamA": "Boston Celtics",
+    "teamB": "Philadelphia 76ers",
+    "dateTime": "2025-05-04T02:30:00",
+    "venue": "TBD"
+  },
+  {
+    "teamA": "Denver Nuggets",
+    "teamB": "Minnesota Timberwolves",
+    "dateTime": "2025-05-05T02:30:00",
+    "venue": "TBD"
+  },
+  {
+    "teamA": "New York Knicks",
+    "teamB": "Miami Heat",
+    "dateTime": "2025-05-06T02:30:00",
+    "venue": "TBD"
+  },
+  {
+    "teamA": "LA Clippers",
+    "teamB": "Phoenix Suns",
+    "dateTime": "2025-05-07T02:30:00",
+    "venue": "TBD"
+  },
+  {
+    "teamA": "Milwaukee Bucks",
+    "teamB": "Chicago Bulls",
+    "dateTime": "2025-05-08T02:30:00",
+    "venue": "TBD"
+  },
+  {
+    "teamA": "Cleveland Cavaliers",
+    "teamB": "Orlando Magic",
+    "dateTime": "2025-05-09T02:30:00",
+    "venue": "TBD"
+  },
+  {
+    "teamA": "Dallas Mavericks",
+    "teamB": "Oklahoma City Thunder",
+    "dateTime": "2025-05-10T02:30:00",
+    "venue": "TBD"
+  }
+]

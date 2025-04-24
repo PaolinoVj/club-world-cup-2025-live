@@ -1,0 +1,50 @@
+[
+  {
+    "teamA": "Denver Nuggets",
+    "teamB": "Los Angeles Lakers",
+    "dateTime": "2025-04-20T02:30:00",
+    "venue": "TBD"
+  },
+  {
+    "teamA": "Minnesota Timberwolves",
+    "teamB": "Phoenix Suns",
+    "dateTime": "2025-04-21T02:30:00",
+    "venue": "TBD"
+  },
+  {
+    "teamA": "Oklahoma City Thunder",
+    "teamB": "New Orleans Pelicans",
+    "dateTime": "2025-04-22T02:30:00",
+    "venue": "TBD"
+  },
+  {
+    "teamA": "LA Clippers",
+    "teamB": "Dallas Mavericks",
+    "dateTime": "2025-04-23T02:30:00",
+    "venue": "TBD"
+  },
+  {
+    "teamA": "Boston Celtics",
+    "teamB": "Miami Heat",
+    "dateTime": "2025-04-24T02:30:00",
+    "venue": "TBD"
+  },
+  {
+    "teamA": "New York Knicks",
+    "teamB": "Philadelphia 76ers",
+    "dateTime": "2025-04-25T02:30:00",
+    "venue": "TBD"
+  },
+  {
+    "teamA": "Cleveland Cavaliers",
+    "teamB": "Orlando Magic",
+    "dateTime": "2025-04-26T02:30:00",
+    "venue": "TBD"
+  },
+  {
+    "teamA": "Milwaukee Bucks",
+    "teamB": "Indiana Pacers",
+    "dateTime": "2025-04-27T02:30:00",
+    "venue": "TBD"
+  }
+]
