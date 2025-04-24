@@ -2,7 +2,6 @@ import { NextResponse } from 'next/server'
 import path from 'path'
 import { promises as fs } from 'fs'
 
-// Mappa abbreviata -> nome ufficiale
 const aliasMap: Record<string, string> = {
   "warriors": "Golden State Warriors",
   "lakers": "Los Angeles Lakers",
@@ -36,16 +35,18 @@ export async function GET(request: Request) {
   teamParam = aliasMap[teamParam] || teamParam
 
   try {
-    const filePath = path.join(process.cwd(), 'public', 'mock-playoff-games-real.json')
+    const filePath = path.join(process.cwd(), 'public', 'mock-playoff-games-real-it.json')
     const fileContent = await fs.readFile(filePath, 'utf-8')
     const allGames = JSON.parse(fileContent)
 
     const now = new Date().getTime()
 
-    const filtered = allGames.filter((game: any) =>
-      game.teamA.toLowerCase() === teamParam.toLowerCase() ||
-      game.teamB.toLowerCase() === teamParam.toLowerCase()
-    )
+    const filtered = allGames.filter((game: any) => {
+      return (
+        game.teamA.toLowerCase() === teamParam.toLowerCase() ||
+        game.teamB.toLowerCase() === teamParam.toLowerCase()
+      )
+    })
 
     const upcoming = filtered
       .filter((g: any) => new Date(g.dateTime).getTime() > now)
@@ -56,8 +57,7 @@ export async function GET(request: Request) {
     }
 
     const game = upcoming[0]
-    const gameDateUTC = new Date(game.dateTime)
-    const gameDateItaly = new Date(gameDateUTC.toLocaleString('en-US', { timeZone: 'Europe/Rome' }))
+    const gameDateItaly = new Date(game.dateTime) // già orario italiano nel file json
 
     return NextResponse.json({
       teamA: game.teamA,
