@@ -31,7 +31,9 @@ const teamColors: Record<string, string> = {
   "LA Clippers": "from-red-600 to-blue-700",
   "Dallas Mavericks": "from-blue-800 to-gray-600",
   "Golden State Warriors": "from-blue-700 to-yellow-500",
-  "Houston Rockets": "from-red-700 to-gray-800"
+  "Houston Rockets": "from-red-700 to-gray-800",
+  "Memphis Grizzlies": "from-blue-900 to-cyan-700",
+  "Detroit Pistons": "from-red-700 to-blue-900"
 }
 
 const teamLogos: Record<string, string> = {
@@ -52,7 +54,9 @@ const teamLogos: Record<string, string> = {
   "LA Clippers": "https://sportslogohistory.com/wp-content/uploads/2023/10/los_angeles_clippers_2016-pres.png",
   "Dallas Mavericks": "https://sportslogohistory.com/wp-content/uploads/2023/10/dallas_mavericks_2002-pres.png",
   "Golden State Warriors": "https://sportslogohistory.com/wp-content/uploads/2023/10/golden_state_warriors_2020-pres.png",
-  "Houston Rockets": "https://sportslogohistory.com/wp-content/uploads/2023/10/houston_rockets_2020-pres.png"
+  "Houston Rockets": "https://sportslogohistory.com/wp-content/uploads/2023/10/houston_rockets_2020-pres.png",
+  "Memphis Grizzlies": "https://sportslogohistory.com/wp-content/uploads/2023/10/memphis_grizzlies_2019-pres.png",
+  "Detroit Pistons": "https://sportslogohistory.com/wp-content/uploads/2023/10/detroit_pistons_2017-pres.png"
 }
 
 export default function LiveCountdownCard({ team }: { team: string }) {
