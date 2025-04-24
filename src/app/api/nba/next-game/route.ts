@@ -62,7 +62,7 @@ export async function GET(request: Request) {
     }
 
     const game = upcoming[0]
-    const gameDateItaly = new Date(game.dateTime) // già orario italiano nel file json
+    const gameDateItaly = new Date(game.dateTime)
 
     return NextResponse.json({
       teamA: game.teamA,
@@ -70,7 +70,7 @@ export async function GET(request: Request) {
       dateTime: gameDateItaly.toISOString(),
       venue: game.venue || 'TBD'
     })
-  } catch (err) {
+  } catch {
     return NextResponse.json({ error: 'Errore durante il recupero file mock' }, { status: 500 })
   }
 }
