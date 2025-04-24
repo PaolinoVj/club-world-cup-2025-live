@@ -1,0 +1,56 @@
+[
+  {
+    "teamA": "Denver Nuggets",
+    "teamB": "Los Angeles Lakers",
+    "dateTime": "2025-04-26T02:30:00+02:00",
+    "venue": "Ball Arena - Denver, CO",
+    "day": "Sabato 26 April",
+    "timeIT": "02:30",
+    "game": "Gara 3"
+  },
+  {
+    "teamA": "Boston Celtics",
+    "teamB": "Miami Heat",
+    "dateTime": "2025-04-25T23:00:00+02:00",
+    "venue": "TD Garden - Boston, MA",
+    "day": "Venerdì 25 April",
+    "timeIT": "23:00",
+    "game": "Gara 3"
+  },
+  {
+    "teamA": "LA Clippers",
+    "teamB": "Dallas Mavericks",
+    "dateTime": "2025-04-26T06:00:00+02:00",
+    "venue": "Crypto.com Arena - Los Angeles, CA",
+    "day": "Sabato 26 April",
+    "timeIT": "06:00",
+    "game": "Gara 3"
+  },
+  {
+    "teamA": "New York Knicks",
+    "teamB": "Philadelphia 76ers",
+    "dateTime": "2025-04-26T01:30:00+02:00",
+    "venue": "Madison Square Garden - New York, NY",
+    "day": "Sabato 26 April",
+    "timeIT": "01:30",
+    "game": "Gara 3"
+  },
+  {
+    "teamA": "Milwaukee Bucks",
+    "teamB": "Indiana Pacers",
+    "dateTime": "2025-04-26T06:30:00+02:00",
+    "venue": "Fiserv Forum - Milwaukee, WI",
+    "day": "Sabato 26 April",
+    "timeIT": "06:30",
+    "game": "Gara 3"
+  },
+  {
+    "teamA": "Golden State Warriors",
+    "teamB": "Houston Rockets",
+    "dateTime": "2025-04-26T03:00:00+02:00",
+    "venue": "Chase Center - San Francisco, CA",
+    "day": "Sabato 26 April",
+    "timeIT": "03:00",
+    "game": "Gara 3"
+  }
+]

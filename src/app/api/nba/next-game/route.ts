@@ -45,7 +45,7 @@ export async function GET(request: Request) {
   teamParam = aliasMap[teamParam] || teamParam
 
   try {
-    const filePath = path.join(process.cwd(), 'public', 'playoffs-2025-full-round1.json')
+    const filePath = path.join(process.cwd(), 'public', 'playoffs-2025-real-round1.json')
     const fileContent = await fs.readFile(filePath, 'utf-8')
     const allGames: Game[] = JSON.parse(fileContent)
 
