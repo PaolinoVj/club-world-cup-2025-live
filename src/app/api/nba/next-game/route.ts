@@ -2,6 +2,13 @@ import { NextResponse } from 'next/server'
 import path from 'path'
 import { promises as fs } from 'fs'
 
+interface Game {
+  teamA: string
+  teamB: string
+  dateTime: string
+  venue?: string
+}
+
 const aliasMap: Record<string, string> = {
   "warriors": "Golden State Warriors",
   "lakers": "Los Angeles Lakers",
@@ -37,20 +44,18 @@ export async function GET(request: Request) {
   try {
     const filePath = path.join(process.cwd(), 'public', 'mock-playoff-games-real-it.json')
     const fileContent = await fs.readFile(filePath, 'utf-8')
-    const allGames = JSON.parse(fileContent)
+    const allGames: Game[] = JSON.parse(fileContent)
 
     const now = new Date().getTime()
 
-    const filtered = allGames.filter((game: any) => {
-      return (
-        game.teamA.toLowerCase() === teamParam.toLowerCase() ||
-        game.teamB.toLowerCase() === teamParam.toLowerCase()
-      )
-    })
+    const filtered = allGames.filter((game) =>
+      game.teamA.toLowerCase() === teamParam.toLowerCase() ||
+      game.teamB.toLowerCase() === teamParam.toLowerCase()
+    )
 
     const upcoming = filtered
-      .filter((g: any) => new Date(g.dateTime).getTime() > now)
-      .sort((a: any, b: any) => new Date(a.dateTime).getTime() - new Date(b.dateTime).getTime())
+      .filter((g) => new Date(g.dateTime).getTime() > now)
+      .sort((a, b) => new Date(a.dateTime).getTime() - new Date(b.dateTime).getTime())
 
     if (upcoming.length === 0) {
       return NextResponse.json({ error: 'Nessuna partita imminente trovata' }, { status: 404 })
