@@ -1,47 +1,35 @@
+// LiveCountdownCard.tsx
 'use client'
 
 import { useEffect, useState } from "react"
 
 interface GameData {
   teamA: string
-  teamALogo?: string
   teamB: string
-  teamBLogo?: string
   dateTime: string
   venue?: string
+  day: string
+  timeIT: string
+  game: string
 }
 
-const getSportsLogosUrl = (team: string) => {
-  const map: Record<string, string> = {
-    "boston celtics": "Boston_Celtics",
-    "brooklyn nets": "Brooklyn_Nets",
-    "chicago bulls": "Chicago_Bulls",
-    "cleveland cavaliers": "Cleveland_Cavaliers",
-    "dallas mavericks": "Dallas_Mavericks",
-    "denver nuggets": "Denver_Nuggets",
-    "golden state warriors": "Golden_State_Warriors",
-    "indiana pacers": "Indiana_Pacers",
-    "la clippers": "Los_Angeles_Clippers",
-    "los angeles lakers": "Los_Angeles_Lakers",
-    "memphis grizzlies": "Memphis_Grizzlies",
-    "miami heat": "Miami_Heat",
-    "milwaukee bucks": "Milwaukee_Bucks",
-    "minnesota timberwolves": "Minnesota_Timberwolves",
-    "new orleans pelicans": "New_Orleans_Pelicans",
-    "new york knicks": "New_York_Knicks",
-    "oklahoma city thunder": "Oklahoma_City_Thunder",
-    "orlando magic": "Orlando_Magic",
-    "philadelphia 76ers": "Philadelphia_76ers",
-    "phoenix suns": "Phoenix_Suns",
-    "sacramento kings": "Sacramento_Kings",
-    "toronto raptors": "Toronto_Raptors",
-    "washington wizards": "Washington_Wizards"
-  }
-
-  const key = team.toLowerCase()
-  return map[key]
-    ? `https://loodibee.com/wp-content/uploads/nba-${map[key].toLowerCase().replace(/_/g, '-')}-logo.png`
-    : 'https://loodibee.com/wp-content/uploads/nba-logo.png'
+const teamColors: Record<string, string> = {
+  "Boston Celtics": "from-green-700 to-green-900",
+  "Miami Heat": "from-red-700 to-black",
+  "New York Knicks": "from-blue-600 to-orange-600",
+  "Philadelphia 76ers": "from-blue-800 to-red-600",
+  "Cleveland Cavaliers": "from-yellow-700 to-red-800",
+  "Orlando Magic": "from-blue-500 to-gray-800",
+  "Milwaukee Bucks": "from-green-900 to-gray-900",
+  "Indiana Pacers": "from-yellow-500 to-blue-800",
+  "Denver Nuggets": "from-blue-800 to-burgundy-800",
+  "Los Angeles Lakers": "from-yellow-600 to-purple-800",
+  "Minnesota Timberwolves": "from-blue-900 to-green-700",
+  "Phoenix Suns": "from-purple-700 to-orange-600",
+  "Oklahoma City Thunder": "from-blue-600 to-orange-500",
+  "New Orleans Pelicans": "from-navy-800 to-gold-600",
+  "LA Clippers": "from-red-600 to-blue-700",
+  "Dallas Mavericks": "from-blue-800 to-silver-600"
 }
 
 export default function LiveCountdownCard({ team }: { team: string }) {
@@ -57,9 +45,6 @@ export default function LiveCountdownCard({ team }: { team: string }) {
         const json = await res.json()
 
         if (!res.ok) throw new Error(json.error || "Errore nella richiesta")
-
-        json.teamALogo = getSportsLogosUrl(json.teamA)
-        json.teamBLogo = getSportsLogosUrl(json.teamB)
 
         setData(json as GameData)
         setLoading(false)
@@ -95,37 +80,26 @@ export default function LiveCountdownCard({ team }: { team: string }) {
     fetchData()
   }, [team])
 
-  const fallbackLogo = 'https://loodibee.com/wp-content/uploads/nba-logo.png'
-
   if (loading) return <div className="text-center">Caricamento partita di {team}...</div>
   if (error) return <div className="text-red-500 text-center">Errore: {error}</div>
   if (!data) return null
 
+  const gradient = teamColors[data.teamA] || teamColors[data.teamB] || "from-gray-800 to-gray-900"
+
   return (
-    <div className="bg-gradient-to-br from-gray-800 via-gray-900 to-black border shadow-xl rounded-2xl p-6 w-full max-w-3xl mx-auto flex flex-col gap-4 text-center relative text-white animate-fade-in">
-      <h2 className="text-xl font-semibold text-white mb-4">Prossima partita</h2>
+    <div className={`bg-gradient-to-br ${gradient} border shadow-xl rounded-2xl p-6 w-full max-w-3xl mx-auto flex flex-col gap-4 text-center text-white animate-fade-in`}>
+      <h2 className="text-xl font-semibold mb-2">{data.game} – {data.day}</h2>
 
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-around gap-6">
-        <div className="flex flex-col items-center">
-          <img src={data.teamALogo || fallbackLogo} alt={data.teamA} className="w-16 h-16 object-contain" />
-          <span className="mt-2 font-bold text-sm text-white text-center leading-tight">{data.teamA}</span>
-        </div>
-
-        <div className="text-center">
-          <div className="text-lg font-bold text-yellow-300 animate-pulse">{timeLeft}</div>
-          <div className="text-sm text-gray-200">
-            🗓 {new Date(data.dateTime).toLocaleDateString("it-IT")} – 🕒 {new Date(data.dateTime).toLocaleTimeString("it-IT", { hour: '2-digit', minute: '2-digit' })} <span className="text-xs italic">(ora italiana)</span>
-          </div>
-          {data.venue && (
-            <div className="text-xs text-gray-400 mt-1">🏟 {data.venue}</div>
-          )}
-        </div>
-
-        <div className="flex flex-col items-center">
-          <img src={data.teamBLogo || fallbackLogo} alt={data.teamB} className="w-16 h-16 object-contain" />
-          <span className="mt-2 font-bold text-sm text-white text-center leading-tight">{data.teamB}</span>
-        </div>
+      <div className="flex justify-between items-center text-white">
+        <div className="flex-1 text-sm font-bold text-left">{data.teamA}</div>
+        <div className="text-lg font-bold text-yellow-300 animate-pulse">{timeLeft}</div>
+        <div className="flex-1 text-sm font-bold text-right">{data.teamB}</div>
       </div>
+
+      <div className="text-sm mt-2">
+        🕒 {data.timeIT} <span className="text-xs italic">(ora italiana)</span>
+      </div>
+      <div className="text-xs text-gray-200">🏟 {data.venue}</div>
     </div>
   )
 }

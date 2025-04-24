@@ -7,6 +7,9 @@ interface Game {
   teamB: string
   dateTime: string
   venue?: string
+  day: string
+  timeIT: string
+  game: string
 }
 
 const aliasMap: Record<string, string> = {
@@ -42,7 +45,7 @@ export async function GET(request: Request) {
   teamParam = aliasMap[teamParam] || teamParam
 
   try {
-    const filePath = path.join(process.cwd(), 'public', 'mock-playoff-games-real-it.json')
+    const filePath = path.join(process.cwd(), 'public', 'playoffs-2025-full-round1.json')
     const fileContent = await fs.readFile(filePath, 'utf-8')
     const allGames: Game[] = JSON.parse(fileContent)
 
@@ -62,15 +65,17 @@ export async function GET(request: Request) {
     }
 
     const game = upcoming[0]
-    const gameDateItaly = new Date(game.dateTime)
 
     return NextResponse.json({
       teamA: game.teamA,
       teamB: game.teamB,
-      dateTime: gameDateItaly.toISOString(),
-      venue: game.venue || 'TBD'
+      dateTime: game.dateTime,
+      venue: game.venue || 'TBD',
+      day: game.day,
+      timeIT: game.timeIT,
+      game: game.game
     })
   } catch {
-    return NextResponse.json({ error: 'Errore durante il recupero file mock' }, { status: 500 })
+    return NextResponse.json({ error: 'Errore durante il recupero file playoff' }, { status: 500 })
   }
 }
