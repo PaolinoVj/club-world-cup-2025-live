@@ -3,7 +3,7 @@
 
 import { useEffect, useState } from "react"
 
-interface GameData {
+export interface GameData {
   teamA: string
   teamB: string
   dateTime: string
@@ -59,6 +59,8 @@ const teamLogos: Record<string, string> = {
   "Memphis Grizzlies": "https://loodibee.com/wp-content/uploads/nba-memphis-grizzlies-logo.png",
   "Detroit Pistons": "https://loodibee.com/wp-content/uploads/nba-detroit-pistons-logo.png"
 }
+
+export { teamColors, teamLogos }
 
 export default function LiveCountdownCard({ team }: { team: string }) {
   const [gameData, setGameData] = useState<GameData | null>(null)
