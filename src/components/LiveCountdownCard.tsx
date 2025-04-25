@@ -57,7 +57,7 @@ const teamLogos: Record<string, string> = {
   "Houston Rockets": "https://loodibee.com/wp-content/uploads/nba-houston-rockets-logo.png",
   "Memphis Grizzlies": "https://loodibee.com/wp-content/uploads/nba-memphis-grizzlies-logo.png",
   "Detroit Pistons": "https://loodibee.com/wp-content/uploads/nba-detroit-pistons-logo.png"
-};
+}
 
 
 export default function LiveCountdownCard({ team }: { team: string }) {
