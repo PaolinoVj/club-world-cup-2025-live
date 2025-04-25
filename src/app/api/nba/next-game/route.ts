@@ -31,7 +31,7 @@ const aliasMap: Record<string, string> = {
   "suns": "Phoenix Suns",
   "pelicans": "New Orleans Pelicans",
   "pacers": "Indiana Pacers",
-  "thunder": "Oklahoma City Thunder"
+  "thunder": "Oklahoma City Thunder",
   "golden state": "Golden State Warriors",
   "golden state warriors": "Golden State Warriors",
 
