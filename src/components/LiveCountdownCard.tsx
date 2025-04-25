@@ -37,27 +37,28 @@ const teamColors: Record<string, string> = {
 }
 
 const teamLogos: Record<string, string> = {
-  "Boston Celtics": "https://sportslogohistory.com/wp-content/uploads/2023/10/boston_celtics_1978-1996.png",
-  "Miami Heat": "https://sportslogohistory.com/wp-content/uploads/2023/10/miami_heat_1999-pres.png",
-  "New York Knicks": "https://sportslogohistory.com/wp-content/uploads/2023/10/new_york_knicks_1993-pres.png",
-  "Philadelphia 76ers": "https://sportslogohistory.com/wp-content/uploads/2023/10/philadelphia_76ers_2015-pres.png",
-  "Cleveland Cavaliers": "https://sportslogohistory.com/wp-content/uploads/2023/10/cleveland_cavaliers_2017-pres.png",
-  "Orlando Magic": "https://sportslogohistory.com/wp-content/uploads/2023/10/orlando_magic_2011-pres.png",
-  "Milwaukee Bucks": "https://sportslogohistory.com/wp-content/uploads/2023/10/milwaukee_bucks_2015-pres.png",
-  "Indiana Pacers": "https://sportslogohistory.com/wp-content/uploads/2023/10/indiana_pacers_2017-pres.png",
-  "Denver Nuggets": "https://sportslogohistory.com/wp-content/uploads/2023/10/denver_nuggets_2018-pres.png",
-  "Los Angeles Lakers": "https://sportslogohistory.com/wp-content/uploads/2023/10/los_angeles_lakers_2001-pres.png",
-  "Minnesota Timberwolves": "https://sportslogohistory.com/wp-content/uploads/2023/10/minnesota_timberwolves_2017-pres.png",
-  "Phoenix Suns": "https://sportslogohistory.com/wp-content/uploads/2023/10/phoenix_suns_2013-pres.png",
-  "Oklahoma City Thunder": "https://sportslogohistory.com/wp-content/uploads/2023/10/oklahoma_city_thunder_2009-pres.png",
-  "New Orleans Pelicans": "https://sportslogohistory.com/wp-content/uploads/2023/10/new_orleans_pelicans_2014-pres.png",
-  "LA Clippers": "https://sportslogohistory.com/wp-content/uploads/2023/10/los_angeles_clippers_2016-pres.png",
-  "Dallas Mavericks": "https://sportslogohistory.com/wp-content/uploads/2023/10/dallas_mavericks_2002-pres.png",
-  "Golden State Warriors": "https://sportslogohistory.com/wp-content/uploads/2023/10/golden_state_warriors_2020-pres.png",
-  "Houston Rockets": "https://sportslogohistory.com/wp-content/uploads/2023/10/houston_rockets_2020-pres.png",
-  "Memphis Grizzlies": "https://sportslogohistory.com/wp-content/uploads/2023/10/memphis_grizzlies_2019-pres.png",
-  "Detroit Pistons": "https://sportslogohistory.com/wp-content/uploads/2023/10/detroit_pistons_2017-pres.png"
-}
+  "Boston Celtics": "https://loodibee.com/wp-content/uploads/nba-boston-celtics-logo.png",
+  "Miami Heat": "https://loodibee.com/wp-content/uploads/nba-miami-heat-logo.png",
+  "New York Knicks": "https://loodibee.com/wp-content/uploads/nba-new-york-knicks-logo.png",
+  "Philadelphia 76ers": "https://loodibee.com/wp-content/uploads/nba-philadelphia-76ers-logo.png",
+  "Cleveland Cavaliers": "https://loodibee.com/wp-content/uploads/nba-cleveland-cavaliers-logo.png",
+  "Orlando Magic": "https://loodibee.com/wp-content/uploads/nba-orlando-magic-logo.png",
+  "Milwaukee Bucks": "https://loodibee.com/wp-content/uploads/nba-milwaukee-bucks-logo.png",
+  "Indiana Pacers": "https://loodibee.com/wp-content/uploads/nba-indiana-pacers-logo.png",
+  "Denver Nuggets": "https://loodibee.com/wp-content/uploads/nba-denver-nuggets-logo.png",
+  "Los Angeles Lakers": "https://loodibee.com/wp-content/uploads/nba-los-angeles-lakers-logo.png",
+  "Minnesota Timberwolves": "https://loodibee.com/wp-content/uploads/nba-minnesota-timberwolves-logo.png",
+  "Phoenix Suns": "https://loodibee.com/wp-content/uploads/nba-phoenix-suns-logo.png",
+  "Oklahoma City Thunder": "https://loodibee.com/wp-content/uploads/nba-oklahoma-city-thunder-logo.png",
+  "New Orleans Pelicans": "https://loodibee.com/wp-content/uploads/nba-new-orleans-pelicans-logo.png",
+  "LA Clippers": "https://loodibee.com/wp-content/uploads/nba-los-angeles-clippers-logo.png",
+  "Dallas Mavericks": "https://loodibee.com/wp-content/uploads/nba-dallas-mavericks-logo.png",
+  "Golden State Warriors": "https://loodibee.com/wp-content/uploads/nba-golden-state-warriors-logo.png",
+  "Houston Rockets": "https://loodibee.com/wp-content/uploads/nba-houston-rockets-logo.png",
+  "Memphis Grizzlies": "https://loodibee.com/wp-content/uploads/nba-memphis-grizzlies-logo.png",
+  "Detroit Pistons": "https://loodibee.com/wp-content/uploads/nba-detroit-pistons-logo.png"
+};
+
 
 export default function LiveCountdownCard({ team }: { team: string }) {
   const [data, setData] = useState<GameData | null>(null)
