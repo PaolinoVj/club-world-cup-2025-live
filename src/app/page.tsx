@@ -26,6 +26,7 @@ export default function HomePage() {
         <LiveCountdownCard team="sixers" />
         <LiveCountdownCard team="heat" />
         <LiveCountdownCard team="bucks" />
+        <LiveCountdownCard team="warriors" /> {/* <== Aggiunta questa riga */}
       </div>
     </main>
   )

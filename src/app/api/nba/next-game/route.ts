@@ -32,6 +32,9 @@ const aliasMap: Record<string, string> = {
   "pelicans": "New Orleans Pelicans",
   "pacers": "Indiana Pacers",
   "thunder": "Oklahoma City Thunder"
+  "golden state": "Golden State Warriors",
+  "golden state warriors": "Golden State Warriors",
+
 }
 
 export async function GET(request: Request) {
