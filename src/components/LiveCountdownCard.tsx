@@ -11,6 +11,7 @@ interface GameData {
   day: string
   timeIT: string
   game: string
+  result?: string
 }
 
 const teamColors: Record<string, string> = {
@@ -59,81 +60,72 @@ const teamLogos: Record<string, string> = {
   "Detroit Pistons": "https://loodibee.com/wp-content/uploads/nba-detroit-pistons-logo.png"
 }
 
-
 export default function LiveCountdownCard({ team }: { team: string }) {
-  const [data, setData] = useState<GameData | null>(null)
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
-  const [timeLeft, setTimeLeft] = useState<string>("")
+  const [gameData, setGameData] = useState<GameData | null>(null)
+  const [countdown, setCountdown] = useState('')
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await fetch(`/api/nba/next-game?team=${encodeURIComponent(team)}`)
-        const json = await res.json()
-
-        if (!res.ok) throw new Error(json.error || "Errore nella richiesta")
-
-        setData(json as GameData)
-        setLoading(false)
-
-        const target = new Date(json.dateTime).getTime()
-
-        const interval = setInterval(() => {
-          const now = new Date().getTime()
-          const distance = target - now
-
-          if (distance < 0) {
-            setTimeLeft("In corso o terminata")
-            clearInterval(interval)
-            return
-          }
-
-          const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
-          const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
-          const seconds = Math.floor((distance % (1000 * 60)) / 1000)
-          const days = Math.floor(distance / (1000 * 60 * 60 * 24))
-
-          setTimeLeft(`${days > 0 ? days + 'g ' : ''}${hours}h ${minutes}m ${seconds}s`)
-        }, 1000)
-
-        return () => clearInterval(interval)
-      } catch (err) {
-        const message = err instanceof Error ? err.message : 'Errore sconosciuto'
-        setError(message)
-        setLoading(false)
-      }
+    async function fetchGame() {
+      const res = await fetch(`/api/nba/next-game?team=${team}`)
+      const data = await res.json()
+      setGameData(data)
     }
 
-    fetchData()
+    fetchGame()
   }, [team])
 
-  if (loading) return <div className="text-center">Caricamento partita di {team}...</div>
-  if (error) return <div className="text-red-500 text-center">Errore: {error}</div>
-  if (!data) return null
+  useEffect(() => {
+    if (!gameData) return
 
-  const gradient = teamColors[data.teamA] || teamColors[data.teamB] || "from-gray-800 to-gray-900"
-  const logoA = teamLogos[data.teamA] || ""
-  const logoB = teamLogos[data.teamB] || ""
+    const interval = setInterval(() => {
+      const now = new Date().getTime()
+      const gameTime = new Date(gameData.dateTime).getTime()
+      const distance = gameTime - now
+
+      if (distance < 0) {
+        setCountdown('In corso o terminata')
+        return
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24))
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
+
+      setCountdown(`${days}g ${hours}h ${minutes}m`)
+    }, 60000)
+
+    return () => clearInterval(interval)
+  }, [gameData])
+
+  if (!gameData) {
+    return null
+  }
+
+  const gradient = teamColors[gameData.teamA] || 'from-gray-500 to-gray-700'
+  const logoA = teamLogos[gameData.teamA]
+  const logoB = teamLogos[gameData.teamB]
 
   return (
-    <div className={`bg-gradient-to-br ${gradient} border shadow-xl rounded-2xl p-6 w-full max-w-3xl mx-auto flex flex-col gap-4 text-center text-white animate-fade-in`}>
-      <h2 className="text-xl font-semibold mb-2">{data.game} – {data.day}</h2>
-
-      <div className="flex justify-between items-center text-white">
-        <div className="flex-1 text-sm font-bold text-left flex items-center gap-2">
-          {logoA && <img src={logoA} alt={data.teamA} className="h-8" />} {data.teamA}
+    <div className={`p-5 rounded-2xl shadow-lg bg-gradient-to-br ${gradient} text-white flex flex-col items-center`}>
+      <div className="flex flex-col md:flex-row items-center gap-4 w-full justify-center mb-4">
+        <div className="flex flex-col items-center">
+          {logoA && <img src={logoA} alt={gameData.teamA} className="w-20 h-20 object-contain" />}
+          <div className="font-bold mt-2">{gameData.teamA}</div>
         </div>
-        <div className="text-lg font-bold text-yellow-300 animate-pulse">{timeLeft}</div>
-        <div className="flex-1 text-sm font-bold text-right flex items-center gap-2 justify-end">
-          {data.teamB} {logoB && <img src={logoB} alt={data.teamB} className="h-8" />}
+        <div className="text-3xl font-bold">VS</div>
+        <div className="flex flex-col items-center">
+          {logoB && <img src={logoB} alt={gameData.teamB} className="w-20 h-20 object-contain" />}
+          <div className="font-bold mt-2">{gameData.teamB}</div>
         </div>
       </div>
-
-      <div className="text-sm mt-2">
-        🕒 {data.timeIT} <span className="text-xs italic">(ora italiana)</span>
+      <div className="text-center">
+        <p className="text-lg font-semibold">{gameData.day} - {gameData.timeIT}</p>
+        {gameData.result && (
+          <p className="mt-1 text-sm font-bold">Serie: {gameData.result}</p>
+        )}
+        <p className="text-sm mt-2">{gameData.venue}</p>
+        <p className="text-md font-bold mt-2">{countdown}</p>
       </div>
-      <div className="text-xs text-gray-200">🏟 {data.venue}</div>
     </div>
   )
 }

@@ -10,6 +10,7 @@ interface Game {
   day: string
   timeIT: string
   game: string
+  result?: string
 }
 
 const aliasMap: Record<string, string> = {
@@ -32,9 +33,9 @@ const aliasMap: Record<string, string> = {
   "pelicans": "New Orleans Pelicans",
   "pacers": "Indiana Pacers",
   "thunder": "Oklahoma City Thunder",
-  "golden state": "Golden State Warriors",
-  "golden state warriors": "Golden State Warriors",
-
+  "grizzlies": "Memphis Grizzlies",
+  "rockets": "Houston Rockets",
+  "pistons": "Detroit Pistons"
 }
 
 export async function GET(request: Request) {
@@ -48,7 +49,7 @@ export async function GET(request: Request) {
   teamParam = aliasMap[teamParam] || teamParam
 
   try {
-    const filePath = path.join(process.cwd(), 'public', 'playoffs-2025-real-round1.json')
+    const filePath = path.join(process.cwd(), 'public', 'playoffs-2025-real-round1-with-results.json')
     const fileContent = await fs.readFile(filePath, 'utf-8')
     const allGames: Game[] = JSON.parse(fileContent)
 
@@ -76,7 +77,8 @@ export async function GET(request: Request) {
       venue: game.venue || 'TBD',
       day: game.day,
       timeIT: game.timeIT,
-      game: game.game
+      game: game.game,
+      result: game.result || undefined
     })
   } catch {
     return NextResponse.json({ error: 'Errore durante il recupero file playoff' }, { status: 500 })
