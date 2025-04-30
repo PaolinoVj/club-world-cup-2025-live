@@ -49,7 +49,7 @@ export async function GET(request: Request) {
   teamParam = aliasMap[teamParam] || teamParam
 
   try {
-    const filePath = path.join(process.cwd(), 'public', 'playoffs-2025-updated.json')
+    const filePath = path.join(process.cwd(), 'public', 'playoffs-2025-real-round1-with-results.json')
     const fileContent = await fs.readFile(filePath, 'utf-8')
     const allGames: Game[] = JSON.parse(fileContent)
 
@@ -80,7 +80,7 @@ export async function GET(request: Request) {
       game: game.game,
       result: game.result || undefined
     })
-  } catch (err) {
+  } catch {
     return NextResponse.json({ error: 'Errore durante il recupero file playoff' }, { status: 500 })
   }
 }

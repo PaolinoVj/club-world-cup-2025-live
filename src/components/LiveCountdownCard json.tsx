@@ -1,3 +1,4 @@
+// LiveCountdownCard.tsx
 'use client'
 
 import { useEffect, useState } from "react"
@@ -59,35 +60,7 @@ const teamLogos: Record<string, string> = {
   "Detroit Pistons": "https://loodibee.com/wp-content/uploads/nba-detroit-pistons-logo.png"
 }
 
-const teamNameMapping: Record<string, string> = {
-  "Warriors": "Golden State Warriors",
-  "Lakers": "Los Angeles Lakers",
-  "Celtics": "Boston Celtics",
-  "Sixers": "Philadelphia 76ers",
-  "76ers": "Philadelphia 76ers",
-  "Knicks": "New York Knicks",
-  "Nuggets": "Denver Nuggets",
-  "Clippers": "LA Clippers",
-  "Mavericks": "Dallas Mavericks",
-  "Bucks": "Milwaukee Bucks",
-  "Cavaliers": "Cleveland Cavaliers",
-  "Magic": "Orlando Magic",
-  "Heat": "Miami Heat",
-  "Wolves": "Minnesota Timberwolves",
-  "Timberwolves": "Minnesota Timberwolves",
-  "Suns": "Phoenix Suns",
-  "Pelicans": "New Orleans Pelicans",
-  "Pacers": "Indiana Pacers",
-  "Thunder": "Oklahoma City Thunder",
-  "Grizzlies": "Memphis Grizzlies",
-  "Pistons": "Detroit Pistons"
-}
-
-function mapTeamName(apiTeamName: string): string {
-  return teamNameMapping[apiTeamName] || apiTeamName
-}
-
-export { teamColors, teamLogos, mapTeamName }
+export { teamColors, teamLogos }
 
 export default function LiveCountdownCard({ team }: { team: string }) {
   const [gameData, setGameData] = useState<GameData | null>(null)
@@ -130,24 +103,21 @@ export default function LiveCountdownCard({ team }: { team: string }) {
     return null
   }
 
-  const mappedTeamA = mapTeamName(gameData.teamA)
-  const mappedTeamB = mapTeamName(gameData.teamB)
-
-  const gradient = teamColors[mappedTeamA] || 'from-gray-500 to-gray-700'
-  const logoA = teamLogos[mappedTeamA]
-  const logoB = teamLogos[mappedTeamB]
+  const gradient = teamColors[gameData.teamA] || 'from-gray-500 to-gray-700'
+  const logoA = teamLogos[gameData.teamA]
+  const logoB = teamLogos[gameData.teamB]
 
   return (
     <div className={`p-5 rounded-2xl shadow-lg bg-gradient-to-br ${gradient} text-white flex flex-col items-center`}>
       <div className="flex flex-col md:flex-row items-center gap-4 w-full justify-center mb-4">
         <div className="flex flex-col items-center">
-          {logoA && <img src={logoA} alt={mappedTeamA} className="w-20 h-20 object-contain" />}
-          <div className="font-bold mt-2">{mappedTeamA}</div>
+          {logoA && <img src={logoA} alt={gameData.teamA} className="w-20 h-20 object-contain" />}
+          <div className="font-bold mt-2">{gameData.teamA}</div>
         </div>
         <div className="text-3xl font-bold">VS</div>
         <div className="flex flex-col items-center">
-          {logoB && <img src={logoB} alt={mappedTeamB} className="w-20 h-20 object-contain" />}
-          <div className="font-bold mt-2">{mappedTeamB}</div>
+          {logoB && <img src={logoB} alt={gameData.teamB} className="w-20 h-20 object-contain" />}
+          <div className="font-bold mt-2">{gameData.teamB}</div>
         </div>
       </div>
       <div className="text-center">
