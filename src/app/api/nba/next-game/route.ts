@@ -81,6 +81,8 @@ export async function GET(request: Request) {
       result: game.result || undefined
     })
   } catch (err) {
-    return NextResponse.json({ error: 'Errore durante il recupero file playoff' }, { status: 500 })
-  }
+  console.error("Errore durante il recupero file playoff:", err)
+  return NextResponse.json({ error: 'Errore durante il recupero file playoff' }, { status: 500 })
+}
+
 }
