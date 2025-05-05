@@ -11,29 +11,31 @@ export interface GameData {
   timeIT: string
   game: string
   result?: string
+  scoreA?: number
+  scoreB?: number
 }
 
-const teamColors: Record<string, string> = {
-  "Boston Celtics": "from-green-700 to-green-900",
-  "Miami Heat": "from-red-700 to-black",
-  "New York Knicks": "from-blue-600 to-orange-600",
-  "Philadelphia 76ers": "from-blue-800 to-red-600",
-  "Cleveland Cavaliers": "from-yellow-700 to-red-800",
-  "Orlando Magic": "from-blue-500 to-gray-800",
-  "Milwaukee Bucks": "from-green-900 to-gray-900",
-  "Indiana Pacers": "from-yellow-500 to-blue-800",
-  "Denver Nuggets": "from-blue-800 to-yellow-900",
-  "Los Angeles Lakers": "from-yellow-600 to-purple-800",
-  "Minnesota Timberwolves": "from-blue-900 to-green-700",
-  "Phoenix Suns": "from-purple-700 to-orange-600",
-  "Oklahoma City Thunder": "from-blue-600 to-orange-500",
-  "New Orleans Pelicans": "from-blue-800 to-yellow-600",
-  "LA Clippers": "from-red-600 to-blue-700",
-  "Dallas Mavericks": "from-blue-800 to-gray-600",
-  "Golden State Warriors": "from-blue-700 to-yellow-500",
-  "Houston Rockets": "from-red-700 to-gray-800",
-  "Memphis Grizzlies": "from-blue-900 to-cyan-700",
-  "Detroit Pistons": "from-red-700 to-blue-900"
+const teamSolidColors: Record<string, string> = {
+  "Boston Celtics": "bg-green-700",
+  "Miami Heat": "bg-red-700",
+  "New York Knicks": "bg-blue-700",
+  "Philadelphia 76ers": "bg-blue-800",
+  "Cleveland Cavaliers": "bg-red-800",
+  "Orlando Magic": "bg-blue-600",
+  "Milwaukee Bucks": "bg-green-900",
+  "Indiana Pacers": "bg-yellow-600",
+  "Denver Nuggets": "bg-blue-800",
+  "Los Angeles Lakers": "bg-purple-700",
+  "Minnesota Timberwolves": "bg-teal-800",
+  "Phoenix Suns": "bg-orange-600",
+  "Oklahoma City Thunder": "bg-sky-600",
+  "New Orleans Pelicans": "bg-indigo-800",
+  "LA Clippers": "bg-red-700",
+  "Dallas Mavericks": "bg-blue-900",
+  "Golden State Warriors": "bg-yellow-600",
+  "Houston Rockets": "bg-red-800",
+  "Memphis Grizzlies": "bg-cyan-900",
+  "Detroit Pistons": "bg-red-700"
 }
 
 const teamLogos: Record<string, string> = {
@@ -45,7 +47,7 @@ const teamLogos: Record<string, string> = {
   "Orlando Magic": "https://loodibee.com/wp-content/uploads/nba-orlando-magic-logo.png",
   "Milwaukee Bucks": "https://loodibee.com/wp-content/uploads/nba-milwaukee-bucks-logo.png",
   "Indiana Pacers": "https://loodibee.com/wp-content/uploads/nba-indiana-pacers-logo.png",
-  "Denver Nuggets": "https://loodibee.com/wp-content/uploads/denver-nuggets-logo-symbol.png",
+  "Denver Nuggets": "https://loodibee.com/wp-content/uploads/nba-denver-nuggets-logo.png",
   "Los Angeles Lakers": "https://loodibee.com/wp-content/uploads/nba-los-angeles-lakers-logo.png",
   "Minnesota Timberwolves": "https://loodibee.com/wp-content/uploads/nba-minnesota-timberwolves-logo.png",
   "Phoenix Suns": "https://loodibee.com/wp-content/uploads/nba-phoenix-suns-logo.png",
@@ -87,7 +89,7 @@ function mapTeamName(apiTeamName: string): string {
   return teamNameMapping[apiTeamName] || apiTeamName
 }
 
-export { teamColors, teamLogos, mapTeamName }
+export { teamSolidColors, teamLogos, mapTeamName }
 
 export default function LiveCountdownCard({ team }: { team: string }) {
   const [gameData, setGameData] = useState<GameData | null>(null)
@@ -97,9 +99,9 @@ export default function LiveCountdownCard({ team }: { team: string }) {
     async function fetchGame() {
       const res = await fetch(`/api/nba/next-game?team=${team}`)
       const data = await res.json()
+      if (!data || data.error) return
       setGameData(data)
     }
-
     fetchGame()
   }, [team])
 
@@ -112,7 +114,7 @@ export default function LiveCountdownCard({ team }: { team: string }) {
       const distance = gameTime - now
 
       if (distance < 0) {
-        setCountdown('In corso o terminata')
+        setCountdown('LIVE')
         return
       }
 
@@ -126,37 +128,45 @@ export default function LiveCountdownCard({ team }: { team: string }) {
     return () => clearInterval(interval)
   }, [gameData])
 
-  if (!gameData) {
-    return null
-  }
+  if (!gameData) return null
 
   const mappedTeamA = mapTeamName(gameData.teamA)
   const mappedTeamB = mapTeamName(gameData.teamB)
-
-  const gradient = teamColors[mappedTeamA] || 'from-gray-500 to-gray-700'
+  const bgColorA = teamSolidColors[mappedTeamA] || 'bg-gray-600'
+  const bgColorB = teamSolidColors[mappedTeamB] || 'bg-gray-600'
   const logoA = teamLogos[mappedTeamA]
   const logoB = teamLogos[mappedTeamB]
+  const scoreInfo = gameData.scoreA != null && gameData.scoreB != null ? ` | ${gameData.scoreA} - ${gameData.scoreB}` : ''
 
   return (
-    <div className={`p-5 rounded-2xl shadow-lg bg-gradient-to-br ${gradient} text-white flex flex-col items-center`}>
-      <div className="flex flex-col md:flex-row items-center gap-4 w-full justify-center mb-4">
-        <div className="flex flex-col items-center">
-          {logoA && <img src={logoA} alt={mappedTeamA} className="w-20 h-20 object-contain" />}
-          <div className="font-bold mt-2">{mappedTeamA}</div>
-        </div>
-        <div className="text-3xl font-bold">VS</div>
-        <div className="flex flex-col items-center">
-          {logoB && <img src={logoB} alt={mappedTeamB} className="w-20 h-20 object-contain" />}
-          <div className="font-bold mt-2">{mappedTeamB}</div>
-        </div>
+    <div className="rounded-xl shadow-md text-white w-full flex flex-col sm:flex-row overflow-hidden mb-4">
+      <div className={`flex-1 flex flex-col items-center justify-center p-4 ${bgColorA}`}>
+        <img src={logoA} alt={mappedTeamA} className="w-14 h-14 mb-2 sm:w-20 sm:h-20" />
+        <div className="text-base sm:text-xl font-semibold text-center leading-tight">{mappedTeamA}</div>
       </div>
-      <div className="text-center">
-        <p className="text-lg font-semibold">{gameData.day} - {gameData.timeIT}</p>
-        {gameData.result && (
-          <p className="mt-1 text-sm font-bold">Serie: {gameData.result}</p>
-        )}
-        <p className="text-sm mt-2">{gameData.venue}</p>
-        <p className="text-md font-bold mt-2">{countdown}</p>
+
+      <div className="bg-black flex flex-col justify-center items-center px-2 py-4 w-full sm:w-56 text-center">
+        <div className="text-xs uppercase tracking-widest text-gray-400">{gameData.game}</div>
+        <div className="text-base sm:text-lg font-bold mt-1">
+          {gameData.result ? `Serie: ${gameData.result}` : "Prossimo Match"}{scoreInfo}
+        </div>
+        <div className="text-sm mt-1">{gameData.day} - {gameData.timeIT}</div>
+        <div className="text-xs text-gray-400 mt-1 leading-tight">{gameData.venue}</div>
+        <div className="text-sm text-yellow-300 mt-2 font-medium">
+          {countdown === 'LIVE' ? <span className="text-red-400 animate-pulse">LIVE</span> : countdown}
+        </div>
+        <a
+          href={`https://www.google.com/search?q=${encodeURIComponent(gameData.teamA + ' vs ' + gameData.teamB)}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-2 text-blue-400 underline text-xs"
+        >
+          Info & risultati</a>
+      </div>
+
+      <div className={`flex-1 flex flex-col items-center justify-center p-4 ${bgColorB}`}>
+        <img src={logoB} alt={mappedTeamB} className="w-14 h-14 mb-2 sm:w-20 sm:h-20" />
+        <div className="text-base sm:text-xl font-semibold text-center leading-tight">{mappedTeamB}</div>
       </div>
     </div>
   )
