@@ -45,7 +45,7 @@ const teamLogos: Record<string, string> = {
   "Orlando Magic": "https://loodibee.com/wp-content/uploads/nba-orlando-magic-logo.png",
   "Milwaukee Bucks": "https://loodibee.com/wp-content/uploads/nba-milwaukee-bucks-logo.png",
   "Indiana Pacers": "https://loodibee.com/wp-content/uploads/nba-indiana-pacers-logo.png",
-  "Denver Nuggets": "https://loodibee.com/wp-content/uploads/nba-denver-nuggets-logo.png",
+  "Denver Nuggets": "https://loodibee.com/wp-content/uploads/denver-nuggets-logo-symbol.png",
   "Los Angeles Lakers": "https://loodibee.com/wp-content/uploads/nba-los-angeles-lakers-logo.png",
   "Minnesota Timberwolves": "https://loodibee.com/wp-content/uploads/nba-minnesota-timberwolves-logo.png",
   "Phoenix Suns": "https://loodibee.com/wp-content/uploads/nba-phoenix-suns-logo.png",
