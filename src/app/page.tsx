@@ -1,6 +1,20 @@
 import LiveCountdownCard from "@/components/LiveCountdownCard"
 
 export default function HomePage() {
+  const teams = [
+    "lakers",
+    "celtics",
+    "clippers",
+    "knicks",
+    "nuggets",
+    "sixers",
+    "heat",
+    "bucks",
+    "warriors"
+  ]
+
+  const uniqueTeams = [...new Set(teams)]
+
   return (
     <main className="min-h-screen bg-gray-100 px-4 py-6 flex flex-col items-center">
       <div className="flex flex-col items-center mb-8">
@@ -18,15 +32,9 @@ export default function HomePage() {
       </div>
 
       <div className="w-full max-w-6xl grid gap-6 grid-cols-1 sm:grid-cols-2">
-        <LiveCountdownCard team="lakers" />
-        <LiveCountdownCard team="celtics" />
-        <LiveCountdownCard team="clippers" />
-        <LiveCountdownCard team="knicks" />
-        <LiveCountdownCard team="nuggets" />
-        <LiveCountdownCard team="sixers" />
-        <LiveCountdownCard team="heat" />
-        <LiveCountdownCard team="bucks" />
-        <LiveCountdownCard team="warriors" /> {/* <== Aggiunta questa riga */}
+        {uniqueTeams.map((team) => (
+          <LiveCountdownCard key={team} team={team} />
+        ))}
       </div>
     </main>
   )
