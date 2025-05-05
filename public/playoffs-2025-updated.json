@@ -1,12 +1,52 @@
 [
   {
+    "teamA": "Oklahoma City Thunder",
+    "teamB": "Denver Nuggets",
+    "dateTime": "2025-05-05T20:30:00-04:00",
+    "venue": "Paycom Center - Oklahoma City, OK",
+    "day": "Lunedì 5 Maggio",
+    "timeIT": "02:30",
+    "game": "Playoff 2025 - Conference Semifinals Game 1",
+    "result": null
+  },
+  {
+    "teamA": "Minnesota Timberwolves",
+    "teamB": "Golden State Warriors",
+    "dateTime": "2025-05-06T22:00:00-04:00",
+    "venue": "Target Center - Minneapolis, MN",
+    "day": "Martedì 6 Maggio",
+    "timeIT": "04:00",
+    "game": "Playoff 2025 - Conference Semifinals Game 1",
+    "result": null
+  },
+  {
+    "teamA": "Cleveland Cavaliers",
+    "teamB": "Indiana Pacers",
+    "dateTime": "2025-05-06T19:00:00-04:00",
+    "venue": "Rocket Mortgage FieldHouse - Cleveland, OH",
+    "day": "Martedì 6 Maggio",
+    "timeIT": "01:00",
+    "game": "Playoff 2025 - Conference Semifinals Game 1",
+    "result": null
+  },
+  {
+    "teamA": "New York Knicks",
+    "teamB": "Boston Celtics",
+    "dateTime": "2025-05-07T19:30:00-04:00",
+    "venue": "Madison Square Garden - New York, NY",
+    "day": "Mercoledì 7 Maggio",
+    "timeIT": "01:30",
+    "game": "Playoff 2025 - Conference Semifinals Game 1",
+    "result": null
+  },
+  {
     "teamA": "Boston Celtics",
     "teamB": "Orlando Magic",
     "dateTime": "2025-04-29T20:30:00-04:00",
     "venue": "TD Garden - Boston, MA",
-    "day": "Martedì 29 April",
+    "day": "Martedì 29 Aprile",
     "timeIT": "02:30",
-    "game": "Playoff 2025 - Game 5",
+    "game": "Playoff 2025 - First Round Game 5",
     "result": "4-1"
   },
   {
@@ -14,69 +54,109 @@
     "teamB": "Milwaukee Bucks",
     "dateTime": "2025-04-29T18:00:00-04:00",
     "venue": "Gainbridge Fieldhouse - Indianapolis, IN",
-    "day": "Martedì 29 April",
+    "day": "Martedì 29 Aprile",
     "timeIT": "00:00",
-    "game": "Playoff 2025 - Game 5",
+    "game": "Playoff 2025 - First Round Game 5",
     "result": "4-1"
   },
   {
     "teamA": "New York Knicks",
     "teamB": "Detroit Pistons",
-    "dateTime": "2025-04-29T19:30:00-04:00",
-    "venue": "Madison Square Garden - New York, NY",
-    "day": "Martedì 29 April",
+    "dateTime": "2025-05-01T19:30:00-04:00",
+    "venue": "Little Caesars Arena - Detroit, MI",
+    "day": "Giovedì 1 Maggio",
     "timeIT": "01:30",
-    "game": "Playoff 2025 - Game 5",
-    "result": "3-2"
+    "game": "Playoff 2025 - First Round Game 6",
+    "result": "4-2"
   },
   {
     "teamA": "Denver Nuggets",
     "teamB": "LA Clippers",
-    "dateTime": "2025-04-29T22:00:00-04:00",
-    "venue": "Ball Arena - Denver, CO",
-    "day": "Martedì 29 April",
+    "dateTime": "2025-05-01T22:00:00-04:00",
+    "venue": "Crypto.com Arena - Los Angeles, CA",
+    "day": "Giovedì 1 Maggio",
     "timeIT": "04:00",
-    "game": "Playoff 2025 - Game 5",
-    "result": "3-2"
+    "game": "Playoff 2025 - First Round Game 6",
+    "result": "4-3"
   },
   {
     "teamA": "Golden State Warriors",
     "teamB": "Houston Rockets",
-    "dateTime": "2025-05-01T19:30:00-04:00",
-    "venue": "Chase Center - San Francisco, CA",
-    "day": "Giovedì 1 May",
-    "timeIT": "01:30",
-    "game": "Playoff 2025 - Game 5",
-    "result": "1-3"
+    "dateTime": "2025-05-03T20:00:00-04:00",
+    "venue": "Toyota Center - Houston, TX",
+    "day": "Sabato 3 Maggio",
+    "timeIT": "02:00",
+    "game": "Playoff 2025 - First Round Game 7",
+    "result": "4-3"
   },
   {
-    "teamA": "Los Angeles Lakers",
+    "teamA": "Minnesota Timberwolves",
+    "teamB": "Los Angeles Lakers",
+    "dateTime": "2025-05-02T22:00:00-04:00",
+    "venue": "Crypto.com Arena - Los Angeles, CA",
+    "day": "Venerdì 2 Maggio",
+    "timeIT": "04:00",
+    "game": "Playoff 2025 - First Round Game 6",
+    "result": "4-2"
+  },
+  {
+    "teamA": "Oklahoma City Thunder",
+    "teamB": "Memphis Grizzlies",
+    "dateTime": "2025-04-28T21:30:00-04:00",
+    "venue": "FedExForum - Memphis, TN",
+    "day": "Lunedì 28 Aprile",
+    "timeIT": "03:30",
+    "game": "Playoff 2025 - First Round Game 4",
+    "result": "4-0"
+  },
+  {
+    "teamA": "Cleveland Cavaliers",
+    "teamB": "Miami Heat",
+    "dateTime": "2025-04-28T19:00:00-04:00",
+    "venue": "Kaseya Center - Miami, FL",
+    "day": "Lunedì 28 Aprile",
+    "timeIT": "01:00",
+    "game": "Playoff 2025 - First Round Game 4",
+    "result": "4-0"
+  },
+  {
+    "teamA": "Boston Celtics",
+    "teamB": "Miami Heat",
+    "dateTime": "2025-05-09T19:00:00-04:00",
+    "venue": "TD Garden - Boston, MA",
+    "day": "Venerdì 9 Maggio",
+    "timeIT": "01:00",
+    "game": "Playoff 2025 - Conference Semifinals Game 2",
+    "result": null
+  },
+  {
+    "teamA": "Indiana Pacers",
+    "teamB": "Cleveland Cavaliers",
+    "dateTime": "2025-05-08T19:00:00-04:00",
+    "venue": "Gainbridge Fieldhouse - Indianapolis, IN",
+    "day": "Giovedì 8 Maggio",
+    "timeIT": "01:00",
+    "game": "Playoff 2025 - Conference Semifinals Game 2",
+    "result": null
+  },
+  {
+    "teamA": "Golden State Warriors",
     "teamB": "Minnesota Timberwolves",
-    "dateTime": "2025-04-30T22:00:00-04:00",
-    "venue": "Crypto.com Arena - Los Angeles, CA",
-    "day": "Mercoledì 30 April",
-    "timeIT": "04:00",
-    "game": "Playoff 2025 - Game 5",
-    "result": "1-3"
+    "dateTime": "2025-05-09T21:30:00-04:00",
+    "venue": "Chase Center - San Francisco, CA",
+    "day": "Venerdì 9 Maggio",
+    "timeIT": "03:30",
+    "game": "Playoff 2025 - Conference Semifinals Game 2",
+    "result": null
   },
   {
-    "teamA": "Detroit Pistons",
-    "teamB": "New York Knicks",
-    "dateTime": "2025-05-01T19:30:00-04:00",
-    "venue": "Little Caesars Arena - Detroit, MI",
-    "day": "Giovedì 1 May",
-    "timeIT": "01:30",
-    "game": "Playoff 2025 - Game 6",
-    "result": "2-3"
-  },
-  {
-    "teamA": "LA Clippers",
-    "teamB": "Denver Nuggets",
-    "dateTime": "2025-05-01T22:00:00-04:00",
-    "venue": "Crypto.com Arena - Los Angeles, CA",
-    "day": "Giovedì 1 May",
+    "teamA": "Denver Nuggets",
+    "teamB": "Oklahoma City Thunder",
+    "dateTime": "2025-05-07T22:00:00-04:00",
+    "venue": "Ball Arena - Denver, CO",
+    "day": "Mercoledì 7 Maggio",
     "timeIT": "04:00",
-    "game": "Playoff 2025 - Game 6",
-    "result": "2-3"
+    "game": "Playoff 2025 - Conference Semifinals Game 2",
+    "result": null
   }
 ]
