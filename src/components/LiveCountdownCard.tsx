@@ -11,9 +11,7 @@ export interface GameData {
   timeIT: string
   game: string
   result?: string
-  scoreA?: number
-  scoreB?: number
-}
+  }
 
 const teamSolidColors: Record<string, string> = {
   "Boston Celtics": "bg-green-700",
@@ -136,8 +134,7 @@ export default function LiveCountdownCard({ team }: { team: string }) {
   const bgColorB = teamSolidColors[mappedTeamB] || 'bg-gray-600'
   const logoA = teamLogos[mappedTeamA]
   const logoB = teamLogos[mappedTeamB]
-  const scoreInfo = gameData.scoreA != null && gameData.scoreB != null ? ` | ${gameData.scoreA} - ${gameData.scoreB}` : ''
-
+  
   return (
     <div className="rounded-xl shadow-md text-white w-full flex flex-col sm:flex-row overflow-hidden mb-4">
       <div className={`flex-1 flex flex-col items-center justify-center p-4 ${bgColorA}`}>
@@ -148,7 +145,7 @@ export default function LiveCountdownCard({ team }: { team: string }) {
       <div className="bg-black flex flex-col justify-center items-center px-2 py-4 w-full sm:w-56 text-center">
         <div className="text-xs uppercase tracking-widest text-gray-400">{gameData.game}</div>
         <div className="text-base sm:text-lg font-bold mt-1">
-          {gameData.result ? `Serie: ${gameData.result}` : "Prossimo Match"}{scoreInfo}
+          {gameData.result ? `Serie: ${gameData.result}` : "Prossimo Match"}
         </div>
         <div className="text-sm mt-1">{gameData.day} - {gameData.timeIT}</div>
         <div className="text-xs text-gray-400 mt-1 leading-tight">{gameData.venue}</div>
