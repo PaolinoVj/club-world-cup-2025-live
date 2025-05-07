@@ -17,7 +17,7 @@ export default function HomePage() {
   const uniqueTeams = Array.from(new Set(teams));
 
   // Funzione per rimuovere duplicati tra i dati delle partite
-  function removeDuplicateGames(games: any[]) {
+  function removeDuplicateGames(games: GameData[]): GameData[] {
     const seen = new Set();
     return games.filter((game) => {
       const key = `${game.teamA}-${game.teamB}-${game.dateTime}`;
