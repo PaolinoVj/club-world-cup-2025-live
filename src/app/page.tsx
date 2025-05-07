@@ -13,7 +13,8 @@ export default function HomePage() {
     "thunder"
   ];
 
-  const uniqueTeams = [...new Set(teams)];
+  // Rimuovere i duplicati dalle squadre
+  const uniqueTeams = Array.from(new Set(teams));
 
   return (
     <main className="min-h-screen bg-gray-100 px-4 py-6 flex flex-col items-center">
