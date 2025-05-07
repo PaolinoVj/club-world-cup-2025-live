@@ -17,19 +17,6 @@ export default function HomePage() {
   // Rimuovere i duplicati dalle squadre
   const uniqueTeams = Array.from(new Set(teams));
 
-  // Funzione per rimuovere duplicati tra i dati delle partite
-  function removeDuplicateGames(games: GameData[]): GameData[] {
-    const seen = new Set();
-    return games.filter((game) => {
-      const key = `${game.teamA}-${game.teamB}-${game.dateTime}`;
-      if (seen.has(key)) {
-        return false;
-      }
-      seen.add(key);
-      return true;
-    });
-  }
-
   return (
     <main className="min-h-screen bg-gray-100 px-4 py-6 flex flex-col items-center">
       <div className="flex flex-col items-center mb-8">
@@ -48,7 +35,7 @@ export default function HomePage() {
 
       <div className="w-full max-w-6xl grid gap-6 grid-cols-1 sm:grid-cols-2">
         {uniqueTeams.map((team) => (
-          <LiveCountdownCard key={team} team={team} removeDuplicateGames={removeDuplicateGames} />
+          <LiveCountdownCard key={team} team={team} />
         ))}
       </div>
     </main>
