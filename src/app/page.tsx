@@ -1,19 +1,19 @@
-import LiveCountdownCard from "@/components/LiveCountdownCard"
+import LiveCountdownCard from "@/components/LiveCountdownCard";
 
 export default function HomePage() {
   const teams = [
     "lakers",
     "celtics",
-    "clippers",
     "knicks",
     "nuggets",
-    "sixers",
-    "heat",
-    "bucks",
-    "warriors"
-  ]
+    "warriors",
+    "timberwolves",
+    "cavaliers",
+    "pacers",
+    "thunder"
+  ];
 
-  const uniqueTeams = [...new Set(teams)]
+  const uniqueTeams = [...new Set(teams)];
 
   return (
     <main className="min-h-screen bg-gray-100 px-4 py-6 flex flex-col items-center">
@@ -37,5 +37,5 @@ export default function HomePage() {
         ))}
       </div>
     </main>
-  )
+  );
 }
