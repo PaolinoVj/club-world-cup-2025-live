@@ -96,29 +96,14 @@ export default function LiveCountdownCard({ team }: { team: string }) {
   const [countdown, setCountdown] = useState('')
 
   useEffect(() => {
-  async function fetchGame() {
-    try {
-      const res = await fetch('/playoffs-2025-updated.json');
-      if (!res.ok) throw new Error('Errore nel caricamento del file JSON');
-      
-      const data: GameData[] = await res.json();
-      if (data && Array.isArray(data)) {
-        console.log("Lista completa delle squadre:", data.map(game => game.teamA + " vs " + game.teamB));
-        
-        const filteredData = data.filter(game => game.teamA === team || game.teamB === team);
-        if (filteredData.length > 0) {
-          setGameData(filteredData[0]);
-        } else {
-          console.error('Nessuna partita trovata per il team:', team);
-        }
-      }
-    } catch (error) {
-      console.error('Errore nel caricamento dei dati:', error);
+    async function fetchGame() {
+      const res = await fetch(`/api/nba/next-game?team=${team}`)
+      const data = await res.json()
+      if (!data || data.error) return
+      setGameData(data)
     }
-  }
-  fetchGame();
-}, [team]);
-
+    fetchGame()
+  }, [team])
 
   useEffect(() => {
     if (!gameData) return
