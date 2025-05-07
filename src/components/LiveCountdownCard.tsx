@@ -85,6 +85,17 @@ const teamNameMapping: Record<string, string> = {
   "Pistons": "Detroit Pistons"
 }
 
+function removeDuplicateGames(games: GameData[]): GameData[] {
+  const uniqueGames = new Map();
+  games.forEach((game) => {
+    const key = `${game.teamA}-${game.teamB}-${game.dateTime}`;
+    if (!uniqueGames.has(key)) {
+      uniqueGames.set(key, game);
+    }
+  });
+  return Array.from(uniqueGames.values());
+}
+
 function mapTeamName(apiTeamName: string): string {
   return teamNameMapping[apiTeamName] || apiTeamName
 }
