@@ -61,6 +61,35 @@ const teamLogos: Record<string, string> = {
   "Detroit Pistons": "https://loodibee.com/wp-content/uploads/nba-detroit-pistons-logo.png"
 }
 
+const teamNameMapping: Record<string, string> = {
+  "Warriors": "Golden State Warriors",
+  "Lakers": "Los Angeles Lakers",
+  "Celtics": "Boston Celtics",
+  "Sixers": "Philadelphia 76ers",
+  "76ers": "Philadelphia 76ers",
+  "Knicks": "New York Knicks",
+  "Nuggets": "Denver Nuggets",
+  "Clippers": "LA Clippers",
+  "Mavericks": "Dallas Mavericks",
+  "Bucks": "Milwaukee Bucks",
+  "Cavaliers": "Cleveland Cavaliers",
+  "Magic": "Orlando Magic",
+  "Heat": "Miami Heat",
+  "Wolves": "Minnesota Timberwolves",
+  "Timberwolves": "Minnesota Timberwolves",
+  "Suns": "Phoenix Suns",
+  "Pelicans": "New Orleans Pelicans",
+  "Pacers": "Indiana Pacers",
+  "Thunder": "Oklahoma City Thunder",
+  "Grizzlies": "Memphis Grizzlies",
+  "Pistons": "Detroit Pistons"
+};
+
+function mapTeamName(apiTeamName: string): string {
+  return teamNameMapping[apiTeamName] || apiTeamName;
+}
+
+
 function removeDuplicateGames(games: GameData[]): GameData[] {
   const uniqueGames = new Map();
   games.forEach((game) => {
@@ -72,7 +101,7 @@ function removeDuplicateGames(games: GameData[]): GameData[] {
   return Array.from(uniqueGames.values());
 }
 
-export { teamSolidColors, teamLogos, removeDuplicateGames }
+export { teamSolidColors, teamLogos, mapTeamName, removeDuplicateGames }
 
 export default function LiveCountdownCard({ team }: { team: string }) {
   const [gameData, setGameData] = useState<GameData | null>(null)
