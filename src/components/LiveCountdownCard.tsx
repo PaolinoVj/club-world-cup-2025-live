@@ -97,10 +97,10 @@ function removeDuplicateGames(games: GameData[]): GameData[] {
 }
 
 function mapTeamName(apiTeamName: string): string {
-  return teamNameMapping[apiTeamName] || apiTeamName
+  return teamLogos[apiTeamName] || apiTeamName;
 }
 
-export { teamSolidColors, teamLogos, mapTeamName }
+export { teamSolidColors, teamLogos, mapTeamName, removeDuplicateGames };
 
 export default function LiveCountdownCard({ team }: { team: string }) {
   const [gameData, setGameData] = useState<GameData | null>(null)
