@@ -110,20 +110,27 @@ export default function LiveCountdownCard({ team }: { team: string }) {
   useEffect(() => {
   async function fetchGame() {
     try {
-      const response = await fetch('/playoffs-2025-updated.json'); // Percorso relativo al file JSON
+      const response = await fetch('/playoffs-2025-updated.json');
+      if (!response.ok) throw new Error('Errore nel caricamento del file JSON');
+      
       const data: GameData[] = await response.json();
       const filteredData = removeDuplicateGames(
         data.filter(game => game.teamA === team || game.teamB === team)
       );
+
       if (filteredData.length > 0) {
-        setGameData(filteredData[0]); // Prendi il primo gioco disponibile
+        setGameData(filteredData[0]);
+      } else {
+        console.error('Nessuna partita trovata per il team:', team);
       }
     } catch (error) {
       console.error('Errore nel caricamento dei dati:', error);
     }
   }
+
   fetchGame();
 }, [team]);
+
 
 
   useEffect(() => {
