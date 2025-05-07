@@ -83,89 +83,60 @@ const teamNameMapping: Record<string, string> = {
   "Thunder": "Oklahoma City Thunder",
   "Grizzlies": "Memphis Grizzlies",
   "Pistons": "Detroit Pistons"
-};
+}
 
 function mapTeamName(apiTeamName: string): string {
-  return teamNameMapping[apiTeamName] || apiTeamName;
+  return teamNameMapping[apiTeamName] || apiTeamName
 }
 
-
-function removeDuplicateGames(games: GameData[]): GameData[] {
-  const uniqueGames = new Map();
-  games.forEach((game) => {
-    const key = `${game.teamA}-${game.teamB}-${game.dateTime}`;
-    if (!uniqueGames.has(key)) {
-      uniqueGames.set(key, game);
-    }
-  });
-  return Array.from(uniqueGames.values());
-}
-
-export { teamSolidColors, teamLogos, mapTeamName, removeDuplicateGames }
+export { teamSolidColors, teamLogos, mapTeamName }
 
 export default function LiveCountdownCard({ team }: { team: string }) {
   const [gameData, setGameData] = useState<GameData | null>(null)
   const [countdown, setCountdown] = useState('')
 
   useEffect(() => {
-  async function fetchGame() {
-    try {
-      const response = await fetch('/playoffs-2025-updated.json');
-      if (!response.ok) throw new Error('Errore nel caricamento del file JSON');
-      
-      const data: GameData[] = await response.json();
-      const filteredData = removeDuplicateGames(
-        data.filter(game => game.teamA === team || game.teamB === team)
-      );
-
-      if (filteredData.length > 0) {
-        setGameData(filteredData[0]);
-      } else {
-        console.error('Nessuna partita trovata per il team:', team);
-      }
-    } catch (error) {
-      console.error('Errore nel caricamento dei dati:', error);
+    async function fetchGame() {
+      const res = await fetch(`/api/nba/next-game?team=${team}`)
+      const data = await res.json()
+      if (!data || data.error) return
+      setGameData(data)
     }
-  }
-
-  fetchGame();
-}, [team]);
-
-
-
+    fetchGame()
+  }, [team])
 
   useEffect(() => {
-    if (!gameData) return;
+    if (!gameData) return
 
     const interval = setInterval(() => {
-      const now = new Date().getTime();
-      const gameTime = new Date(gameData.dateTime).getTime();
-      const distance = gameTime - now;
+      const now = new Date().getTime()
+      const gameTime = new Date(gameData.dateTime).getTime()
+      const distance = gameTime - now
 
       if (distance < 0) {
-        setCountdown('LIVE');
-        return;
+        setCountdown('LIVE')
+        return
       }
 
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24))
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
 
-      setCountdown(`${days}g ${hours}h ${minutes}m`);
-    }, 60000);
+      setCountdown(`${days}g ${hours}h ${minutes}m`)
+    }, 60000)
 
-    return () => clearInterval(interval);
-  }, [gameData]);
+    return () => clearInterval(interval)
+  }, [gameData])
 
-  if (!gameData) return null;
+  if (!gameData) return null
 
-  const mappedTeamA = gameData.teamA;
-  const mappedTeamB = gameData.teamB;
-  const bgColorA = teamSolidColors[mappedTeamA] || 'bg-gray-600';
-  const bgColorB = teamSolidColors[mappedTeamB] || 'bg-gray-600';
-  const logoA = teamLogos[mappedTeamA];
-  const logoB = teamLogos[mappedTeamB];
-  const scoreInfo = gameData.scoreA != null && gameData.scoreB != null ? ` | ${gameData.scoreA} - ${gameData.scoreB}` : '';
+  const mappedTeamA = mapTeamName(gameData.teamA)
+  const mappedTeamB = mapTeamName(gameData.teamB)
+  const bgColorA = teamSolidColors[mappedTeamA] || 'bg-gray-600'
+  const bgColorB = teamSolidColors[mappedTeamB] || 'bg-gray-600'
+  const logoA = teamLogos[mappedTeamA]
+  const logoB = teamLogos[mappedTeamB]
+  const scoreInfo = gameData.scoreA != null && gameData.scoreB != null ? ` | ${gameData.scoreA} - ${gameData.scoreB}` : ''
 
   return (
     <div className="rounded-xl shadow-md text-white w-full flex flex-col sm:flex-row overflow-hidden mb-4">
@@ -190,8 +161,7 @@ export default function LiveCountdownCard({ team }: { team: string }) {
           rel="noopener noreferrer"
           className="mt-2 text-blue-400 underline text-xs"
         >
-          Info & risultati
-        </a>
+          Info & risultati</a>
       </div>
 
       <div className={`flex-1 flex flex-col items-center justify-center p-4 ${bgColorB}`}>
