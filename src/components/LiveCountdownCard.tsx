@@ -100,12 +100,14 @@ export default function LiveCountdownCard({ team }: { team: string }) {
     try {
       const res = await fetch('/playoffs-2025-updated.json');
       if (!res.ok) throw new Error('Errore nel caricamento del file JSON');
-
+      
       const data: GameData[] = await res.json();
       if (data && Array.isArray(data)) {
+        console.log("Lista completa delle squadre:", data.map(game => game.teamA + " vs " + game.teamB));
+        
         const filteredData = data.filter(game => game.teamA === team || game.teamB === team);
         if (filteredData.length > 0) {
-          setGameData(filteredData[0]); // Mostra il primo match disponibile
+          setGameData(filteredData[0]);
         } else {
           console.error('Nessuna partita trovata per il team:', team);
         }
@@ -116,6 +118,7 @@ export default function LiveCountdownCard({ team }: { team: string }) {
   }
   fetchGame();
 }, [team]);
+
 
   useEffect(() => {
     if (!gameData) return
