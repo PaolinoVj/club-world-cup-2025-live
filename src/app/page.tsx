@@ -1,5 +1,4 @@
 import LiveCountdownCard from "@/components/LiveCountdownCard";
-import { GameData } from "@/components/LiveCountdownCard";
 
 export default function HomePage() {
   const teams = [
