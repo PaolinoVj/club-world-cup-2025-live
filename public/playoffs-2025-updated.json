@@ -5,7 +5,7 @@
     "dateTime": "2025-05-12T21:30:00Z",
     "venue": "Ball Arena, Denver",
     "day": "Lun 12 Maggio",
-    "timeIT": "03:30",
+    "timeIT": "23:30",
     "game": "Semifinale Ovest, Gara 2",
     "result": "DEN LEADS 1-0"
   },
@@ -15,7 +15,7 @@
     "dateTime": "2025-05-13T00:30:00Z",
     "venue": "Chase Center, San Francisco",
     "day": "Mar 13 Maggio",
-    "timeIT": "08:30",
+    "timeIT": "02:30",
     "game": "Semifinale Ovest, Gara 2",
     "result": "GSW LEADS 1-0"
   },
@@ -25,7 +25,7 @@
     "dateTime": "2025-05-10T23:30:00Z",
     "venue": "Rocket Mortgage FieldHouse, Cleveland",
     "day": "Ven 10 Maggio",
-    "timeIT": "05:30",
+    "timeIT": "01:30",
     "game": "Semifinale Est, Gara 3",
     "result": "IND LEADS 2-0"
   },
@@ -35,7 +35,7 @@
     "dateTime": "2025-05-10T23:00:00Z",
     "venue": "Madison Square Garden, New York",
     "day": "Ven 10 Maggio",
-    "timeIT": "05:00",
+    "timeIT": "01:00",
     "game": "Semifinale Est, Gara 2",
     "result": "NYK LEADS 1-0"
   }
