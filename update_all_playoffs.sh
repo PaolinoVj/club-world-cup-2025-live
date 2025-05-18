@@ -145,8 +145,7 @@ printf '%s\n' '[
 ]' > "$TMP_JSON"
 
 # === SOVRASCRIVI IL FILE ===
-cp "$TMP_JSON" "$JSON_PATH"
-rm "$TMP_JSON"
+> "$PROJECT_DIR/public/playoffs-2025-updated.json"
 
 # === GIT COMMIT & PUSH ===
 cd "$PROJECT_DIR"
