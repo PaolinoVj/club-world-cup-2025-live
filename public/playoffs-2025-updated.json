@@ -1,42 +1,142 @@
 [
   {
-    "teamA": "Oklahoma City Thunder",
-    "teamB": "Denver Nuggets",
-    "dateTime": "2025-05-12T21:30:00Z",
-    "venue": "Ball Arena, Denver",
-    "day": "Lun 12 Maggio",
-    "timeIT": "23:30",
-    "game": "Semifinale Ovest, Gara 2",
-    "result": "DEN LEADS 1-0"
-  },
-  {
-    "teamA": "Golden State Warriors",
-    "teamB": "Minnesota Timberwolves",
-    "dateTime": "2025-05-13T00:30:00Z",
-    "venue": "Chase Center, San Francisco",
-    "day": "Mar 13 Maggio",
-    "timeIT": "02:30",
-    "game": "Semifinale Ovest, Gara 2",
-    "result": "GSW LEADS 1-0"
-  },
-  {
-    "teamA": "Cleveland Cavaliers",
+    "teamA": "New York Knicks",
     "teamB": "Indiana Pacers",
-    "dateTime": "2025-05-10T23:30:00Z",
-    "venue": "Rocket Mortgage FieldHouse, Cleveland",
-    "day": "Ven 10 Maggio",
-    "timeIT": "01:30",
-    "game": "Semifinale Est, Gara 3",
-    "result": "IND LEADS 2-0"
+    "dateTime": "2025-05-21T00:00:00Z",
+    "venue": "Madison Square Garden, New York",
+    "day": "Mer 21 Maggio",
+    "timeIT": "02:00",
+    "game": "Finale Est, Gara 1",
+    "result": ""
   },
   {
     "teamA": "New York Knicks",
-    "teamB": "Boston Celtics",
-    "dateTime": "2025-05-10T23:00:00Z",
+    "teamB": "Indiana Pacers",
+    "dateTime": "2025-05-23T00:00:00Z",
     "venue": "Madison Square Garden, New York",
-    "day": "Ven 10 Maggio",
-    "timeIT": "01:00",
-    "game": "Semifinale Est, Gara 2",
-    "result": "NYK LEADS 1-0"
+    "day": "Ven 23 Maggio",
+    "timeIT": "02:00",
+    "game": "Finale Est, Gara 2",
+    "result": ""
+  },
+  {
+    "teamA": "Indiana Pacers",
+    "teamB": "New York Knicks",
+    "dateTime": "2025-05-25T00:00:00Z",
+    "venue": "Gainbridge Fieldhouse, Indianapolis",
+    "day": "Dom 25 Maggio",
+    "timeIT": "02:00",
+    "game": "Finale Est, Gara 3",
+    "result": ""
+  },
+  {
+    "teamA": "Indiana Pacers",
+    "teamB": "New York Knicks",
+    "dateTime": "2025-05-27T00:00:00Z",
+    "venue": "Gainbridge Fieldhouse, Indianapolis",
+    "day": "Mar 27 Maggio",
+    "timeIT": "02:00",
+    "game": "Finale Est, Gara 4",
+    "result": ""
+  },
+  {
+    "teamA": "New York Knicks",
+    "teamB": "Indiana Pacers",
+    "dateTime": "2025-05-29T00:00:00Z",
+    "venue": "Madison Square Garden, New York",
+    "day": "Gio 29 Maggio",
+    "timeIT": "02:00",
+    "game": "Finale Est, Gara 5*",
+    "result": ""
+  },
+  {
+    "teamA": "Indiana Pacers",
+    "teamB": "New York Knicks",
+    "dateTime": "2025-05-31T00:00:00Z",
+    "venue": "Gainbridge Fieldhouse, Indianapolis",
+    "day": "Sab 31 Maggio",
+    "timeIT": "02:00",
+    "game": "Finale Est, Gara 6*",
+    "result": ""
+  },
+  {
+    "teamA": "New York Knicks",
+    "teamB": "Indiana Pacers",
+    "dateTime": "2025-06-02T00:00:00Z",
+    "venue": "Madison Square Garden, New York",
+    "day": "Lun 2 Giugno",
+    "timeIT": "02:00",
+    "game": "Finale Est, Gara 7*",
+    "result": ""
+  },
+  {
+    "teamA": "Minnesota Timberwolves",
+    "teamB": "TBD",
+    "dateTime": "2025-05-20T00:30:00Z",
+    "venue": "Target Center, Minneapolis",
+    "day": "Mar 20 Maggio",
+    "timeIT": "02:30",
+    "game": "Finale Ovest, Gara 1",
+    "result": ""
+  },
+  {
+    "teamA": "Minnesota Timberwolves",
+    "teamB": "TBD",
+    "dateTime": "2025-05-22T00:30:00Z",
+    "venue": "Target Center, Minneapolis",
+    "day": "Gio 22 Maggio",
+    "timeIT": "02:30",
+    "game": "Finale Ovest, Gara 2",
+    "result": ""
+  },
+  {
+    "teamA": "TBD",
+    "teamB": "Minnesota Timberwolves",
+    "dateTime": "2025-05-24T00:30:00Z",
+    "venue": "Da definire",
+    "day": "Sab 24 Maggio",
+    "timeIT": "02:30",
+    "game": "Finale Ovest, Gara 3",
+    "result": ""
+  },
+  {
+    "teamA": "TBD",
+    "teamB": "Minnesota Timberwolves",
+    "dateTime": "2025-05-26T00:30:00Z",
+    "venue": "Da definire",
+    "day": "Lun 26 Maggio",
+    "timeIT": "02:30",
+    "game": "Finale Ovest, Gara 4",
+    "result": ""
+  },
+  {
+    "teamA": "Minnesota Timberwolves",
+    "teamB": "TBD",
+    "dateTime": "2025-05-28T00:30:00Z",
+    "venue": "Target Center, Minneapolis",
+    "day": "Mer 28 Maggio",
+    "timeIT": "02:30",
+    "game": "Finale Ovest, Gara 5*",
+    "result": ""
+  },
+  {
+    "teamA": "TBD",
+    "teamB": "Minnesota Timberwolves",
+    "dateTime": "2025-05-30T00:30:00Z",
+    "venue": "Da definire",
+    "day": "Ven 30 Maggio",
+    "timeIT": "02:30",
+    "game": "Finale Ovest, Gara 6*",
+    "result": ""
+  },
+  {
+    "teamA": "Minnesota Timberwolves",
+    "teamB": "TBD",
+    "dateTime": "2025-06-01T00:00:00Z",
+    "venue": "Target Center, Minneapolis",
+    "day": "Dom 1 Giugno",
+    "timeIT": "02:00",
+    "game": "Finale Ovest, Gara 7*",
+    "result": ""
   }
 ]
