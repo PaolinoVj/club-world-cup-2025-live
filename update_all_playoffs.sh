@@ -19,6 +19,7 @@ printf '%s\n' '[
     "game": "Semifinale Ovest, Gara 7",
     "result": ""
   },
+
   {
     "teamA": "New York Knicks",
     "teamB": "Indiana Pacers",
@@ -30,6 +31,37 @@ printf '%s\n' '[
     "result": ""
   },
   {
+    "teamA": "New York Knicks",
+    "teamB": "Indiana Pacers",
+    "dateTime": "2025-05-23T00:00:00Z",
+    "venue": "Madison Square Garden, New York",
+    "day": "Ven 23 Maggio",
+    "timeIT": "02:00",
+    "game": "Finale Est, Gara 2",
+    "result": ""
+  },
+  {
+    "teamA": "Indiana Pacers",
+    "teamB": "New York Knicks",
+    "dateTime": "2025-05-25T00:00:00Z",
+    "venue": "Gainbridge Fieldhouse, Indianapolis",
+    "day": "Dom 25 Maggio",
+    "timeIT": "02:00",
+    "game": "Finale Est, Gara 3",
+    "result": ""
+  },
+  {
+    "teamA": "Indiana Pacers",
+    "teamB": "New York Knicks",
+    "dateTime": "2025-05-27T00:00:00Z",
+    "venue": "Gainbridge Fieldhouse, Indianapolis",
+    "day": "Mar 27 Maggio",
+    "timeIT": "02:00",
+    "game": "Finale Est, Gara 4",
+    "result": ""
+  },
+
+  {
     "teamA": "Minnesota Timberwolves",
     "teamB": "TBD",
     "dateTime": "2025-05-20T00:30:00Z",
@@ -37,6 +69,77 @@ printf '%s\n' '[
     "day": "Mar 20 Maggio",
     "timeIT": "02:30",
     "game": "Finale Ovest, Gara 1",
+    "result": ""
+  },
+  {
+    "teamA": "Minnesota Timberwolves",
+    "teamB": "TBD",
+    "dateTime": "2025-05-22T00:30:00Z",
+    "venue": "Target Center, Minneapolis",
+    "day": "Gio 22 Maggio",
+    "timeIT": "02:30",
+    "game": "Finale Ovest, Gara 2",
+    "result": ""
+  },
+  {
+    "teamA": "TBD",
+    "teamB": "Minnesota Timberwolves",
+    "dateTime": "2025-05-24T00:30:00Z",
+    "venue": "Da definire",
+    "day": "Sab 24 Maggio",
+    "timeIT": "02:30",
+    "game": "Finale Ovest, Gara 3",
+    "result": ""
+  },
+  {
+    "teamA": "TBD",
+    "teamB": "Minnesota Timberwolves",
+    "dateTime": "2025-05-26T00:30:00Z",
+    "venue": "Da definire",
+    "day": "Lun 26 Maggio",
+    "timeIT": "02:30",
+    "game": "Finale Ovest, Gara 4",
+    "result": ""
+  },
+
+  {
+    "teamA": "Vincente Est",
+    "teamB": "Vincente Ovest",
+    "dateTime": "2025-06-02T00:00:00Z",
+    "venue": "NBA Finals Arena",
+    "day": "Lun 2 Giugno",
+    "timeIT": "02:00",
+    "game": "Finale NBA, Gara 1",
+    "result": ""
+  },
+  {
+    "teamA": "Vincente Est",
+    "teamB": "Vincente Ovest",
+    "dateTime": "2025-06-04T00:00:00Z",
+    "venue": "NBA Finals Arena",
+    "day": "Mer 4 Giugno",
+    "timeIT": "02:00",
+    "game": "Finale NBA, Gara 2",
+    "result": ""
+  },
+  {
+    "teamA": "Vincente Ovest",
+    "teamB": "Vincente Est",
+    "dateTime": "2025-06-06T00:00:00Z",
+    "venue": "NBA Finals Arena",
+    "day": "Ven 6 Giugno",
+    "timeIT": "02:00",
+    "game": "Finale NBA, Gara 3",
+    "result": ""
+  },
+  {
+    "teamA": "Vincente Ovest",
+    "teamB": "Vincente Est",
+    "dateTime": "2025-06-08T00:00:00Z",
+    "venue": "NBA Finals Arena",
+    "day": "Dom 8 Giugno",
+    "timeIT": "02:00",
+    "game": "Finale NBA, Gara 4",
     "result": ""
   }
 ]' > "$TMP_JSON"
@@ -47,8 +150,11 @@ rm "$TMP_JSON"
 
 # === GIT COMMIT & PUSH ===
 cd "$PROJECT_DIR"
-git add "$JSON_PATH"
-git commit -m "Aggiornato JSON completo fino alla finale NBA 2025"
+
+git pull origin "$BRANCH" --rebase
+
+git add .
+git commit -m "Aggiornato JSON playoff 2025 + finali" || echo "⚠️ Nessun cambiamento da committare"
 git push origin "$BRANCH"
 
-echo "✅ JSON aggiornato e deploy avviato su Vercel."
+echo "✅ JSON aggiornato e pushato su GitHub. Deploy Vercel in corso..."

@@ -153,10 +153,8 @@ cd "$PROJECT_DIR"
 
 git pull origin "$BRANCH" --rebase
 
-# Aggiunge TUTTI i file modificati
 git add .
-
-git commit -m "JSON aggiornato: playoff + finali NBA" || echo "⚠️ Nessun cambiamento da committare"
+git commit -m "Aggiornato JSON playoff 2025 + finali" || echo "⚠️ Nessun cambiamento da committare"
 git push origin "$BRANCH"
 
-echo "✅ JSON aggiornato e pushato su GitHub. Vercel dovrebbe avviare il deploy."
+echo "✅ JSON aggiornato e pushato su GitHub. Deploy Vercel in corso..."
