@@ -17,7 +17,7 @@ printf '%s\n' '[
     "day": "Dom 18 Maggio",
     "timeIT": "21:30",
     "game": "Semifinale Ovest, Gara 7",
-    "result": ""
+    "result": "DEN WINS 4-3"
   },
 
   {
@@ -63,7 +63,7 @@ printf '%s\n' '[
 
   {
     "teamA": "Minnesota Timberwolves",
-    "teamB": "TBD",
+    "teamB": "Denver Nuggets",
     "dateTime": "2025-05-20T00:30:00Z",
     "venue": "Target Center, Minneapolis",
     "day": "Mar 20 Maggio",
@@ -73,7 +73,7 @@ printf '%s\n' '[
   },
   {
     "teamA": "Minnesota Timberwolves",
-    "teamB": "TBD",
+    "teamB": "Denver Nuggets",
     "dateTime": "2025-05-22T00:30:00Z",
     "venue": "Target Center, Minneapolis",
     "day": "Gio 22 Maggio",
@@ -82,20 +82,20 @@ printf '%s\n' '[
     "result": ""
   },
   {
-    "teamA": "TBD",
+    "teamA": "Denver Nuggets",
     "teamB": "Minnesota Timberwolves",
     "dateTime": "2025-05-24T00:30:00Z",
-    "venue": "Da definire",
+    "venue": "Ball Arena, Denver",
     "day": "Sab 24 Maggio",
     "timeIT": "02:30",
     "game": "Finale Ovest, Gara 3",
     "result": ""
   },
   {
-    "teamA": "TBD",
+    "teamA": "Denver Nuggets",
     "teamB": "Minnesota Timberwolves",
     "dateTime": "2025-05-26T00:30:00Z",
-    "venue": "Da definire",
+    "venue": "Ball Arena, Denver",
     "day": "Lun 26 Maggio",
     "timeIT": "02:30",
     "game": "Finale Ovest, Gara 4",
@@ -145,7 +145,8 @@ printf '%s\n' '[
 ]' > "$TMP_JSON"
 
 # === SOVRASCRIVI IL FILE ===
-> "$PROJECT_DIR/public/playoffs-2025-updated.json"
+> "$JSON_PATH"
+cat "$TMP_JSON" > "$JSON_PATH"
 
 # === GIT COMMIT & PUSH ===
 cd "$PROJECT_DIR"
@@ -153,7 +154,7 @@ cd "$PROJECT_DIR"
 git pull origin "$BRANCH" --rebase
 
 git add .
-git commit -m "Aggiornato JSON playoff 2025 + finali" || echo "⚠️ Nessun cambiamento da committare"
+git commit -m "Aggiornato JSON con risultati semifinale Ovest e schedule finali conference" || echo "⚠️ Nessun cambiamento da committare"
 git push origin "$BRANCH"
 
 echo "✅ JSON aggiornato e pushato su GitHub. Deploy Vercel in corso..."
