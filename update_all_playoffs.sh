@@ -1,7 +1,9 @@
 #!/bin/bash
 
+echo "⏳ Avvio aggiornamento JSON playoff..."
+
 # === CONFIG ===
-PROJECT_DIR="nba-playoff-live"
+PROJECT_DIR="/c/Users/info/nba-playoff-live"
 JSON_PATH="$PROJECT_DIR/public/playoffs-2025-updated.json"
 BRANCH="main"
 
@@ -147,12 +149,10 @@ printf '%s\n' '[
 # === SOVRASCRIVI IL FILE ===
 cat "$TMP_JSON" > "$JSON_PATH"
 
-
 # === GIT COMMIT & PUSH ===
-cd "$PROJECT_DIR"
+cd "$PROJECT_DIR" || exit 1
 
 git pull origin "$BRANCH" --rebase
-
 git add .
 git commit -m "Aggiornato JSON con risultati semifinale Ovest e schedule finali conference" || echo "⚠️ Nessun cambiamento da committare"
 git push origin "$BRANCH"

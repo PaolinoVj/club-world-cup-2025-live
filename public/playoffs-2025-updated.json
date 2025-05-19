@@ -7,8 +7,9 @@
     "day": "Dom 18 Maggio",
     "timeIT": "21:30",
     "game": "Semifinale Ovest, Gara 7",
-    "result": ""
+    "result": "DEN WINS 4-3"
   },
+
   {
     "teamA": "New York Knicks",
     "teamB": "Indiana Pacers",
@@ -49,9 +50,10 @@
     "game": "Finale Est, Gara 4",
     "result": ""
   },
+
   {
     "teamA": "Minnesota Timberwolves",
-    "teamB": "TBD",
+    "teamB": "Denver Nuggets",
     "dateTime": "2025-05-20T00:30:00Z",
     "venue": "Target Center, Minneapolis",
     "day": "Mar 20 Maggio",
@@ -61,7 +63,7 @@
   },
   {
     "teamA": "Minnesota Timberwolves",
-    "teamB": "TBD",
+    "teamB": "Denver Nuggets",
     "dateTime": "2025-05-22T00:30:00Z",
     "venue": "Target Center, Minneapolis",
     "day": "Gio 22 Maggio",
@@ -70,25 +72,26 @@
     "result": ""
   },
   {
-    "teamA": "TBD",
+    "teamA": "Denver Nuggets",
     "teamB": "Minnesota Timberwolves",
     "dateTime": "2025-05-24T00:30:00Z",
-    "venue": "Da definire",
+    "venue": "Ball Arena, Denver",
     "day": "Sab 24 Maggio",
     "timeIT": "02:30",
     "game": "Finale Ovest, Gara 3",
     "result": ""
   },
   {
-    "teamA": "TBD",
+    "teamA": "Denver Nuggets",
     "teamB": "Minnesota Timberwolves",
     "dateTime": "2025-05-26T00:30:00Z",
-    "venue": "Da definire",
+    "venue": "Ball Arena, Denver",
     "day": "Lun 26 Maggio",
     "timeIT": "02:30",
     "game": "Finale Ovest, Gara 4",
     "result": ""
   },
+
   {
     "teamA": "Vincente Est",
     "teamB": "Vincente Ovest",
