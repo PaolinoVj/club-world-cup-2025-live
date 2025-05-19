@@ -145,8 +145,8 @@ printf '%s\n' '[
 ]' > "$TMP_JSON"
 
 # === SOVRASCRIVI IL FILE ===
-> "$JSON_PATH"
 cat "$TMP_JSON" > "$JSON_PATH"
+
 
 # === GIT COMMIT & PUSH ===
 cd "$PROJECT_DIR"
