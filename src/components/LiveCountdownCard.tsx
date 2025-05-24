@@ -48,28 +48,6 @@ function mapTeamName(apiTeamName: string): string {
   return teamNameMapping[apiTeamName] || apiTeamName
 }
 
-function getTeamAbbreviation(team: string): string {
-  const map: Record<string, string> = {
-    "New York Knicks": "NYK",
-    "Indiana Pacers": "IND",
-    "Denver Nuggets": "DEN",
-    "Minnesota Timberwolves": "MIN",
-    "Oklahoma City Thunder": "OKC"
-  }
-  return map[team] || team.slice(0, 3).toUpperCase()
-}
-
-function isMatchPoint(series: string): boolean {
-  const match = series?.match(/(\d)-(\d)/)
-  if (!match) return false
-  const [a, b] = [parseInt(match[1]), parseInt(match[2])]
-  return a === 3 || b === 3
-}
-
-function isSweep(series: string): boolean {
-  return /^(3-0|0-3)$/.test(series)
-}
-
 export { teamSolidColors, teamLogos, mapTeamName }
 
 export default function LiveCountdownCard({ team }: { team: string }) {
@@ -118,15 +96,6 @@ export default function LiveCountdownCard({ team }: { team: string }) {
   const logoA = teamLogos[mappedTeamA]
   const logoB = teamLogos[mappedTeamB]
 
-  const badge = (gameData.isLead && gameData.status !== 'programmata') ? 'LEAD SERIES' : null
-
-  const leadingAbbreviation = gameData.series
-    ? getTeamAbbreviation(gameData.winner || mappedTeamA)
-    : null
-  const seriesScore = gameData.series?.match(/\d+-\d+/)?.[0] || null
-  const showMatchPoint = gameData.series && isMatchPoint(seriesScore || '')
-  const showSweepAlert = gameData.series && isSweep(seriesScore || '')
-
   return (
     <div className="rounded-xl shadow-md text-white w-full flex flex-col sm:flex-row overflow-hidden mb-4">
       <div className={`flex-1 flex flex-col items-center justify-center p-4 ${bgColorA}`}>
@@ -136,24 +105,7 @@ export default function LiveCountdownCard({ team }: { team: string }) {
       </div>
 
       <div className="bg-black flex flex-col justify-center items-center px-2 py-4 w-full sm:w-56 text-center">
-        <div className="text-xs uppercase tracking-widest text-gray-400">
-          {leadingAbbreviation && seriesScore ? `${leadingAbbreviation} ${seriesScore} - ` : ''}{gameData.game}
-        </div>
-        {gameData.series && (
-          <div className="text-sm font-semibold text-yellow-400 mt-1">Serie: {gameData.series}</div>
-        )}
-        {showMatchPoint && (
-          <div className="text-xs font-bold text-orange-400 uppercase mt-1">MATCH POINT</div>
-        )}
-        {showSweepAlert && (
-          <div className="text-xs font-bold text-fuchsia-500 uppercase mt-1">SWEEP ALERT</div>
-        )}
-        {gameData.isElimination && (
-          <div className="text-xs font-bold text-red-500 uppercase animate-pulse mt-1">ELIMINATION GAME</div>
-        )}
-        {badge && (
-          <div className="text-xs font-semibold text-blue-400 uppercase mt-1">{badge}</div>
-        )}
+        <div className="text-xs uppercase tracking-widest text-gray-400">{gameData.game}</div>
         <div className="text-sm mt-1">{gameData.day} - {gameData.timeIT}</div>
         <div className="text-xs text-gray-400 mt-1 leading-tight">{gameData.venue}</div>
         <div className="text-sm text-yellow-300 mt-2 font-medium">
