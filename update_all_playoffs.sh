@@ -13,13 +13,23 @@ TMP_JSON=$(mktemp)
 printf '%s\n' '[
   {
     "teamA": "Oklahoma City Thunder",
-    "teamB": "Denver Nuggets",
-    "dateTime": "2025-05-18T19:30:00Z",
+    "teamB": "Minnesota Timberwolves",
+    "dateTime": "2025-05-18T00:00:00Z",
     "venue": "Paycom Center, Oklahoma City",
     "day": "Dom 18 Maggio",
-    "timeIT": "21:30",
-    "game": "Semifinale Ovest, Gara 7",
-    "result": "DEN WINS 4-3"
+    "timeIT": "02:00",
+    "game": "Finale Ovest, Gara 1",
+    "result": "OKC WINS 114-88"
+  },
+  {
+    "teamA": "Oklahoma City Thunder",
+    "teamB": "Minnesota Timberwolves",
+    "dateTime": "2025-05-20T00:30:00Z",
+    "venue": "Paycom Center, Oklahoma City",
+    "day": "Mar 20 Maggio",
+    "timeIT": "02:30",
+    "game": "Finale Ovest, Gara 2",
+    "result": "OKC WINS 118-103"
   },
 
   {
@@ -30,7 +40,7 @@ printf '%s\n' '[
     "day": "Mer 21 Maggio",
     "timeIT": "02:00",
     "game": "Finale Est, Gara 1",
-    "result": ""
+    "result": "IND WINS 138-135 (OT)"
   },
   {
     "teamA": "New York Knicks",
@@ -40,7 +50,7 @@ printf '%s\n' '[
     "day": "Ven 23 Maggio",
     "timeIT": "02:00",
     "game": "Finale Est, Gara 2",
-    "result": ""
+    "result": "IND WINS 114-109"
   },
   {
     "teamA": "Indiana Pacers",
@@ -66,28 +76,8 @@ printf '%s\n' '[
   {
     "teamA": "Minnesota Timberwolves",
     "teamB": "Denver Nuggets",
-    "dateTime": "2025-05-20T00:30:00Z",
-    "venue": "Target Center, Minneapolis",
-    "day": "Mar 20 Maggio",
-    "timeIT": "02:30",
-    "game": "Finale Ovest, Gara 1",
-    "result": ""
-  },
-  {
-    "teamA": "Minnesota Timberwolves",
-    "teamB": "Denver Nuggets",
-    "dateTime": "2025-05-22T00:30:00Z",
-    "venue": "Target Center, Minneapolis",
-    "day": "Gio 22 Maggio",
-    "timeIT": "02:30",
-    "game": "Finale Ovest, Gara 2",
-    "result": ""
-  },
-  {
-    "teamA": "Denver Nuggets",
-    "teamB": "Minnesota Timberwolves",
     "dateTime": "2025-05-24T00:30:00Z",
-    "venue": "Ball Arena, Denver",
+    "venue": "Target Center, Minneapolis",
     "day": "Sab 24 Maggio",
     "timeIT": "02:30",
     "game": "Finale Ovest, Gara 3",
@@ -153,8 +143,8 @@ cat "$TMP_JSON" > "$JSON_PATH"
 cd "$PROJECT_DIR" || exit 1
 
 git pull origin "$BRANCH" --rebase
-git add .
-git commit -m "Aggiornato JSON con risultati semifinale Ovest e schedule finali conference" || echo "⚠️ Nessun cambiamento da committare"
+git add . 
+git commit -m "Aggiornato risultati West Finals G1-G2 e East Finals G1-G2" || echo "⚠️ Nessun cambiamento da committare"
 git push origin "$BRANCH"
 
 echo "✅ JSON aggiornato e pushato su GitHub. Deploy Vercel in corso..."
