@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from "react"
+import Image from "next/image"
 
 export interface GameData {
   teamA: string
@@ -18,75 +19,29 @@ export interface GameData {
   winner?: string
 }
 
-
 const teamSolidColors: Record<string, string> = {
-  "Boston Celtics": "bg-green-700",
-  "Miami Heat": "bg-red-700",
   "New York Knicks": "bg-blue-700",
-  "Philadelphia 76ers": "bg-blue-800",
-  "Cleveland Cavaliers": "bg-red-800",
-  "Orlando Magic": "bg-blue-600",
-  "Milwaukee Bucks": "bg-green-900",
   "Indiana Pacers": "bg-yellow-600",
   "Denver Nuggets": "bg-blue-800",
-  "Los Angeles Lakers": "bg-purple-700",
   "Minnesota Timberwolves": "bg-teal-800",
-  "Phoenix Suns": "bg-orange-600",
-  "Oklahoma City Thunder": "bg-sky-600",
-  "New Orleans Pelicans": "bg-indigo-800",
-  "LA Clippers": "bg-red-700",
-  "Dallas Mavericks": "bg-blue-900",
-  "Golden State Warriors": "bg-yellow-600",
-  "Houston Rockets": "bg-red-800",
-  "Memphis Grizzlies": "bg-cyan-900",
-  "Detroit Pistons": "bg-red-700"
+  "Oklahoma City Thunder": "bg-sky-600"
 }
 
 const teamLogos: Record<string, string> = {
-  "Boston Celtics": "https://loodibee.com/wp-content/uploads/nba-boston-celtics-logo.png",
-  "Miami Heat": "https://loodibee.com/wp-content/uploads/nba-miami-heat-logo.png",
   "New York Knicks": "https://loodibee.com/wp-content/uploads/nba-new-york-knicks-logo.png",
-  "Philadelphia 76ers": "https://loodibee.com/wp-content/uploads/nba-philadelphia-76ers-logo.png",
-  "Cleveland Cavaliers": "https://loodibee.com/wp-content/uploads/nba-cleveland-cavaliers-logo.png",
-  "Orlando Magic": "https://loodibee.com/wp-content/uploads/nba-orlando-magic-logo.png",
-  "Milwaukee Bucks": "https://loodibee.com/wp-content/uploads/nba-milwaukee-bucks-logo.png",
   "Indiana Pacers": "https://loodibee.com/wp-content/uploads/nba-indiana-pacers-logo.png",
   "Denver Nuggets": "https://loodibee.com/wp-content/uploads/denver-nuggets-logo-symbol.png",
-  "Los Angeles Lakers": "https://loodibee.com/wp-content/uploads/nba-los-angeles-lakers-logo.png",
   "Minnesota Timberwolves": "https://loodibee.com/wp-content/uploads/nba-minnesota-timberwolves-logo.png",
-  "Phoenix Suns": "https://loodibee.com/wp-content/uploads/nba-phoenix-suns-logo.png",
-  "Oklahoma City Thunder": "https://loodibee.com/wp-content/uploads/nba-oklahoma-city-thunder-logo.png",
-  "New Orleans Pelicans": "https://loodibee.com/wp-content/uploads/nba-new-orleans-pelicans-logo.png",
-  "LA Clippers": "https://loodibee.com/wp-content/uploads/nba-los-angeles-clippers-logo.png",
-  "Dallas Mavericks": "https://loodibee.com/wp-content/uploads/nba-dallas-mavericks-logo.png",
-  "Golden State Warriors": "https://loodibee.com/wp-content/uploads/nba-golden-state-warriors-logo.png",
-  "Houston Rockets": "https://loodibee.com/wp-content/uploads/nba-houston-rockets-logo.png",
-  "Memphis Grizzlies": "https://loodibee.com/wp-content/uploads/nba-memphis-grizzlies-logo.png",
-  "Detroit Pistons": "https://loodibee.com/wp-content/uploads/nba-detroit-pistons-logo.png"
+  "Oklahoma City Thunder": "https://loodibee.com/wp-content/uploads/nba-oklahoma-city-thunder-logo.png"
 }
 
 const teamNameMapping: Record<string, string> = {
-  "Warriors": "Golden State Warriors",
-  "Lakers": "Los Angeles Lakers",
-  "Celtics": "Boston Celtics",
-  "Sixers": "Philadelphia 76ers",
-  "76ers": "Philadelphia 76ers",
   "Knicks": "New York Knicks",
   "Nuggets": "Denver Nuggets",
-  "Clippers": "LA Clippers",
-  "Mavericks": "Dallas Mavericks",
-  "Bucks": "Milwaukee Bucks",
-  "Cavaliers": "Cleveland Cavaliers",
-  "Magic": "Orlando Magic",
-  "Heat": "Miami Heat",
-  "Wolves": "Minnesota Timberwolves",
-  "Timberwolves": "Minnesota Timberwolves",
-  "Suns": "Phoenix Suns",
-  "Pelicans": "New Orleans Pelicans",
   "Pacers": "Indiana Pacers",
   "Thunder": "Oklahoma City Thunder",
-  "Grizzlies": "Memphis Grizzlies",
-  "Pistons": "Detroit Pistons"
+  "Wolves": "Minnesota Timberwolves",
+  "Timberwolves": "Minnesota Timberwolves"
 }
 
 function mapTeamName(apiTeamName: string): string {
@@ -142,12 +97,11 @@ export default function LiveCountdownCard({ team }: { team: string }) {
   const logoB = teamLogos[mappedTeamB]
 
   const badge = (gameData.isLead && gameData.status !== 'programmata') ? 'LEAD SERIES' : null
-  const winnerBadge = gameData.winner ? `WINNER: ${gameData.winner}` : null
 
   return (
     <div className="rounded-xl shadow-md text-white w-full flex flex-col sm:flex-row overflow-hidden mb-4">
       <div className={`flex-1 flex flex-col items-center justify-center p-4 ${bgColorA}`}>
-        <img src={logoA} alt={mappedTeamA} className="w-14 h-14 mb-2 sm:w-20 sm:h-20" />
+        <Image src={logoA} alt={mappedTeamA} width={80} height={80} className="mb-2 sm:w-20 sm:h-20" />
         <div className="text-base sm:text-xl font-semibold text-center leading-tight">{mappedTeamA}</div>
         {gameData.winner === gameData.teamA && <div className="text-xs font-bold text-green-400 mt-1">🏆 Vincitore</div>}
       </div>
@@ -179,7 +133,7 @@ export default function LiveCountdownCard({ team }: { team: string }) {
       </div>
 
       <div className={`flex-1 flex flex-col items-center justify-center p-4 ${bgColorB}`}>
-        <img src={logoB} alt={mappedTeamB} className="w-14 h-14 mb-2 sm:w-20 sm:h-20" />
+        <Image src={logoB} alt={mappedTeamB} width={80} height={80} className="mb-2 sm:w-20 sm:h-20" />
         <div className="text-base sm:text-xl font-semibold text-center leading-tight">{mappedTeamB}</div>
         {gameData.winner === gameData.teamB && <div className="text-xs font-bold text-green-400 mt-1">🏆 Vincitore</div>}
       </div>
