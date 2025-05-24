@@ -48,6 +48,17 @@ function mapTeamName(apiTeamName: string): string {
   return teamNameMapping[apiTeamName] || apiTeamName
 }
 
+function getTeamAbbreviation(team: string): string {
+  const map: Record<string, string> = {
+    "New York Knicks": "NYK",
+    "Indiana Pacers": "IND",
+    "Denver Nuggets": "DEN",
+    "Minnesota Timberwolves": "MIN",
+    "Oklahoma City Thunder": "OKC"
+  }
+  return map[team] || team.slice(0, 3).toUpperCase()
+}
+
 export { teamSolidColors, teamLogos, mapTeamName }
 
 export default function LiveCountdownCard({ team }: { team: string }) {
@@ -98,6 +109,8 @@ export default function LiveCountdownCard({ team }: { team: string }) {
 
   const badge = (gameData.isLead && gameData.status !== 'programmata') ? 'LEAD SERIES' : null
 
+  const leadingAbbreviation = gameData.series && gameData.isLead ? getTeamAbbreviation(gameData.winner || mappedTeamA) : null
+
   return (
     <div className="rounded-xl shadow-md text-white w-full flex flex-col sm:flex-row overflow-hidden mb-4">
       <div className={`flex-1 flex flex-col items-center justify-center p-4 ${bgColorA}`}>
@@ -107,9 +120,11 @@ export default function LiveCountdownCard({ team }: { team: string }) {
       </div>
 
       <div className="bg-black flex flex-col justify-center items-center px-2 py-4 w-full sm:w-56 text-center">
-        <div className="text-xs uppercase tracking-widest text-gray-400">{gameData.game}</div>
+        <div className="text-xs uppercase tracking-widest text-gray-400">
+          {leadingAbbreviation && gameData.series ? `${leadingAbbreviation} ${gameData.series.split(' ').slice(-1)} - ` : ''}{gameData.game}
+        </div>
         {gameData.series && (
-          <div className="text-sm font-semibold text-yellow-400 mt-1">{gameData.series}</div>
+          <div className="text-sm font-semibold text-yellow-400 mt-1">Serie: {gameData.series}</div>
         )}
         {gameData.isElimination && (
           <div className="text-xs font-bold text-red-500 uppercase animate-pulse mt-1">ELIMINATION GAME</div>
