@@ -134,8 +134,8 @@ export default function HomePage() {
                     <img src={teamLogos[serie.teamB]} alt={serie.teamB} className="w-4 h-4" />
                     {serie.teamB.split(" ").map(w => w[0]).join("")}
                   </td>
-                  <td className="py-1 font-semibold">{leadInitial} {serie.winsA}-{serie.winsB}</td>
-                  <td className="py-1">{serie.winsA} - {serie.winsB}</td>
+                  <td className=\"py-1 font-semibold text-gray-800\">{leadInitial} {serie.winsA}-{serie.winsB}</td>
+                  <td className=\"py-1 text-gray-800\">{serie.winsA} - {serie.winsB}</td>
                   <td className="py-1 text-gray-700 font-medium">{serie.lastResult?.split(" ")[0] || '—'}</td>
                   <td className="py-1 whitespace-nowrap">
                     {serie.isLead && <span className="text-blue-600 font-semibold mr-1">🔝</span>}
