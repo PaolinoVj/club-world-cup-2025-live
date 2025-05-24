@@ -134,8 +134,22 @@ export default function HomePage() {
                     <img src={teamLogos[serie.teamB]} alt={serie.teamB} className="w-4 h-4" />
                     {serie.teamB.split(" ").map(w => w[0]).join("")}
                   </td>
-                  <td className=\"py-1 font-semibold text-gray-800\">{leadInitial} {serie.winsA}-{serie.winsB}</td>
-                  <td className=\"py-1 text-gray-800\">{serie.winsA} - {serie.winsB}</td>
+                  <td className='py-1 font-semibold text-gray-800'>{leadInitial} {serie.winsA}-{serie.winsB}</td>
+                  <td className='py-1 text-gray-800'>
+  <div className="flex items-center gap-2">
+    <div className="w-24 bg-gray-200 rounded-full h-3 overflow-hidden flex">
+      <div
+        className={`h-3 ${serie.teamA === 'Oklahoma City Thunder' ? 'bg-sky-600' : serie.teamA === 'Indiana Pacers' ? 'bg-yellow-600' : serie.teamA === 'Minnesota Timberwolves' ? 'bg-teal-800' : serie.teamA === 'Denver Nuggets' ? 'bg-blue-800' : 'bg-blue-500'}`}
+        style={{ width: `${(serie.winsA / 4) * 100}%` }}
+      />
+      <div
+        className={`h-3 ${serie.teamB === 'Oklahoma City Thunder' ? 'bg-sky-600' : serie.teamB === 'Indiana Pacers' ? 'bg-yellow-600' : serie.teamB === 'Minnesota Timberwolves' ? 'bg-teal-800' : serie.teamB === 'Denver Nuggets' ? 'bg-blue-800' : 'bg-red-400'}`}
+        style={{ width: `${(serie.winsB / 4) * 100}%` }}
+      />
+    </div>
+    <span>{serie.winsA} - {serie.winsB}</span>
+  </div>
+</td>
                   <td className="py-1 text-gray-700 font-medium">{serie.lastResult?.split(" ")[0] || '—'}</td>
                   <td className="py-1 whitespace-nowrap">
                     {serie.isLead && <span className="text-blue-600 font-semibold mr-1">🔝</span>}
