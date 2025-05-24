@@ -18,6 +18,7 @@ export interface GameData {
   winner?: string
 }
 
+
 const teamSolidColors: Record<string, string> = {
   "Boston Celtics": "bg-green-700",
   "Miami Heat": "bg-red-700",
