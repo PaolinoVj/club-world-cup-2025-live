@@ -1,16 +1,4 @@
-#!/bin/bash
-
-echo "⏳ Avvio aggiornamento JSON playoff..."
-
-# === CONFIG ===
-PROJECT_DIR="/c/Users/info/nba-playoff-live"
-JSON_PATH="$PROJECT_DIR/public/playoffs-2025-extended.json"
-BRANCH="main"
-
-# === CREA IL NUOVO CONTENUTO JSON TEMPORANEO ===
-TMP_JSON=$(mktemp)
-
-printf '%s\n' '[
+[
   {
     "teamA": "Oklahoma City Thunder",
     "teamB": "Minnesota Timberwolves",
@@ -109,17 +97,4 @@ printf '%s\n' '[
     "status": "programmata",
     "isElimination": true
   }
-]' > "$TMP_JSON"
-
-# === SOVRASCRIVI IL FILE ===
-cat "$TMP_JSON" > "$JSON_PATH"
-
-# === GIT COMMIT & PUSH ===
-cd "$PROJECT_DIR" || exit 1
-
-git pull origin "$BRANCH" --rebase
-git add . 
-git commit -m "Aggiornato JSON esteso playoff con status, series e match info" || echo "⚠️ Nessun cambiamento da committare"
-git push origin "$BRANCH"
-
-echo "✅ JSON esteso aggiornato e pushato su GitHub. Deploy Vercel in corso..."
+]

@@ -11,6 +11,11 @@ interface Game {
   timeIT: string
   game: string
   result?: string
+  status?: string
+  series?: string
+  isLead?: boolean
+  isElimination?: boolean
+  winner?: string
 }
 
 const aliasMap: Record<string, string> = {
@@ -49,7 +54,7 @@ export async function GET(request: Request) {
   teamParam = aliasMap[teamParam] || teamParam
 
   try {
-    const filePath = path.join(process.cwd(), 'public', 'playoffs-2025-updated.json')
+    const filePath = path.join(process.cwd(), 'public', 'playoffs-2025-extended.json')
     const fileContent = await fs.readFile(filePath, 'utf-8')
     const allGames: Game[] = JSON.parse(fileContent)
 
@@ -78,11 +83,15 @@ export async function GET(request: Request) {
       day: game.day,
       timeIT: game.timeIT,
       game: game.game,
-      result: game.result || undefined
+      result: game.result || undefined,
+      status: game.status || undefined,
+      series: game.series || undefined,
+      isLead: game.isLead || undefined,
+      isElimination: game.isElimination || undefined,
+      winner: game.winner || undefined
     })
   } catch (err) {
-  console.error("Errore durante il recupero file playoff:", err)
-  return NextResponse.json({ error: 'Errore durante il recupero file playoff' }, { status: 500 })
-}
-
+    console.error("Errore durante il recupero file playoff:", err)
+    return NextResponse.json({ error: 'Errore durante il recupero file playoff' }, { status: 500 })
+  }
 }

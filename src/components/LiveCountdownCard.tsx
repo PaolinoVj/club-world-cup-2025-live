@@ -11,7 +11,12 @@ export interface GameData {
   timeIT: string
   game: string
   result?: string
-  }
+  status?: string
+  series?: string
+  isLead?: boolean
+  isElimination?: boolean
+  winner?: string
+}
 
 const teamSolidColors: Record<string, string> = {
   "Boston Celtics": "bg-green-700",
@@ -134,19 +139,29 @@ export default function LiveCountdownCard({ team }: { team: string }) {
   const bgColorB = teamSolidColors[mappedTeamB] || 'bg-gray-600'
   const logoA = teamLogos[mappedTeamA]
   const logoB = teamLogos[mappedTeamB]
-  
+
+  const badge = (gameData.isLead && gameData.status !== 'programmata') ? 'LEAD SERIES' : null
+  const winnerBadge = gameData.winner ? `WINNER: ${gameData.winner}` : null
+
   return (
     <div className="rounded-xl shadow-md text-white w-full flex flex-col sm:flex-row overflow-hidden mb-4">
       <div className={`flex-1 flex flex-col items-center justify-center p-4 ${bgColorA}`}>
         <img src={logoA} alt={mappedTeamA} className="w-14 h-14 mb-2 sm:w-20 sm:h-20" />
         <div className="text-base sm:text-xl font-semibold text-center leading-tight">{mappedTeamA}</div>
+        {gameData.winner === gameData.teamA && <div className="text-xs font-bold text-green-400 mt-1">🏆 Vincitore</div>}
       </div>
 
       <div className="bg-black flex flex-col justify-center items-center px-2 py-4 w-full sm:w-56 text-center">
         <div className="text-xs uppercase tracking-widest text-gray-400">{gameData.game}</div>
-        <div className="text-base sm:text-lg font-bold mt-1">
-          {gameData.result ? `Serie: ${gameData.result}` : "Prossimo Match"}
-        </div>
+        {gameData.series && (
+          <div className="text-sm font-semibold text-yellow-400 mt-1">{gameData.series}</div>
+        )}
+        {gameData.isElimination && (
+          <div className="text-xs font-bold text-red-500 uppercase animate-pulse mt-1">ELIMINATION GAME</div>
+        )}
+        {badge && (
+          <div className="text-xs font-semibold text-blue-400 uppercase mt-1">{badge}</div>
+        )}
         <div className="text-sm mt-1">{gameData.day} - {gameData.timeIT}</div>
         <div className="text-xs text-gray-400 mt-1 leading-tight">{gameData.venue}</div>
         <div className="text-sm text-yellow-300 mt-2 font-medium">
@@ -158,12 +173,14 @@ export default function LiveCountdownCard({ team }: { team: string }) {
           rel="noopener noreferrer"
           className="mt-2 text-blue-400 underline text-xs"
         >
-          Info & risultati</a>
+          Info & risultati
+        </a>
       </div>
 
       <div className={`flex-1 flex flex-col items-center justify-center p-4 ${bgColorB}`}>
         <img src={logoB} alt={mappedTeamB} className="w-14 h-14 mb-2 sm:w-20 sm:h-20" />
         <div className="text-base sm:text-xl font-semibold text-center leading-tight">{mappedTeamB}</div>
+        {gameData.winner === gameData.teamB && <div className="text-xs font-bold text-green-400 mt-1">🏆 Vincitore</div>}
       </div>
     </div>
   )
