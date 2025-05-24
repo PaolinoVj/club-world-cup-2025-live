@@ -59,6 +59,17 @@ function getTeamAbbreviation(team: string): string {
   return map[team] || team.slice(0, 3).toUpperCase()
 }
 
+function isMatchPoint(series: string): boolean {
+  const match = series?.match(/(\d)-(\d)/)
+  if (!match) return false
+  const [a, b] = [parseInt(match[1]), parseInt(match[2])]
+  return a === 3 || b === 3
+}
+
+function isSweep(series: string): boolean {
+  return /^(3-0|0-3)$/.test(series)
+}
+
 export { teamSolidColors, teamLogos, mapTeamName }
 
 export default function LiveCountdownCard({ team }: { team: string }) {
@@ -109,7 +120,12 @@ export default function LiveCountdownCard({ team }: { team: string }) {
 
   const badge = (gameData.isLead && gameData.status !== 'programmata') ? 'LEAD SERIES' : null
 
-  const leadingAbbreviation = gameData.series && gameData.isLead ? getTeamAbbreviation(gameData.winner || mappedTeamA) : null
+  const leadingAbbreviation = gameData.series
+    ? getTeamAbbreviation(gameData.winner || mappedTeamA)
+    : null
+  const seriesScore = gameData.series?.match(/\d+-\d+/)?.[0] || null
+  const showMatchPoint = gameData.series && isMatchPoint(seriesScore || '')
+  const showSweepAlert = gameData.series && isSweep(seriesScore || '')
 
   return (
     <div className="rounded-xl shadow-md text-white w-full flex flex-col sm:flex-row overflow-hidden mb-4">
@@ -121,10 +137,16 @@ export default function LiveCountdownCard({ team }: { team: string }) {
 
       <div className="bg-black flex flex-col justify-center items-center px-2 py-4 w-full sm:w-56 text-center">
         <div className="text-xs uppercase tracking-widest text-gray-400">
-          {leadingAbbreviation && gameData.series ? `${leadingAbbreviation} ${gameData.series.split(' ').slice(-1)} - ` : ''}{gameData.game}
+          {leadingAbbreviation && seriesScore ? `${leadingAbbreviation} ${seriesScore} - ` : ''}{gameData.game}
         </div>
         {gameData.series && (
           <div className="text-sm font-semibold text-yellow-400 mt-1">Serie: {gameData.series}</div>
+        )}
+        {showMatchPoint && (
+          <div className="text-xs font-bold text-orange-400 uppercase mt-1">MATCH POINT</div>
+        )}
+        {showSweepAlert && (
+          <div className="text-xs font-bold text-fuchsia-500 uppercase mt-1">SWEEP ALERT</div>
         )}
         {gameData.isElimination && (
           <div className="text-xs font-bold text-red-500 uppercase animate-pulse mt-1">ELIMINATION GAME</div>
