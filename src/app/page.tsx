@@ -102,46 +102,49 @@ export default function HomePage() {
       </div>
 
       {/* TABELLA SERIE */}
-      <div className="w-full max-w-6xl bg-white p-4 rounded-xl shadow mb-10">
+      <div className="w-full max-w-6xl bg-white p-4 rounded-xl shadow mb-10 overflow-x-auto">
         <h2 className="text-lg font-bold mb-2 text-gray-700">Stato delle serie</h2>
-        <table className="w-full text-sm text-left">
+        <table className="w-full text-xs sm:text-sm text-left min-w-[500px]">
           <thead>
-            <tr className="text-xs text-gray-500 uppercase border-b">
+            <tr className="text-[10px] sm:text-xs text-gray-500 uppercase border-b">
               <th className="py-1">Matchup</th>
               <th className="py-1">Serie</th>
               <th className="py-1">Vittorie</th>
-              <th className="py-1">Ultima partita</th>
+              <th className="py-1">Ultima</th>
               <th className="py-1">Note</th>
             </tr>
           </thead>
           <tbody>
-            {sortedSeries.map(([key, serie]) => (
-              <tr
-                key={key}
-                className={`${
-                  serie.sweep
-                    ? 'bg-pink-100'
-                    : serie.matchPoint
-                    ? 'bg-orange-100'
-                    : ''
-                } border-b`}
-              >
-                <td className="py-1 font-medium text-gray-800 flex items-center gap-2">
-                  <img src={teamLogos[serie.teamA]} alt={serie.teamA} className="w-5 h-5" />
-                  {serie.teamA} vs
-                  <img src={teamLogos[serie.teamB]} alt={serie.teamB} className="w-5 h-5" />
-                  {serie.teamB}
-                </td>
-                <td className="py-1">{serie.series}</td>
-                <td className="py-1">{serie.teamA}: {serie.winsA} - {serie.teamB}: {serie.winsB}</td>
-                <td className="py-1 text-gray-600 italic">{serie.lastResult || '—'}</td>
-                <td className="py-1">
-                  {serie.isLead && <span className="text-blue-600 font-semibold mr-2">🔝 LEAD</span>}
-                  {serie.matchPoint && <span className="text-orange-500 font-semibold mr-2">🔥 MATCH POINT</span>}
-                  {serie.sweep && <span className="text-pink-500 font-semibold">🧹 SWEEP</span>}
-                </td>
-              </tr>
-            ))}
+            {sortedSeries.map(([key, serie]) => {
+              const leadInitial = serie.winsA > serie.winsB ? serie.teamA.split(" ").map(w => w[0]).join("") : serie.teamB.split(" ").map(w => w[0]).join("")
+              return (
+                <tr
+                  key={key}
+                  className={`${
+                    serie.sweep
+                      ? 'bg-pink-100'
+                      : serie.matchPoint
+                      ? 'bg-orange-100'
+                      : ''
+                  } border-b`}
+                >
+                  <td className="py-1 font-medium text-gray-800 flex items-center gap-1">
+                    <img src={teamLogos[serie.teamA]} alt={serie.teamA} className="w-4 h-4" />
+                    {serie.teamA.split(" ").map(w => w[0]).join("")} vs
+                    <img src={teamLogos[serie.teamB]} alt={serie.teamB} className="w-4 h-4" />
+                    {serie.teamB.split(" ").map(w => w[0]).join("")}
+                  </td>
+                  <td className="py-1 font-semibold">{leadInitial} {serie.winsA}-{serie.winsB}</td>
+                  <td className="py-1">{serie.winsA} - {serie.winsB}</td>
+                  <td className="py-1 text-gray-700 font-medium">{serie.lastResult?.split(" ")[0] || '—'}</td>
+                  <td className="py-1 whitespace-nowrap">
+                    {serie.isLead && <span className="text-blue-600 font-semibold mr-1">🔝</span>}
+                    {serie.matchPoint && <span className="text-orange-500 font-semibold mr-1">🔥</span>}
+                    {serie.sweep && <span className="text-pink-500 font-semibold">🧹</span>}
+                  </td>
+                </tr>
+              )
+            })}
           </tbody>
         </table>
       </div>
