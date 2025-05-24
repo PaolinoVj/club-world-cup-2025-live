@@ -10,6 +10,9 @@ interface Game {
   dateTime: string
   series?: string
   isLead?: boolean
+  winner?: string
+  result?: string
+  status?: string
 }
 
 const teamLogos: Record<string, string> = {
@@ -29,7 +32,7 @@ export default function HomePage() {
       .then((data) => setGames(data))
   }, [])
 
-  const seriesMap: Record<string, { teamA: string; teamB: string; series: string; isLead?: boolean; matchPoint?: boolean; sweep?: boolean }> = {}
+  const seriesMap: Record<string, { teamA: string; teamB: string; series: string; isLead?: boolean; matchPoint?: boolean; sweep?: boolean; winsA: number; winsB: number; lastResult?: string }> = {}
   const gamesByDay: Record<string, Game[]> = {}
 
   function detectMatchPoint(score: string): boolean {
@@ -43,17 +46,31 @@ export default function HomePage() {
     return /^(3-0|0-3)$/.test(score)
   }
 
+  function extractWinCount(score: string): [number, number] {
+    const m = score.match(/(\d)-(\d)/)
+    if (!m) return [0, 0]
+    return [parseInt(m[1]), parseInt(m[2])]
+  }
+
   for (const g of games) {
     const key = `${g.teamA} vs ${g.teamB}`
-    if (g.series && !seriesMap[key]) {
-      const scoreOnly = g.series.match(/\d+-\d+/)?.[0] || ""
-      seriesMap[key] = {
-        teamA: g.teamA,
-        teamB: g.teamB,
-        series: g.series,
-        isLead: g.isLead,
-        matchPoint: detectMatchPoint(scoreOnly),
-        sweep: detectSweep(scoreOnly),
+    if (g.series) {
+      const scoreOnly = g.series.match(/\d+-\d+/)?.[0] || "0-0"
+      const [winsA, winsB] = extractWinCount(scoreOnly)
+      if (!seriesMap[key]) {
+        seriesMap[key] = {
+          teamA: g.teamA,
+          teamB: g.teamB,
+          series: g.series,
+          isLead: g.isLead,
+          matchPoint: detectMatchPoint(scoreOnly),
+          sweep: detectSweep(scoreOnly),
+          winsA,
+          winsB,
+          lastResult: g.result || ''
+        }
+      } else if (g.status === 'conclusa') {
+        seriesMap[key].lastResult = g.result || seriesMap[key].lastResult
       }
     }
     if (!gamesByDay[g.day]) gamesByDay[g.day] = []
@@ -85,13 +102,15 @@ export default function HomePage() {
       </div>
 
       {/* TABELLA SERIE */}
-      <div className="w-full max-w-4xl bg-white p-4 rounded-xl shadow mb-10">
+      <div className="w-full max-w-6xl bg-white p-4 rounded-xl shadow mb-10">
         <h2 className="text-lg font-bold mb-2 text-gray-700">Stato delle serie</h2>
         <table className="w-full text-sm text-left">
           <thead>
             <tr className="text-xs text-gray-500 uppercase border-b">
               <th className="py-1">Matchup</th>
               <th className="py-1">Serie</th>
+              <th className="py-1">Vittorie</th>
+              <th className="py-1">Ultima partita</th>
               <th className="py-1">Note</th>
             </tr>
           </thead>
@@ -114,6 +133,8 @@ export default function HomePage() {
                   {serie.teamB}
                 </td>
                 <td className="py-1">{serie.series}</td>
+                <td className="py-1">{serie.teamA}: {serie.winsA} - {serie.teamB}: {serie.winsB}</td>
+                <td className="py-1 text-gray-600 italic">{serie.lastResult || '—'}</td>
                 <td className="py-1">
                   {serie.isLead && <span className="text-blue-600 font-semibold mr-2">🔝 LEAD</span>}
                   {serie.matchPoint && <span className="text-orange-500 font-semibold mr-2">🔥 MATCH POINT</span>}
