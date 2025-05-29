@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import path from 'path'
 import { promises as fs } from 'fs'
+import aliasMap from '@/utils/aliasMap'
 
 interface Game {
   teamA: string
@@ -16,31 +17,6 @@ interface Game {
   isLead?: boolean
   isElimination?: boolean
   winner?: string
-}
-
-const aliasMap: Record<string, string> = {
-  "warriors": "Golden State Warriors",
-  "lakers": "Los Angeles Lakers",
-  "celtics": "Boston Celtics",
-  "sixers": "Philadelphia 76ers",
-  "76ers": "Philadelphia 76ers",
-  "knicks": "New York Knicks",
-  "nuggets": "Denver Nuggets",
-  "clippers": "LA Clippers",
-  "mavericks": "Dallas Mavericks",
-  "bucks": "Milwaukee Bucks",
-  "cavaliers": "Cleveland Cavaliers",
-  "magic": "Orlando Magic",
-  "heat": "Miami Heat",
-  "wolves": "Minnesota Timberwolves",
-  "timberwolves": "Minnesota Timberwolves",
-  "suns": "Phoenix Suns",
-  "pelicans": "New Orleans Pelicans",
-  "pacers": "Indiana Pacers",
-  "thunder": "Oklahoma City Thunder",
-  "grizzlies": "Memphis Grizzlies",
-  "rockets": "Houston Rockets",
-  "pistons": "Detroit Pistons"
 }
 
 export async function GET(request: Request) {
@@ -60,17 +36,19 @@ export async function GET(request: Request) {
 
     const now = new Date().getTime()
 
-    const filtered = allGames.filter((game) =>
-      game.teamA.toLowerCase() === teamParam.toLowerCase() ||
-      game.teamB.toLowerCase() === teamParam.toLowerCase()
-    )
+    // Filtra le partite rilevanti per la squadra indicata e con stato "programmata" o "in corso"
+    const filtered = allGames.filter((game) => {
+      const matchTeam = game.teamA.toLowerCase() === teamParam || game.teamB.toLowerCase() === teamParam
+      const isRelevantStatus = game.status === 'programmata' || game.status === 'in corso'
+      return matchTeam && isRelevantStatus
+    })
 
     const upcoming = filtered
       .filter((g) => new Date(g.dateTime).getTime() > now)
       .sort((a, b) => new Date(a.dateTime).getTime() - new Date(b.dateTime).getTime())
 
     if (upcoming.length === 0) {
-      return NextResponse.json({ error: 'Nessuna partita imminente trovata' }, { status: 404 })
+      return NextResponse.json({ error: 'Nessuna partita imminente trovata. Verifica che il nome della squadra sia corretto o che ci siano partite future nel calendario.' }, { status: 404 })
     }
 
     const game = upcoming[0]

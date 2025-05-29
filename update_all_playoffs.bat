@@ -1,13 +1,19 @@
 @echo off
-chcp 65001 > nul
-title 🔄 Aggiornamento JSON Playoff NBA 2025
-echo.
-echo ▶️ Avvio aggiornamento JSON playoff...
-echo ----------------------------------------
+setlocal
 
-:: Avvia lo script Bash usando Git Bash
+echo ▶️ Avvio aggiornamento playoff e sincronizzazione GitHub...
+
+:: Percorso assoluto al tuo progetto
+cd /d "C:\Users\info\nba-playoff-live"
+
+:: Lancia lo script di aggiornamento JSON (Bash via Git for Windows)
 "C:\Program Files\Git\bin\bash.exe" ./update_all_playoffs.sh
 
-echo ----------------------------------------
-echo ✅ Operazione completata. Premi un tasto per chiudere.
-pause > nul
+:: Controlla modifiche, committa e push su GitHub
+git pull origin main --rebase
+git add .
+git commit -m "🔄 Update JSON playoff & sincronizzazione automatica" || echo ⚠️ Nessun cambiamento da committare
+git push origin main
+
+echo ✅ Aggiornamento completato con successo!
+pause

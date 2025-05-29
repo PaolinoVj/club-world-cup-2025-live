@@ -10,7 +10,8 @@ BRANCH="main"
 # === CREA IL NUOVO CONTENUTO JSON TEMPORANEO ===
 TMP_JSON=$(mktemp)
 
-printf '%s\n' '[
+cat > "$TMP_JSON" <<EOF
+[
   {
     "teamA": "Oklahoma City Thunder",
     "teamB": "Minnesota Timberwolves",
@@ -21,7 +22,7 @@ printf '%s\n' '[
     "game": "Finale Ovest, Gara 1",
     "result": "OKC WINS 114-88",
     "status": "conclusa",
-    "winner": "OKC"
+    "winner": "Oklahoma City Thunder"
   },
   {
     "teamA": "Oklahoma City Thunder",
@@ -34,8 +35,47 @@ printf '%s\n' '[
     "result": "OKC WINS 118-103",
     "series": "OKC leads 2-0",
     "status": "conclusa",
-    "winner": "OKC",
+    "winner": "Oklahoma City Thunder",
     "isLead": true
+  },
+  {
+    "teamA": "Minnesota Timberwolves",
+    "teamB": "Oklahoma City Thunder",
+    "dateTime": "2025-05-24T00:30:00Z",
+    "venue": "Target Center, Minneapolis",
+    "day": "Sab 24 Maggio",
+    "timeIT": "02:30",
+    "game": "Finale Ovest, Gara 3",
+    "result": "MIN WINS 143-101",
+    "series": "OKC leads 2-1",
+    "status": "conclusa",
+    "winner": "Minnesota Timberwolves"
+  },
+  {
+    "teamA": "Minnesota Timberwolves",
+    "teamB": "Oklahoma City Thunder",
+    "dateTime": "2025-05-26T00:30:00Z",
+    "venue": "Target Center, Minneapolis",
+    "day": "Lun 26 Maggio",
+    "timeIT": "02:30",
+    "game": "Finale Ovest, Gara 4",
+    "result": "OKC WINS 128-126",
+    "series": "OKC leads 3-1",
+    "status": "conclusa",
+    "winner": "Oklahoma City Thunder"
+  },
+  {
+    "teamA": "Oklahoma City Thunder",
+    "teamB": "Minnesota Timberwolves",
+    "dateTime": "2025-05-28T00:30:00Z",
+    "venue": "Paycom Center, Oklahoma City",
+    "day": "Mer 28 Maggio",
+    "timeIT": "02:30",
+    "game": "Finale Ovest, Gara 5",
+    "result": "OKC WINS 124-94",
+    "series": "OKC wins 4-1",
+    "status": "conclusa",
+    "winner": "Oklahoma City Thunder"
   },
   {
     "teamA": "New York Knicks",
@@ -47,7 +87,7 @@ printf '%s\n' '[
     "game": "Finale Est, Gara 1",
     "result": "IND WINS 138-135 (OT)",
     "status": "conclusa",
-    "winner": "IND"
+    "winner": "Indiana Pacers"
   },
   {
     "teamA": "New York Knicks",
@@ -60,7 +100,7 @@ printf '%s\n' '[
     "result": "IND WINS 114-109",
     "series": "IND leads 2-0",
     "status": "conclusa",
-    "winner": "IND",
+    "winner": "Indiana Pacers",
     "isLead": true
   },
   {
@@ -71,8 +111,10 @@ printf '%s\n' '[
     "day": "Dom 25 Maggio",
     "timeIT": "02:00",
     "game": "Finale Est, Gara 3",
-    "result": "",
-    "status": "programmata"
+    "result": "NYK WINS 106-100",
+    "series": "IND leads 2-1",
+    "status": "conclusa",
+    "winner": "New York Knicks"
   },
   {
     "teamA": "Indiana Pacers",
@@ -82,109 +124,114 @@ printf '%s\n' '[
     "day": "Mar 27 Maggio",
     "timeIT": "02:00",
     "game": "Finale Est, Gara 4",
-    "result": "",
-    "status": "programmata",
-    "isElimination": true
-  },
-  {
-    "teamA": "Minnesota Timberwolves",
-    "teamB": "Oklahoma City Thunder",
-    "dateTime": "2025-05-24T00:30:00Z",
-    "venue": "Target Center, Minneapolis",
-    "day": "Sab 24 Maggio",
-    "timeIT": "02:30",
-    "game": "Finale Ovest, Gara 3",
-    "result": "",
-    "status": "in corso"
-  },
-  {
-    "teamA": "Minnesota Timberwolves",
-    "teamB": "Oklahoma City Thunder",
-    "dateTime": "2025-05-26T00:30:00Z",
-    "venue": "Target Center, Minneapolis",
-    "day": "Lun 26 Maggio",
-    "timeIT": "02:30",
-    "game": "Finale Ovest, Gara 4",
-    "result": "",
-    "status": "programmata",
-    "isElimination": true
-  },
-  {
-    "teamA": "Oklahoma City Thunder",
-    "teamB": "Minnesota Timberwolves",
-    "dateTime": "2025-06-05T00:30:00Z",
-    "venue": "Paycom Center, Oklahoma City",
-    "day": "Mer 05 June",
-    "timeIT": "02:30",
-    "game": "Finale Ovest, Gara 5",
-    "result": "",
-    "status": "programmata"
-  },
-  {
-    "teamA": "Oklahoma City Thunder",
-    "teamB": "Minnesota Timberwolves",
-    "dateTime": "2025-06-07T00:30:00Z",
-    "venue": "Paycom Center, Oklahoma City",
-    "day": "Mer 07 June",
-    "timeIT": "02:30",
-    "game": "Finale Ovest, Gara 6",
-    "result": "",
-    "status": "programmata"
-  },
-  {
-    "teamA": "Oklahoma City Thunder",
-    "teamB": "Minnesota Timberwolves",
-    "dateTime": "2025-06-09T00:30:00Z",
-    "venue": "Paycom Center, Oklahoma City",
-    "day": "Mer 09 June",
-    "timeIT": "02:30",
-    "game": "Finale Ovest, Gara 7",
-    "result": "",
-    "status": "programmata"
+    "result": "IND WINS 130-121",
+    "series": "IND leads 3-1",
+    "status": "conclusa",
+    "winner": "Indiana Pacers",
+    "isLead": true
   },
   {
     "teamA": "New York Knicks",
     "teamB": "Indiana Pacers",
-    "dateTime": "2025-06-06T00:00:00Z",
+    "dateTime": "2025-05-29T00:00:00Z",
     "venue": "Madison Square Garden, New York",
-    "day": "Gio 06 June",
-    "timeIT": "02:30",
+    "day": "Gio 29 Maggio",
+    "timeIT": "02:00",
     "game": "Finale Est, Gara 5",
     "result": "",
-    "status": "programmata"
+    "series": "IND leads 3-1",
+    "status": "programmata",
+    "isElimination": true
   },
   {
-    "teamA": "New York Knicks",
-    "teamB": "Indiana Pacers",
-    "dateTime": "2025-06-08T00:00:00Z",
-    "venue": "Madison Square Garden, New York",
-    "day": "Gio 08 June",
-    "timeIT": "02:30",
-    "game": "Finale Est, Gara 6",
+    "teamA": "TBD",
+    "teamB": "Oklahoma City Thunder",
+    "dateTime": "2025-06-05T00:00:00Z",
+    "venue": "Paycom Center, Oklahoma City",
+    "day": "Gio 5 Giugno",
+    "timeIT": "02:00",
+    "game": "NBA Finals, Gara 1",
     "result": "",
     "status": "programmata"
   },
   {
-    "teamA": "New York Knicks",
-    "teamB": "Indiana Pacers",
-    "dateTime": "2025-06-10T00:00:00Z",
-    "venue": "Madison Square Garden, New York",
-    "day": "Gio 10 June",
-    "timeIT": "02:30",
-    "game": "Finale Est, Gara 7",
+    "teamA": "TBD",
+    "teamB": "Oklahoma City Thunder",
+    "dateTime": "2025-06-08T00:00:00Z",
+    "venue": "Paycom Center, Oklahoma City",
+    "day": "Dom 8 Giugno",
+    "timeIT": "02:00",
+    "game": "NBA Finals, Gara 2",
+    "result": "",
+    "status": "programmata"
+  },
+  {
+    "teamA": "Oklahoma City Thunder",
+    "teamB": "TBD",
+    "dateTime": "2025-06-11T00:00:00Z",
+    "venue": "TBD",
+    "day": "Mer 11 Giugno",
+    "timeIT": "02:00",
+    "game": "NBA Finals, Gara 3",
+    "result": "",
+    "status": "programmata"
+  },
+  {
+    "teamA": "Oklahoma City Thunder",
+    "teamB": "TBD",
+    "dateTime": "2025-06-13T00:00:00Z",
+    "venue": "TBD",
+    "day": "Ven 13 Giugno",
+    "timeIT": "02:00",
+    "game": "NBA Finals, Gara 4",
+    "result": "",
+    "status": "programmata"
+  },
+  {
+    "teamA": "TBD",
+    "teamB": "Oklahoma City Thunder",
+    "dateTime": "2025-06-16T00:00:00Z",
+    "venue": "Paycom Center, Oklahoma City",
+    "day": "Lun 16 Giugno",
+    "timeIT": "02:00",
+    "game": "NBA Finals, Gara 5",
+    "result": "",
+    "status": "programmata"
+  },
+  {
+    "teamA": "Oklahoma City Thunder",
+    "teamB": "TBD",
+    "dateTime": "2025-06-19T00:00:00Z",
+    "venue": "TBD",
+    "day": "Gio 19 Giugno",
+    "timeIT": "02:00",
+    "game": "NBA Finals, Gara 6",
+    "result": "",
+    "status": "programmata"
+  },
+  {
+    "teamA": "TBD",
+    "teamB": "Oklahoma City Thunder",
+    "dateTime": "2025-06-22T00:00:00Z",
+    "venue": "Paycom Center, Oklahoma City",
+    "day": "Dom 22 Giugno",
+    "timeIT": "02:00",
+    "game": "NBA Finals, Gara 7",
     "result": "",
     "status": "programmata"
   }
-]' > "$TMP_JSON"
+]
 
-# === SOVRASCRIVI IL FILE DEFINITIVO ===
+EOF
+
+# === SOVRASCRIVI IL FILE ===
 cat "$TMP_JSON" > "$JSON_PATH"
 
 # === GIT COMMIT & PUSH ===
 cd "$PROJECT_DIR" || exit 1
 git pull origin "$BRANCH" --rebase
 git add .
-git commit -m "Aggiornato JSON esteso playoff con risultati aggiornati" || echo "⚠️ Nessun cambiamento da committare"
+git commit -m "🆕 Update JSON playoff esteso automatico" || echo "⚠️ Nessun cambiamento da committare"
 git push origin "$BRANCH"
 
-echo "✅ JSON aggiornato e pushato. Deploy Vercel in corso..."
+echo "✅ JSON aggiornato e pushato su GitHub!"
