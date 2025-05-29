@@ -47,8 +47,8 @@ export default function LiveCountdownCard({ team, highlighted = false }: { team:
   useEffect(() => {
     async function fetchGame() {
       const res = await fetch(`/api/nba/next-game?team=${team}`)
-      const data = await res.json()
-      if (!data || data.error) return
+      const data: GameData = await res.json()
+      if (!data || (data as any).error) return
       setGameData(data)
     }
     fetchGame()
@@ -88,14 +88,14 @@ export default function LiveCountdownCard({ team, highlighted = false }: { team:
     <div className={`rounded-xl shadow-md text-white w-full flex flex-col sm:flex-row overflow-hidden mb-4 ${highlighted ? 'ring-4 ring-yellow-400' : ''}`}>
       <div className={`flex-1 flex flex-col items-center justify-center p-4 ${bgA}`}>
         <img src={logoA} alt={gameData.teamA} className="w-14 h-14 mb-2 sm:w-20 sm:h-20" />
-        <div className="text-base sm:text-xl font-semibold text-center leading-tight">{gameData.teamA}</div>
+        <div className="text-base sm:text-xl font-semibold text-center leading-tight text-[#607D8B]">{gameData.teamA}</div>
         {gameData.winner === gameData.teamA && <div className="text-xs font-bold text-green-400 mt-1">🏆 Vincitore</div>}
       </div>
 
       <div className="bg-black flex flex-col justify-center items-center px-2 py-4 w-full sm:w-56 text-center">
         <div className="text-xs uppercase tracking-widest text-[#607D8B]">{gameData.game}</div>
         {gameData.isElimination && <div className="text-xs font-bold text-red-500 uppercase animate-pulse mt-1">ELIMINATION GAME</div>}
-        <div className="text-sm mt-1">{gameData.day} - {gameData.timeIT}</div>
+        <div className="text-sm mt-1 text-[#607D8B]">{gameData.day} - {gameData.timeIT}</div>
         <div className="text-xs text-[#607D8B] mt-1 leading-tight">{gameData.venue}</div>
         <div className="text-sm text-yellow-300 mt-2 font-medium">
           {countdown === 'LIVE' ? <span className="text-red-400 animate-pulse">LIVE</span> : countdown}
@@ -112,7 +112,7 @@ export default function LiveCountdownCard({ team, highlighted = false }: { team:
 
       <div className={`flex-1 flex flex-col items-center justify-center p-4 ${bgB}`}>
         <img src={logoB} alt={gameData.teamB} className="w-14 h-14 mb-2 sm:w-20 sm:h-20" />
-        <div className="text-base sm:text-xl font-semibold text-center leading-tight">{gameData.teamB}</div>
+        <div className="text-base sm:text-xl font-semibold text-center leading-tight text-[#607D8B]">{gameData.teamB}</div>
         {gameData.winner === gameData.teamB && <div className="text-xs font-bold text-green-400 mt-1">🏆 Vincitore</div>}
       </div>
     </div>
