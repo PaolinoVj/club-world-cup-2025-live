@@ -111,15 +111,14 @@ printf '%s\n' '[
   }
 ]' > "$TMP_JSON"
 
-# === SOVRASCRIVI IL FILE ===
+# === SOVRASCRIVI IL FILE DEFINITIVO ===
 cat "$TMP_JSON" > "$JSON_PATH"
 
 # === GIT COMMIT & PUSH ===
 cd "$PROJECT_DIR" || exit 1
-
 git pull origin "$BRANCH" --rebase
-git add . 
-git commit -m "Aggiornato JSON esteso playoff con status, series e match info" || echo "⚠️ Nessun cambiamento da committare"
+git add .
+git commit -m "Aggiornato JSON esteso playoff con risultati aggiornati" || echo "⚠️ Nessun cambiamento da committare"
 git push origin "$BRANCH"
 
-echo "✅ JSON esteso aggiornato e pushato su GitHub. Deploy Vercel in corso..."
+echo "✅ JSON aggiornato e pushato. Deploy Vercel in corso..."
