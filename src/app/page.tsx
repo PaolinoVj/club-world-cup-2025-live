@@ -26,7 +26,7 @@ export default function HomePage() {
   useEffect(() => {
     fetch("/playoffs-2025-extended.json")
       .then((res) => res.json())
-      .then((games) => {
+      .then((games: Game[]) => {
         const currentSeries: Record<string, string> = {}
         const playedGames: Game[] = []
         const now = Date.now()
@@ -53,7 +53,7 @@ export default function HomePage() {
 
         setSeriesMap(currentSeries)
         setPastGames(playedGames.reverse())
-        if (nextGame) setHighlightedTeam(nextGame.teamA)
+        if (nextGame) setHighlightedTeam((nextGame as Game).teamA)
       })
   }, [])
 
