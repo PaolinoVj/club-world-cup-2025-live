@@ -26,14 +26,14 @@ export default function HomePage() {
   useEffect(() => {
     fetch("/playoffs-2025-extended.json")
       .then((res) => res.json())
-      .then((games: Game[]) => {
+      .then((games) => {
         const currentSeries: Record<string, string> = {}
         const playedGames: Game[] = []
         const now = Date.now()
 
         let nextGame: Game | null = null
 
-        games.forEach((g) => {
+        games.forEach((g: Game) => {
           if (g.series) {
             const matchup = [g.teamA, g.teamB].sort().join("_vs_")
             currentSeries[matchup] = g.series
