@@ -34,36 +34,35 @@ export async function GET(request: Request) {
     const fileContent = await fs.readFile(filePath, 'utf-8')
     const allGames: Game[] = JSON.parse(fileContent)
 
-    // Filtra le partite per la squadra indicata
-    const filtered = allGames.filter(
-      (game: Game) =>
-        game.teamA.toLowerCase() === teamParam.toLowerCase() ||
-        game.teamB.toLowerCase() === teamParam.toLowerCase()
-    )
+    const now = Date.now()
 
-    // Trova la prossima partita programmata o in corso
-    const nextGame: Game | undefined = filtered.find(
-      (g: Game) => g.status === 'programmata' || g.status === 'in corso'
-    )
+    const futureGames = allGames
+      .filter((game: Game) =>
+        (game.teamA.toLowerCase() === teamParam || game.teamB.toLowerCase() === teamParam) &&
+        new Date(game.dateTime).getTime() > now
+      )
+      .sort((a, b) => new Date(a.dateTime).getTime() - new Date(b.dateTime).getTime())
 
-    if (!nextGame) {
-      return NextResponse.json({ error: 'Nessuna partita trovata. Verifica il nome della squadra o la data.' }, { status: 404 })
+    if (futureGames.length === 0) {
+      return NextResponse.json({ error: 'Nessuna partita futura trovata per questa squadra.' }, { status: 404 })
     }
 
+    const game = futureGames[0]
+
     return NextResponse.json({
-      teamA: nextGame.teamA,
-      teamB: nextGame.teamB,
-      dateTime: nextGame.dateTime,
-      venue: nextGame.venue || 'TBD',
-      day: nextGame.day,
-      timeIT: nextGame.timeIT,
-      game: nextGame.game,
-      result: nextGame.result || undefined,
-      status: nextGame.status || undefined,
-      series: nextGame.series || undefined,
-      isLead: nextGame.isLead || undefined,
-      isElimination: nextGame.isElimination || undefined,
-      winner: nextGame.winner || undefined
+      teamA: game.teamA,
+      teamB: game.teamB,
+      dateTime: game.dateTime,
+      venue: game.venue || 'TBD',
+      day: game.day,
+      timeIT: game.timeIT,
+      game: game.game,
+      result: game.result || undefined,
+      status: game.status || undefined,
+      series: game.series || undefined,
+      isLead: game.isLead || undefined,
+      isElimination: game.isElimination || undefined,
+      winner: game.winner || undefined
     })
   } catch (err) {
     console.error("Errore durante il recupero file playoff:", err)
