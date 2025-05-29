@@ -7,6 +7,8 @@ import aliasMap from "@/utils/aliasMap"
 interface Game {
   teamA: string
   teamB: string
+  dateTime: string
+  status?: string
   series?: string
 }
 
@@ -14,19 +16,31 @@ const teams = ["thunder", "pacers", "knicks", "timberwolves"]
 
 export default function HomePage() {
   const [seriesMap, setSeriesMap] = useState<Record<string, string>>({})
+  const [visibleTeams, setVisibleTeams] = useState<string[]>([])
 
   useEffect(() => {
     fetch("/playoffs-2025-extended.json")
       .then((res) => res.json())
       .then((games: Game[]) => {
         const currentSeries: Record<string, string> = {}
+        const nextTeams: string[] = []
+        const now = Date.now()
+
         games.forEach((g) => {
           if (g.series) {
             const matchup = [g.teamA, g.teamB].sort().join("_vs_")
             currentSeries[matchup] = g.series
           }
+
+          const gameTime = new Date(g.dateTime).getTime()
+          if ((g.status === "programmata" || g.status === "in corso") && gameTime > now) {
+            if (!nextTeams.includes(g.teamA)) nextTeams.push(g.teamA)
+            if (!nextTeams.includes(g.teamB)) nextTeams.push(g.teamB)
+          }
         })
+
         setSeriesMap(currentSeries)
+        setVisibleTeams(nextTeams)
       })
   }, [])
 
@@ -47,7 +61,7 @@ export default function HomePage() {
       </div>
 
       <div className="w-full max-w-6xl grid gap-6 grid-cols-1 sm:grid-cols-2">
-        {teams.map((team) => {
+        {teams.filter((team) => visibleTeams.includes(aliasMap[team])).map((team) => {
           const fullName = aliasMap[team] || team
           const opponentEntry = Object.entries(seriesMap).find(([key]) => key.includes(fullName))
 
@@ -59,7 +73,6 @@ export default function HomePage() {
             const match = seriesLabel.match(/(\w+)\s+leads\s+(\d+)-(\d+)/i)
             if (match) {
               const winsA = parseInt(match[2], 10)
-              // const winsB = parseInt(match[3], 10) // rimosso perché non utilizzato
               progress = (winsA / 4) * 100
             }
           }
