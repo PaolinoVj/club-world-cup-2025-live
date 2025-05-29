@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import Image from "next/image"
 import LiveCountdownCard from "@/components/LiveCountdownCard"
 import aliasMap from "@/utils/aliasMap"
 
@@ -18,7 +19,6 @@ const teams = ["thunder", "pacers", "knicks", "timberwolves"]
 
 export default function HomePage() {
   const [seriesMap, setSeriesMap] = useState<Record<string, string>>({})
-  const [visibleTeams, setVisibleTeams] = useState<string[]>([])
   const [pastGames, setPastGames] = useState<Game[]>([])
   const [showModal, setShowModal] = useState(false)
 
@@ -50,7 +50,6 @@ export default function HomePage() {
         })
 
         setSeriesMap(currentSeries)
-        setVisibleTeams(nextTeams)
         setPastGames(playedGames.reverse())
       })
   }, [])
@@ -58,11 +57,7 @@ export default function HomePage() {
   return (
     <main className="min-h-screen bg-gray-100 px-4 py-6 flex flex-col items-center">
       <div className="flex flex-col items-center mb-8">
-        <img
-          src="https://loodibee.com/wp-content/uploads/nba-logo-transparent.png"
-          alt="NBA Logo"
-          className="w-20 mb-2 drop-shadow-md"
-        />
+        <Image src="https://loodibee.com/wp-content/uploads/nba-logo-transparent.png" alt="NBA Logo" width={80} height={80} className="mb-2 drop-shadow-md" />
         <h1 className="text-3xl md:text-4xl font-extrabold text-gray-800 text-center">
           NBA Playoff 2025
         </h1>
@@ -137,25 +132,28 @@ export default function HomePage() {
               {pastGames.map((g, i) => (
                 <li key={i} className="bg-white rounded shadow p-3 text-sm text-center">
                   <span className="inline-flex items-center justify-center">
-  <img
-    src={`https://loodibee.com/wp-content/uploads/nba-${g.teamA.toLowerCase().replace(/\\s+/g, '-')}-logo.png`}
-    alt={g.teamA}
-    className="w-5 h-5 mr-1"
-  />
-  <strong>{g.teamA}</strong>
-</span>
-vs
-<span className="inline-flex items-center justify-center ml-2">
-  <img
-    src={`https://loodibee.com/wp-content/uploads/nba-${g.teamB.toLowerCase().replace(/\\s+/g, '-')}-logo.png`}
-    alt={g.teamB}
-    className="w-5 h-5 mr-1"
-  />
-  <strong>{g.teamB}</strong>
-</span>
-- {g.game} →
-<span className="text-green-600 font-medium">{g.result}</span>
-
+                    <Image
+                      src={`https://loodibee.com/wp-content/uploads/nba-${g.teamA.toLowerCase().replace(/\s+/g, '-')}-logo.png`}
+                      alt={g.teamA}
+                      width={20}
+                      height={20}
+                      className="w-5 h-5 mr-1"
+                    />
+                    <strong>{g.teamA}</strong>
+                  </span>
+                  vs
+                  <span className="inline-flex items-center justify-center ml-2">
+                    <Image
+                      src={`https://loodibee.com/wp-content/uploads/nba-${g.teamB.toLowerCase().replace(/\s+/g, '-')}-logo.png`}
+                      alt={g.teamB}
+                      width={20}
+                      height={20}
+                      className="w-5 h-5 mr-1"
+                    />
+                    <strong>{g.teamB}</strong>
+                  </span>
+                  - {g.game} →
+                  <span className="text-green-600 font-medium">{g.result}</span>
                 </li>
               ))}
             </ul>
