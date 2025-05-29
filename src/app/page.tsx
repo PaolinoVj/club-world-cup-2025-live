@@ -10,6 +10,8 @@ interface Game {
   dateTime: string
   status?: string
   series?: string
+  game?: string
+  result?: string
 }
 
 const teams = ["thunder", "pacers", "knicks", "timberwolves"]
@@ -17,6 +19,8 @@ const teams = ["thunder", "pacers", "knicks", "timberwolves"]
 export default function HomePage() {
   const [seriesMap, setSeriesMap] = useState<Record<string, string>>({})
   const [visibleTeams, setVisibleTeams] = useState<string[]>([])
+  const [pastGames, setPastGames] = useState<Game[]>([])
+  const [showModal, setShowModal] = useState(false)
 
   useEffect(() => {
     fetch("/playoffs-2025-extended.json")
@@ -24,6 +28,7 @@ export default function HomePage() {
       .then((games: Game[]) => {
         const currentSeries: Record<string, string> = {}
         const nextTeams: string[] = []
+        const playedGames: Game[] = []
         const now = Date.now()
 
         games.forEach((g) => {
@@ -33,14 +38,20 @@ export default function HomePage() {
           }
 
           const gameTime = new Date(g.dateTime).getTime()
+
           if ((g.status === "programmata" || g.status === "in corso") && gameTime > now) {
             if (!nextTeams.includes(g.teamA)) nextTeams.push(g.teamA)
             if (!nextTeams.includes(g.teamB)) nextTeams.push(g.teamB)
+          }
+
+          if (g.status === "conclusa") {
+            playedGames.push(g)
           }
         })
 
         setSeriesMap(currentSeries)
         setVisibleTeams(nextTeams)
+        setPastGames(playedGames.reverse())
       })
   }, [])
 
@@ -60,7 +71,7 @@ export default function HomePage() {
         </p>
       </div>
 
-      <div className="w-full max-w-6xl grid gap-6 grid-cols-1 sm:grid-cols-2">
+      <div className="w-full max-w-6xl grid gap-6 grid-cols-1 sm:grid-cols-2 mb-10">
         {teams.filter((team) => visibleTeams.includes(aliasMap[team])).map((team) => {
           const fullName = aliasMap[team] || team
           const opponentEntry = Object.entries(seriesMap).find(([key]) => key.includes(fullName))
@@ -95,6 +106,43 @@ export default function HomePage() {
           )
         })}
       </div>
+
+      <div className="w-full max-w-4xl">
+        <h2 className="text-xl font-semibold text-gray-700 mb-4 text-center">Ultime partite concluse</h2>
+        <div className="text-center mb-4">
+          <button onClick={() => setShowModal(true)} className="text-blue-600 underline text-sm">Vedi tutte</button>
+        </div>
+        <ul className="space-y-2">
+          {pastGames.slice(0, 5).map((g, i) => (
+            <li key={i} className="bg-white rounded shadow p-4 text-sm text-center">
+              <strong>{g.teamA}</strong> vs <strong>{g.teamB}</strong> - {g.game} → <span className="text-green-600 font-medium">{g.result}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {showModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white p-6 rounded shadow-lg w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+            <div className="flex justify-between items-center mb-4">
+              <h3 className="text-lg font-bold">Tutte le partite concluse</h3>
+              <button
+                onClick={() => setShowModal(false)}
+                className="text-red-500 hover:text-red-700"
+              >
+                Chiudi
+              </button>
+            </div>
+            <ul className="space-y-2">
+              {pastGames.map((g, i) => (
+                <li key={i} className="border-b py-2 text-sm text-center">
+                  <strong>{g.teamA}</strong> vs <strong>{g.teamB}</strong> - {g.game} → <span className="text-green-600 font-medium">{g.result}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      )}
     </main>
   )
 }
