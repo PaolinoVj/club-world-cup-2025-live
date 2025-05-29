@@ -59,7 +59,7 @@ export default function HomePage() {
             const match = seriesLabel.match(/(\w+)\s+leads\s+(\d+)-(\d+)/i)
             if (match) {
               const winsA = parseInt(match[2], 10)
-              const winsB = parseInt(match[3], 10)
+              // const winsB = parseInt(match[3], 10) // rimosso perché non utilizzato
               progress = (winsA / 4) * 100
             }
           }
