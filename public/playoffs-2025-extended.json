@@ -9,7 +9,9 @@
     "game": "Finale Ovest, Gara 1",
     "result": "OKC WINS 114-88",
     "status": "conclusa",
-    "winner": "OKC"
+    "winner": "Oklahoma City Thunder",
+    "series": "OKC leads 2-0",
+    "isLead": true
   },
   {
     "teamA": "Oklahoma City Thunder",
@@ -20,9 +22,9 @@
     "timeIT": "02:30",
     "game": "Finale Ovest, Gara 2",
     "result": "OKC WINS 118-103",
-    "series": "OKC leads 2-0",
     "status": "conclusa",
-    "winner": "OKC",
+    "winner": "Oklahoma City Thunder",
+    "series": "OKC leads 2-0",
     "isLead": true
   },
   {
@@ -35,7 +37,9 @@
     "game": "Finale Est, Gara 1",
     "result": "IND WINS 138-135 (OT)",
     "status": "conclusa",
-    "winner": "IND"
+    "winner": "Indiana Pacers",
+    "series": "IND leads 2-0",
+    "isLead": true
   },
   {
     "teamA": "New York Knicks",
@@ -46,9 +50,9 @@
     "timeIT": "02:00",
     "game": "Finale Est, Gara 2",
     "result": "IND WINS 114-109",
-    "series": "IND leads 2-0",
     "status": "conclusa",
-    "winner": "IND",
+    "winner": "Indiana Pacers",
+    "series": "IND leads 2-0",
     "isLead": true
   },
   {
@@ -60,7 +64,12 @@
     "timeIT": "02:00",
     "game": "Finale Est, Gara 3",
     "result": "",
-    "status": "programmata"
+    "status": "programmata",
+    "series": "IND leads 2-0",
+    "isLead": true,
+    "isElimination": false,
+    "matchPoint": false,
+    "sweep": false
   },
   {
     "teamA": "Indiana Pacers",
@@ -72,7 +81,11 @@
     "game": "Finale Est, Gara 4",
     "result": "",
     "status": "programmata",
-    "isElimination": true
+    "series": "IND leads 2-0",
+    "isLead": true,
+    "isElimination": false,
+    "matchPoint": false,
+    "sweep": false
   },
   {
     "teamA": "Minnesota Timberwolves",
@@ -83,7 +96,12 @@
     "timeIT": "02:30",
     "game": "Finale Ovest, Gara 3",
     "result": "",
-    "status": "in corso"
+    "status": "in corso",
+    "series": "OKC leads 2-0",
+    "isLead": false,
+    "isElimination": false,
+    "matchPoint": false,
+    "sweep": false
   },
   {
     "teamA": "Minnesota Timberwolves",
@@ -95,72 +113,10 @@
     "game": "Finale Ovest, Gara 4",
     "result": "",
     "status": "programmata",
-    "isElimination": true
-  },
-  {
-    "teamA": "Oklahoma City Thunder",
-    "teamB": "Minnesota Timberwolves",
-    "dateTime": "2025-06-05T00:30:00Z",
-    "venue": "Paycom Center, Oklahoma City",
-    "day": "Mer 05 June",
-    "timeIT": "02:30",
-    "game": "Finale Ovest, Gara 5",
-    "result": "",
-    "status": "programmata"
-  },
-  {
-    "teamA": "Oklahoma City Thunder",
-    "teamB": "Minnesota Timberwolves",
-    "dateTime": "2025-06-07T00:30:00Z",
-    "venue": "Paycom Center, Oklahoma City",
-    "day": "Mer 07 June",
-    "timeIT": "02:30",
-    "game": "Finale Ovest, Gara 6",
-    "result": "",
-    "status": "programmata"
-  },
-  {
-    "teamA": "Oklahoma City Thunder",
-    "teamB": "Minnesota Timberwolves",
-    "dateTime": "2025-06-09T00:30:00Z",
-    "venue": "Paycom Center, Oklahoma City",
-    "day": "Mer 09 June",
-    "timeIT": "02:30",
-    "game": "Finale Ovest, Gara 7",
-    "result": "",
-    "status": "programmata"
-  },
-  {
-    "teamA": "New York Knicks",
-    "teamB": "Indiana Pacers",
-    "dateTime": "2025-06-06T00:00:00Z",
-    "venue": "Madison Square Garden, New York",
-    "day": "Gio 06 June",
-    "timeIT": "02:30",
-    "game": "Finale Est, Gara 5",
-    "result": "",
-    "status": "programmata"
-  },
-  {
-    "teamA": "New York Knicks",
-    "teamB": "Indiana Pacers",
-    "dateTime": "2025-06-08T00:00:00Z",
-    "venue": "Madison Square Garden, New York",
-    "day": "Gio 08 June",
-    "timeIT": "02:30",
-    "game": "Finale Est, Gara 6",
-    "result": "",
-    "status": "programmata"
-  },
-  {
-    "teamA": "New York Knicks",
-    "teamB": "Indiana Pacers",
-    "dateTime": "2025-06-10T00:00:00Z",
-    "venue": "Madison Square Garden, New York",
-    "day": "Gio 10 June",
-    "timeIT": "02:30",
-    "game": "Finale Est, Gara 7",
-    "result": "",
-    "status": "programmata"
+    "series": "OKC leads 2-0",
+    "isLead": false,
+    "isElimination": false,
+    "matchPoint": false,
+    "sweep": false
   }
 ]
