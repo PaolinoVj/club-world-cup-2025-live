@@ -72,7 +72,7 @@ export default function HomePage() {
       </div>
 
       <div className="w-full max-w-6xl grid gap-6 grid-cols-1 sm:grid-cols-2 mb-10">
-        {teams.filter((team) => visibleTeams.includes(aliasMap[team])).map((team) => {
+        {teams.map((team) => {
           const fullName = aliasMap[team] || team
           const opponentEntry = Object.entries(seriesMap).find(([key]) => key.includes(fullName))
 
@@ -135,8 +135,27 @@ export default function HomePage() {
             </div>
             <ul className="space-y-2">
               {pastGames.map((g, i) => (
-                <li key={i} className="border-b py-2 text-sm text-center">
-                  <strong>{g.teamA}</strong> vs <strong>{g.teamB}</strong> - {g.game} → <span className="text-green-600 font-medium">{g.result}</span>
+                <li key={i} className="bg-white rounded shadow p-3 text-sm text-center">
+                  <span className="inline-flex items-center justify-center">
+  <img
+    src={`https://loodibee.com/wp-content/uploads/nba-${g.teamA.toLowerCase().replace(/\\s+/g, '-')}-logo.png`}
+    alt={g.teamA}
+    className="w-5 h-5 mr-1"
+  />
+  <strong>{g.teamA}</strong>
+</span>
+vs
+<span className="inline-flex items-center justify-center ml-2">
+  <img
+    src={`https://loodibee.com/wp-content/uploads/nba-${g.teamB.toLowerCase().replace(/\\s+/g, '-')}-logo.png`}
+    alt={g.teamB}
+    className="w-5 h-5 mr-1"
+  />
+  <strong>{g.teamB}</strong>
+</span>
+- {g.game} →
+<span className="text-green-600 font-medium">{g.result}</span>
+
                 </li>
               ))}
             </ul>
