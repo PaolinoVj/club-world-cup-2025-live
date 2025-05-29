@@ -108,6 +108,72 @@ printf '%s\n' '[
     "result": "",
     "status": "programmata",
     "isElimination": true
+  },
+  {
+    "teamA": "Oklahoma City Thunder",
+    "teamB": "Minnesota Timberwolves",
+    "dateTime": "2025-06-05T00:30:00Z",
+    "venue": "Paycom Center, Oklahoma City",
+    "day": "Mer 05 June",
+    "timeIT": "02:30",
+    "game": "Finale Ovest, Gara 5",
+    "result": "",
+    "status": "programmata"
+  },
+  {
+    "teamA": "Oklahoma City Thunder",
+    "teamB": "Minnesota Timberwolves",
+    "dateTime": "2025-06-07T00:30:00Z",
+    "venue": "Paycom Center, Oklahoma City",
+    "day": "Mer 07 June",
+    "timeIT": "02:30",
+    "game": "Finale Ovest, Gara 6",
+    "result": "",
+    "status": "programmata"
+  },
+  {
+    "teamA": "Oklahoma City Thunder",
+    "teamB": "Minnesota Timberwolves",
+    "dateTime": "2025-06-09T00:30:00Z",
+    "venue": "Paycom Center, Oklahoma City",
+    "day": "Mer 09 June",
+    "timeIT": "02:30",
+    "game": "Finale Ovest, Gara 7",
+    "result": "",
+    "status": "programmata"
+  },
+  {
+    "teamA": "New York Knicks",
+    "teamB": "Indiana Pacers",
+    "dateTime": "2025-06-06T00:00:00Z",
+    "venue": "Madison Square Garden, New York",
+    "day": "Gio 06 June",
+    "timeIT": "02:30",
+    "game": "Finale Est, Gara 5",
+    "result": "",
+    "status": "programmata"
+  },
+  {
+    "teamA": "New York Knicks",
+    "teamB": "Indiana Pacers",
+    "dateTime": "2025-06-08T00:00:00Z",
+    "venue": "Madison Square Garden, New York",
+    "day": "Gio 08 June",
+    "timeIT": "02:30",
+    "game": "Finale Est, Gara 6",
+    "result": "",
+    "status": "programmata"
+  },
+  {
+    "teamA": "New York Knicks",
+    "teamB": "Indiana Pacers",
+    "dateTime": "2025-06-10T00:00:00Z",
+    "venue": "Madison Square Garden, New York",
+    "day": "Gio 10 June",
+    "timeIT": "02:30",
+    "game": "Finale Est, Gara 7",
+    "result": "",
+    "status": "programmata"
   }
 ]' > "$TMP_JSON"
 
