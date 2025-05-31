@@ -131,19 +131,6 @@ cat > "$TMP_JSON" <<EOF
     "isLead": true
   },
   {
-    "teamA": "New York Knicks",
-    "teamB": "Indiana Pacers",
-    "dateTime": "2025-05-29T00:00:00Z",
-    "venue": "Madison Square Garden, New York",
-    "day": "Gio 29 Maggio",
-    "timeIT": "02:00",
-    "game": "Finale Est, Gara 5",
-    "result": "",
-    "series": "IND leads 3-1",
-    "status": "programmata",
-    "isElimination": true
-  },
-  {
     "teamA": "TBD",
     "teamB": "Oklahoma City Thunder",
     "dateTime": "2025-06-05T00:00:00Z",
@@ -219,8 +206,37 @@ cat > "$TMP_JSON" <<EOF
     "game": "NBA Finals, Gara 7",
     "result": "",
     "status": "programmata"
+  },
+  {
+    "teamA": "New York Knicks",
+    "teamB": "Indiana Pacers",
+    "dateTime": "2025-05-29T00:00:00Z",
+    "venue": "Madison Square Garden, New York",
+    "day": "Gio 29 Maggio",
+    "timeIT": "02:00",
+    "game": "Finale Est, Gara 5",
+    "result": "NYK WINS 112-97",
+    "series": "IND leads 3-2",
+    "status": "conclusa",
+    "isElimination": false,
+    "winner": "New York Knicks"
+  },
+  {
+    "teamA": "Indiana Pacers",
+    "teamB": "New York Knicks",
+    "dateTime": "2025-06-01T00:00:00Z",
+    "venue": "Gainbridge Fieldhouse, Indianapolis",
+    "day": "Dom 1 Giugno",
+    "timeIT": "02:00",
+    "game": "Finale Est, Gara 6",
+    "result": "",
+    "series": "IND leads 3-2",
+    "status": "programmata",
+    "isElimination": true
   }
+
 ]
+
 
 EOF
 
