@@ -131,83 +131,6 @@ cat > "$TMP_JSON" <<EOF
     "isLead": true
   },
   {
-    "teamA": "TBD",
-    "teamB": "Oklahoma City Thunder",
-    "dateTime": "2025-06-05T00:00:00Z",
-    "venue": "Paycom Center, Oklahoma City",
-    "day": "Gio 5 Giugno",
-    "timeIT": "02:00",
-    "game": "NBA Finals, Gara 1",
-    "result": "",
-    "status": "programmata"
-  },
-  {
-    "teamA": "TBD",
-    "teamB": "Oklahoma City Thunder",
-    "dateTime": "2025-06-08T00:00:00Z",
-    "venue": "Paycom Center, Oklahoma City",
-    "day": "Dom 8 Giugno",
-    "timeIT": "02:00",
-    "game": "NBA Finals, Gara 2",
-    "result": "",
-    "status": "programmata"
-  },
-  {
-    "teamA": "Oklahoma City Thunder",
-    "teamB": "TBD",
-    "dateTime": "2025-06-11T00:00:00Z",
-    "venue": "TBD",
-    "day": "Mer 11 Giugno",
-    "timeIT": "02:00",
-    "game": "NBA Finals, Gara 3",
-    "result": "",
-    "status": "programmata"
-  },
-  {
-    "teamA": "Oklahoma City Thunder",
-    "teamB": "TBD",
-    "dateTime": "2025-06-13T00:00:00Z",
-    "venue": "TBD",
-    "day": "Ven 13 Giugno",
-    "timeIT": "02:00",
-    "game": "NBA Finals, Gara 4",
-    "result": "",
-    "status": "programmata"
-  },
-  {
-    "teamA": "TBD",
-    "teamB": "Oklahoma City Thunder",
-    "dateTime": "2025-06-16T00:00:00Z",
-    "venue": "Paycom Center, Oklahoma City",
-    "day": "Lun 16 Giugno",
-    "timeIT": "02:00",
-    "game": "NBA Finals, Gara 5",
-    "result": "",
-    "status": "programmata"
-  },
-  {
-    "teamA": "Oklahoma City Thunder",
-    "teamB": "TBD",
-    "dateTime": "2025-06-19T00:00:00Z",
-    "venue": "TBD",
-    "day": "Gio 19 Giugno",
-    "timeIT": "02:00",
-    "game": "NBA Finals, Gara 6",
-    "result": "",
-    "status": "programmata"
-  },
-  {
-    "teamA": "TBD",
-    "teamB": "Oklahoma City Thunder",
-    "dateTime": "2025-06-22T00:00:00Z",
-    "venue": "Paycom Center, Oklahoma City",
-    "day": "Dom 22 Giugno",
-    "timeIT": "02:00",
-    "game": "NBA Finals, Gara 7",
-    "result": "",
-    "status": "programmata"
-  },
-  {
     "teamA": "New York Knicks",
     "teamB": "Indiana Pacers",
     "dateTime": "2025-05-29T00:00:00Z",
@@ -229,12 +152,89 @@ cat > "$TMP_JSON" <<EOF
     "day": "Dom 1 Giugno",
     "timeIT": "02:00",
     "game": "Finale Est, Gara 6",
+    "result": "IND WINS 110-104",
+    "series": "IND wins 4-2",
+    "status": "conclusa",
+    "isElimination": true,
+    "winner": "Indiana Pacers"
+  },
+  {
+    "teamA": "Indiana Pacers",
+    "teamB": "Oklahoma City Thunder",
+    "dateTime": "2025-06-05T00:00:00Z",
+    "venue": "Paycom Center, Oklahoma City",
+    "day": "Gio 05 June",
+    "timeIT": "02:00",
+    "game": "NBA Finals, Gara 1",
     "result": "",
-    "series": "IND leads 3-2",
-    "status": "programmata",
-    "isElimination": true
+    "status": "programmata"
+  },
+  {
+    "teamA": "Indiana Pacers",
+    "teamB": "Oklahoma City Thunder",
+    "dateTime": "2025-06-08T00:00:00Z",
+    "venue": "Paycom Center, Oklahoma City",
+    "day": "Dom 08 June",
+    "timeIT": "02:00",
+    "game": "NBA Finals, Gara 2",
+    "result": "",
+    "status": "programmata"
+  },
+  {
+    "teamA": "Oklahoma City Thunder",
+    "teamB": "Indiana Pacers",
+    "dateTime": "2025-06-11T00:00:00Z",
+    "venue": "Gainbridge Fieldhouse, Indianapolis",
+    "day": "Mer 11 June",
+    "timeIT": "02:00",
+    "game": "NBA Finals, Gara 3",
+    "result": "",
+    "status": "programmata"
+  },
+  {
+    "teamA": "Oklahoma City Thunder",
+    "teamB": "Indiana Pacers",
+    "dateTime": "2025-06-14T00:00:00Z",
+    "venue": "Gainbridge Fieldhouse, Indianapolis",
+    "day": "Sab 14 June",
+    "timeIT": "02:00",
+    "game": "NBA Finals, Gara 4",
+    "result": "",
+    "status": "programmata"
+  },
+  {
+    "teamA": "Indiana Pacers",
+    "teamB": "Oklahoma City Thunder",
+    "dateTime": "2025-06-17T00:00:00Z",
+    "venue": "Paycom Center, Oklahoma City",
+    "day": "Mar 17 June",
+    "timeIT": "02:00",
+    "game": "NBA Finals, Gara 5",
+    "result": "",
+    "status": "programmata"
+  },
+  {
+    "teamA": "Oklahoma City Thunder",
+    "teamB": "Indiana Pacers",
+    "dateTime": "2025-06-20T00:00:00Z",
+    "venue": "Gainbridge Fieldhouse, Indianapolis",
+    "day": "Ven 20 June",
+    "timeIT": "02:00",
+    "game": "NBA Finals, Gara 6",
+    "result": "",
+    "status": "programmata"
+  },
+  {
+    "teamA": "Indiana Pacers",
+    "teamB": "Oklahoma City Thunder",
+    "dateTime": "2025-06-23T00:00:00Z",
+    "venue": "Paycom Center, Oklahoma City",
+    "day": "Lun 23 June",
+    "timeIT": "02:00",
+    "game": "NBA Finals, Gara 7",
+    "result": "",
+    "status": "programmata"
   }
-
 ]
 
 
