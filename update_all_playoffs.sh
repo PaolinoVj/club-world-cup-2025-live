@@ -62,8 +62,11 @@ cat > "$TMP_JSON" <<EOF
     "day": "Ven 13 June",
     "timeIT": "02:00",
     "game": "NBA Finals, Gara 4",
-    "result": "",
-    "status": "programmata"
+    "result": "OKC WINS 111-104",
+    "series": "Series tied 2-2",
+    "status": "conclusa",
+    "winner": "Oklahoma City Thunder",
+    "isElimination": false
   },
   {
     "teamA": "Indiana Pacers",
@@ -73,8 +76,11 @@ cat > "$TMP_JSON" <<EOF
     "day": "Lun 16 June",
     "timeIT": "02:00",
     "game": "NBA Finals, Gara 5",
-    "result": "",
-    "status": "programmata"
+    "result": "OKC WINS 120-109",
+    "series": "OKC leads 3-2",
+    "status": "conclusa",
+    "winner": "Oklahoma City Thunder",
+    "isElimination": false
   },
   {
     "teamA": "Oklahoma City Thunder",
@@ -84,8 +90,11 @@ cat > "$TMP_JSON" <<EOF
     "day": "Gio 19 June",
     "timeIT": "02:00",
     "game": "NBA Finals, Gara 6",
-    "result": "",
-    "status": "programmata"
+    "result": "IND WINS 108-91",
+    "series": "Series tied 3-3",
+    "status": "conclusa",
+    "winner": "Indiana Pacers",
+    "isElimination": false
   },
   {
     "teamA": "Indiana Pacers",
@@ -99,6 +108,7 @@ cat > "$TMP_JSON" <<EOF
     "status": "programmata"
   }
 ]
+
 
   
   
