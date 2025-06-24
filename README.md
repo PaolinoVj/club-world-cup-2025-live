@@ -1,23 +1,20 @@
-# NBA Playoff Live Countdown 2025
+# Club World Cup 2025 Live Countdown
 
-Questa webapp mostra il countdown per tutte le partite del primo turno dei playoff NBA 2025, convertite in orario italiano.
+Questa webapp mostra il countdown e i dettagli per tutte le partite del Mondiale per Club FIFA 2025, convertiti in orario italiano.
 
-## Funzionalità
+## 🏆 Funzionalità
+
 - Countdown in tempo reale
-- Orari convertiti per l'Italia
+- Orari convertiti per l’Italia
 - Giorni in italiano
-- Informazioni sul palazzetto
-- Sfondo personalizzato per ogni squadra
+- Informazioni sullo stadio
+- Colori e sfondo personalizzati per ogni squadra
 - Nessuna dipendenza da API esterne
 
-## Installazione
-\\\ash
-git clone https://github.com/PaolinoVj/nba-playoff-live.git
-cd nba-playoff-live
+## 🚀 Installazione
+
+```bash
+git clone https://github.com/PaolinoVj/club-world-cup-2025-live.git
+cd club-world-cup-2025-live
 npm install
 npm run dev
-\\\
-
-## Licenza
-MIT
-
