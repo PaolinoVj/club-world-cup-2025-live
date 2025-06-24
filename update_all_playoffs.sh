@@ -1,10 +1,10 @@
 #!/bin/bash
 
-echo "⏳ Avvio aggiornamento JSON playoff..."
+echo "⏳ Avvio aggiornamento JSON Club World Cup..."
 
 # === CONFIG ===
-PROJECT_DIR="/c/Users/info/nba-playoff-live"
-JSON_PATH="$PROJECT_DIR/public/playoffs-2025-extended.json"
+PROJECT_DIR="/c/Users/info/club-world-cup-2025-live"
+JSON_PATH="$PROJECT_DIR/public/data/matches.json"
 BRANCH="main"
 
 # === CREA IL NUOVO CONTENUTO JSON TEMPORANEO ===
@@ -13,107 +13,26 @@ TMP_JSON=$(mktemp)
 cat > "$TMP_JSON" <<EOF
 [
   {
-    "teamA": "Indiana Pacers",
-    "teamB": "Oklahoma City Thunder",
-    "dateTime": "2025-06-05T00:00:00Z",
-    "venue": "Paycom Center, Oklahoma City",
-    "day": "Gio 05 June",
-    "timeIT": "02:00",
-    "game": "NBA Finals, Gara 1",
-    "result": "IND WINS 111-110",
-    "series": "IND leads 1-0",
-    "status": "conclusa",
-    "winner": "Indiana Pacers",
-    "isElimination": false
+    "home_team": { "id": 1, "name": "Club A", "slug": "club-a" },
+    "away_team": { "id": 2, "name": "Club B", "slug": "club-b" },
+    "date": "2025-06-18",
+    "time_italy": "20:00",
+    "stadium": "Stadio Internazionale, Miami",
+    "phase": "Group Stage",
+    "group": "A",
+    "status": "upcoming"
   },
   {
-    "teamA": "Indiana Pacers",
-    "teamB": "Oklahoma City Thunder",
-    "dateTime": "2025-06-08T00:00:00Z",
-    "venue": "Paycom Center, Oklahoma City",
-    "day": "Dom 08 June",
-    "timeIT": "02:00",
-    "game": "NBA Finals, Gara 2",
-    "result": "OKC WINS 123-107",
-    "series": "Series tied 1-1",
-    "status": "conclusa",
-    "winner": "Oklahoma City Thunder",
-    "isElimination": false
-  },
-  {
-    "teamA": "Oklahoma City Thunder",
-    "teamB": "Indiana Pacers",
-    "dateTime": "2025-06-11T00:00:00Z",
-    "venue": "Gainbridge Fieldhouse, Indianapolis",
-    "day": "Mer 11 June",
-    "timeIT": "02:00",
-    "game": "NBA Finals, Gara 3",
-    "result": "IND WINS 116-107",
-    "series": "IND leads 2-1",
-    "status": "conclusa",
-    "winner": "Indiana Pacers",
-    "isElimination": false
-  },
-  {
-    "teamA": "Oklahoma City Thunder",
-    "teamB": "Indiana Pacers",
-    "dateTime": "2025-06-13T00:00:00Z",
-    "venue": "Gainbridge Fieldhouse, Indianapolis",
-    "day": "Ven 13 June",
-    "timeIT": "02:00",
-    "game": "NBA Finals, Gara 4",
-    "result": "OKC WINS 111-104",
-    "series": "Series tied 2-2",
-    "status": "conclusa",
-    "winner": "Oklahoma City Thunder",
-    "isElimination": false
-  },
-  {
-    "teamA": "Indiana Pacers",
-    "teamB": "Oklahoma City Thunder",
-    "dateTime": "2025-06-16T00:00:00Z",
-    "venue": "Paycom Center, Oklahoma City",
-    "day": "Lun 16 June",
-    "timeIT": "02:00",
-    "game": "NBA Finals, Gara 5",
-    "result": "OKC WINS 120-109",
-    "series": "OKC leads 3-2",
-    "status": "conclusa",
-    "winner": "Oklahoma City Thunder",
-    "isElimination": false
-  },
-  {
-    "teamA": "Oklahoma City Thunder",
-    "teamB": "Indiana Pacers",
-    "dateTime": "2025-06-19T00:00:00Z",
-    "venue": "Gainbridge Fieldhouse, Indianapolis",
-    "day": "Gio 19 June",
-    "timeIT": "02:00",
-    "game": "NBA Finals, Gara 6",
-    "result": "IND WINS 108-91",
-    "series": "Series tied 3-3",
-    "status": "conclusa",
-    "winner": "Indiana Pacers",
-    "isElimination": false
-  },
-  {
-    "teamA": "Indiana Pacers",
-    "teamB": "Oklahoma City Thunder",
-    "dateTime": "2025-06-22T00:00:00Z",
-    "venue": "Paycom Center, Oklahoma City",
-    "day": "Dom 22 June",
-    "timeIT": "02:00",
-    "game": "NBA Finals, Gara 7",
-    "result": "",
-    "status": "programmata"
+    "home_team": { "id": 3, "name": "Club C", "slug": "club-c" },
+    "away_team": { "id": 4, "name": "Club D", "slug": "club-d" },
+    "date": "2025-06-18",
+    "time_italy": "22:00",
+    "stadium": "Stadio Internazionale, Miami",
+    "phase": "Group Stage",
+    "group": "A",
+    "status": "upcoming"
   }
 ]
-
-
-  
-  
-
-
 EOF
 
 # === SOVRASCRIVI IL FILE ===
@@ -123,7 +42,7 @@ cat "$TMP_JSON" > "$JSON_PATH"
 cd "$PROJECT_DIR" || exit 1
 git pull origin "$BRANCH" --rebase
 git add .
-git commit -m "🆕 Update JSON playoff esteso automatico" || echo "⚠️ Nessun cambiamento da committare"
+git commit -m "🆕 Update JSON Club World Cup automatico" || echo "⚠️ Nessun cambiamento da committare"
 git push origin "$BRANCH"
 
 echo "✅ JSON aggiornato e pushato su GitHub!"

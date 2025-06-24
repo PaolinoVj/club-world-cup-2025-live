@@ -1,58 +1,76 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+'use client';
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+import { useEffect, useState } from "react";
+import Image from "next/image";
+import LiveCountdownCard from "@/components/LiveCountdownCard";
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+interface Match {
+  home_team: {
+    id: number;
+    name: string;
+    slug: string;
+  };
+  away_team: {
+    id: number;
+    name: string;
+    slug: string;
+  };
+  date: string;
+  time_italy: string;
+  stadium: string;
+  phase: string;
+  group?: string;
+  status: "upcoming" | "live" | "finished";
+  result?: string;
+}
 
-export const metadata: Metadata = {
-  title: "NBA Playoff 2025",
-  description: "Countdown e risultati aggiornati in tempo reale",
-  icons: {
-    icon: "/favicon_nba.svg",
-  },
-  openGraph: {
-    title: "NBA Playoff 2025",
-    description: "Segui i Playoff NBA 2025 in tempo reale: countdown, risultati e calendario.",
-    url: "https://nba-playoff-live.vercel.app",
-    siteName: "NBA Playoff Live",
-    images: [
-      {
-        url: "/og-image.jpg", // Assicurati che og-image.jpg sia in /public
-        width: 1200,
-        height: 630,
-        alt: "Logo NBA Playoff",
-      },
-    ],
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "NBA Playoff 2025",
-    description: "Segui i Playoff NBA 2025 in tempo reale: countdown, risultati e calendario.",
-    images: ["/og-image.jpg"],
-  },
-};
+export default function HomePage() {
+  const [matches, setMatches] = useState<Match[]>([]);
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+  useEffect(() => {
+    fetch("/data/matches.json")
+      .then((res) => res.json())
+      .then((data) => setMatches(data));
+  }, []);
+
   return (
-    <html lang="it">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
-      </body>
-    </html>
+    <main className="p-4 space-y-6">
+      <h1 className="text-2xl font-bold">Club World Cup 2025 – Partite</h1>
+
+      {matches.length === 0 && <p>Caricamento in corso...</p>}
+
+      {matches.map((match, i) => (
+        <div
+          key={i}
+          className="p-4 rounded-xl shadow bg-white border flex flex-col gap-2"
+        >
+          <div className="text-sm text-gray-600">
+            {match.phase} {match.group ? `– Gruppo ${match.group}` : ""}
+          </div>
+
+          <div className="flex items-center justify-between">
+            <span className="font-semibold">{match.home_team.name}</span>
+            <span>vs</span>
+            <span className="font-semibold">{match.away_team.name}</span>
+          </div>
+
+          <div className="text-sm text-gray-700">
+            {match.date} – {match.time_italy} @ {match.stadium}
+          </div>
+
+          {match.status === "upcoming" && (
+            <LiveCountdownCard date={match.date} time={match.time_italy} />
+          )}
+
+          {match.status === "finished" && (
+            <div className="text-green-700 font-medium">Risultato: {match.result}</div>
+          )}
+
+          {match.status === "live" && (
+            <div className="text-red-600 font-bold animate-pulse">In corso!</div>
+          )}
+        </div>
+      ))}
+    </main>
   );
 }
