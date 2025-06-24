@@ -26,8 +26,9 @@ export default function LiveCountdownCard({ team, highlighted = false }: { team:
 
   useEffect(() => {
     async function fetchGame() {
-      const res = await fetch(`/api/club/next-game?team=${team}`)
-      const data: unknown = await res.json()
+      const res = await fetch('/data/cwc_clubs.json');
+      const clubData = await res.json();
+
       if (!data || typeof data !== 'object' || !('teamA' in data)) return
       setGameData(data as GameData)
     }

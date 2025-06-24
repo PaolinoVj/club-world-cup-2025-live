@@ -30,7 +30,7 @@ export async function GET(request: Request) {
   teamParam = aliasMap[teamParam] || teamParam;
 
   try {
-    const filePath = path.join(process.cwd(), 'public', 'data', 'cwc_matches.json');
+    const filePath = path.join(process.cwd(), 'public', 'data', 'matches.json');
     const fileContent = await fs.readFile(filePath, 'utf-8');
     const allGames: Game[] = JSON.parse(fileContent);
 
