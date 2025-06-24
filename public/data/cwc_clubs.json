@@ -1,0 +1,98 @@
+[
+  {
+    "id": 1,
+    "slug": "manchester-city",
+    "name": "Manchester City",
+    "logo": "https://images.seeklogo.com/logo-png/13/1/manchester-city-fc-logo-png_seeklogo-139819.png"
+  },
+  {
+    "id": 2,
+    "slug": "al-ahly",
+    "name": "Al Ahly",
+    "logo": "https://images.seeklogo.com/logo-png/03/2/al-ahly-logo-png_seeklogo-302254.png"
+  },
+  {
+    "id": 3,
+    "slug": "fluminense",
+    "name": "Fluminense",
+    "logo": "https://images.seeklogo.com/logo-png/13/6/fluminense-fc-logo-png_seeklogo-136214.png"
+  },
+  {
+    "id": 4,
+    "slug": "auckland-city",
+    "name": "Auckland City",
+    "logo": "https://images.seeklogo.com/logo-png/30/1/auckland-city-fc-logo-png_seeklogo-309527.png"
+  },
+  {
+    "id": 5,
+    "slug": "real-madrid",
+    "name": "Real Madrid",
+    "logo": "https://images.seeklogo.com/logo-png/07/9/real-madrid-cf-logo-png_seeklogo-79315.png"
+  },
+  {
+    "id": 6,
+    "slug": "club-america",
+    "name": "Club América",
+    "logo": "https://images.seeklogo.com/logo-png/31/7/club-america-logo-png_seeklogo-317568.png"
+  },
+  {
+    "id": 7,
+    "slug": "mamelodi-sundowns",
+    "name": "Mamelodi Sundowns",
+    "logo": "https://images.seeklogo.com/logo-png/16/5/mamelodi-sundowns-fc-logo-png_seeklogo-165367.png"
+  },
+  {
+    "id": 8,
+    "slug": "urawa-red-diamonds",
+    "name": "Urawa Red Diamonds",
+    "logo": "https://images.seeklogo.com/logo-png/20/3/urawa-red-diamonds-logo-png_seeklogo-203870.png"
+  },
+  {
+    "id": 9,
+    "slug": "club-leon",
+    "name": "Club León",
+    "logo": "https://images.seeklogo.com/logo-png/21/6/club-leon-logo-png_seeklogo-216343.png"
+  },
+  {
+    "id": 10,
+    "slug": "feyenoord",
+    "name": "Feyenoord",
+    "logo": "https://images.seeklogo.com/logo-png/18/5/feyenoord-logo-png_seeklogo-185818.png"
+  },
+  {
+    "id": 11,
+    "slug": "atletico-mineiro",
+    "name": "Atlético Mineiro",
+    "logo": "https://images.seeklogo.com/logo-png/29/6/atletico-mineiro-logo-png_seeklogo-296772.png"
+  },
+  {
+    "id": 12,
+    "slug": "boca-juniors",
+    "name": "Boca Juniors",
+    "logo": "https://images.seeklogo.com/logo-png/21/9/boca-juniors-logo-png_seeklogo-219927.png"
+  },
+  {
+    "id": 13,
+    "slug": "inter-miami",
+    "name": "Inter Miami",
+    "logo": "https://images.seeklogo.com/logo-png/09/0/inter-miami-cf-logo-png_seeklogo-909365.png"
+  },
+  {
+    "id": 14,
+    "slug": "al-hilal",
+    "name": "Al Hilal",
+    "logo": "https://images.seeklogo.com/logo-png/28/7/al-hilal-logo-png_seeklogo-287291.png"
+  },
+  {
+    "id": 15,
+    "slug": "palmeiras",
+    "name": "Palmeiras",
+    "logo": "https://images.seeklogo.com/logo-png/13/2/se-palmeiras-logo-png_seeklogo-132125.png"
+  },
+  {
+    "id": 16,
+    "slug": "zamalek",
+    "name": "Zamalek",
+    "logo": "https://images.seeklogo.com/logo-png/28/4/zamalek-sc-logo-png_seeklogo-284788.png"
+  }
+]

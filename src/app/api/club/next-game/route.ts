@@ -1,84 +1,70 @@
-import { NextResponse } from 'next/server'
-import path from 'path'
-import { promises as fs } from 'fs'
-import aliasMap from '@/utils/aliasMap'
+import { NextResponse } from 'next/server';
+import path from 'path';
+import { promises as fs } from 'fs';
+import aliasMap from '@/utils/aliasMap';
 
-interface Team {
-  id: number
-  name: string
-  slug: string
-}
-
-interface Match {
-  home_team: Team
-  away_team: Team
-  date: string // YYYY-MM-DD
-  time_italy: string // HH:mm
-  stadium: string
-  phase: string
-  group?: string
-  status: string
-  result?: string
+interface Game {
+  teamA: string;
+  teamB: string;
+  dateTime: string;
+  venue?: string;
+  day: string;
+  timeIT: string;
+  game: string;
+  result?: string;
+  status?: string;
+  series?: string;
+  isLead?: boolean;
+  isElimination?: boolean;
+  winner?: string;
 }
 
 export async function GET(request: Request) {
-  const { searchParams } = new URL(request.url)
-  let teamParam = searchParams.get('team')?.toLowerCase()
+  const { searchParams } = new URL(request.url);
+  let teamParam = searchParams.get('team')?.toLowerCase();
 
   if (!teamParam) {
-    return NextResponse.json({ error: 'Parametro team mancante' }, { status: 400 })
+    return NextResponse.json({ error: 'Parametro team mancante' }, { status: 400 });
   }
 
-  teamParam = aliasMap[teamParam] || teamParam
+  teamParam = aliasMap[teamParam] || teamParam;
 
   try {
-    const filePath = path.join(process.cwd(), 'public', 'matches.json')
-    const fileContent = await fs.readFile(filePath, 'utf-8')
-    const allMatches: Match[] = JSON.parse(fileContent)
+    const filePath = path.join(process.cwd(), 'public', 'data', 'cwc_matches.json');
+    const fileContent = await fs.readFile(filePath, 'utf-8');
+    const allGames: Game[] = JSON.parse(fileContent);
 
-    const now = new Date().getTime()
+    const now = Date.now();
+    const futureGames = allGames
+      .filter((game: Game) =>
+        (game.teamA.toLowerCase() === teamParam || game.teamB.toLowerCase() === teamParam) &&
+        new Date(game.dateTime).getTime() > now
+      )
+      .sort((a, b) => new Date(a.dateTime).getTime() - new Date(b.dateTime).getTime());
 
-    const futureMatches = allMatches
-      .filter((match: Match) => {
-        const isTeamInMatch =
-          match.home_team.name.toLowerCase() === teamParam ||
-          match.away_team.name.toLowerCase() === teamParam
-
-        const matchDateTime = new Date(`${match.date}T${match.time_italy}:00`).getTime()
-        return isTeamInMatch && matchDateTime > now
-      })
-      .sort((a, b) => {
-        const timeA = new Date(`${a.date}T${a.time_italy}:00`).getTime()
-        const timeB = new Date(`${b.date}T${b.time_italy}:00`).getTime()
-        return timeA - timeB
-      })
-
-    if (futureMatches.length === 0) {
-      return NextResponse.json({ error: 'Nessuna partita futura trovata per questa squadra.' }, { status: 404 })
+    if (futureGames.length === 0) {
+      return NextResponse.json({ error: 'Nessuna partita futura trovata per questa squadra.' }, { status: 404 });
     }
 
-    const nextMatch = futureMatches[0]
+    const game = futureGames[0];
 
     return NextResponse.json({
-      teamA: nextMatch.home_team.name,
-      teamB: nextMatch.away_team.name,
-      dateTime: `${nextMatch.date}T${nextMatch.time_italy}:00`,
-      venue: nextMatch.stadium,
-      day: formatItalianDay(nextMatch.date),
-      timeIT: nextMatch.time_italy,
-      game: `${nextMatch.phase}${nextMatch.group ? ` - Gruppo ${nextMatch.group}` : ''}`,
-      result: nextMatch.result || undefined,
-      status: nextMatch.status || undefined
-    })
+      teamA: game.teamA,
+      teamB: game.teamB,
+      dateTime: game.dateTime,
+      venue: game.venue || 'TBD',
+      day: game.day,
+      timeIT: game.timeIT,
+      game: game.game,
+      result: game.result || undefined,
+      status: game.status || undefined,
+      series: game.series || undefined,
+      isLead: game.isLead || undefined,
+      isElimination: game.isElimination || undefined,
+      winner: game.winner || undefined
+    });
   } catch (err) {
-    console.error("Errore durante il recupero file matches.json:", err)
-    return NextResponse.json({ error: 'Errore durante il recupero file delle partite' }, { status: 500 })
+    console.error("Errore durante il recupero file CWC:", err);
+    return NextResponse.json({ error: 'Errore durante il recupero file CWC' }, { status: 500 });
   }
-}
-
-function formatItalianDay(dateStr: string): string {
-  const giorni = ['Dom', 'Lun', 'Mar', 'Mer', 'Gio', 'Ven', 'Sab']
-  const mesi = ['Gen', 'Feb', 'Mar', 'Apr', 'Mag', 'Giu', 'Lug', 'Ago', 'Set', 'Ott', 'Nov', 'Dic']
-  const d = new Date(dateStr)
-  return `${giorni[d.getDay()]} ${d.getDate().toString().padStart(2, '0')} ${mesi[d.getMonth()]}`
 }

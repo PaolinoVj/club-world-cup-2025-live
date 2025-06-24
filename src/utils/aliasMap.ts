@@ -1,27 +1,32 @@
 const aliasMap: Record<string, string> = {
-    "warriors": "Golden State Warriors",
-    "lakers": "Los Angeles Lakers",
-    "celtics": "Boston Celtics",
-    "sixers": "Philadelphia 76ers",
-    "76ers": "Philadelphia 76ers",
-    "knicks": "New York Knicks",
-    "nuggets": "Denver Nuggets",
-    "clippers": "LA Clippers",
-    "mavericks": "Dallas Mavericks",
-    "bucks": "Milwaukee Bucks",
-    "cavaliers": "Cleveland Cavaliers",
-    "magic": "Orlando Magic",
-    "heat": "Miami Heat",
-    "wolves": "Minnesota Timberwolves",
-    "timberwolves": "Minnesota Timberwolves",
-    "suns": "Phoenix Suns",
-    "pelicans": "New Orleans Pelicans",
-    "pacers": "Indiana Pacers",
-    "thunder": "Oklahoma City Thunder",
-    "grizzlies": "Memphis Grizzlies",
-    "rockets": "Houston Rockets",
-    "pistons": "Detroit Pistons"
-  }
-  
-  export default aliasMap
-  
+  "city": "Manchester City",
+  "man-city": "Manchester City",
+  "al-ahly": "Al Ahly",
+  "ahly": "Al Ahly",
+  "fluminense": "Fluminense",
+  "flu": "Fluminense",
+  "auckland": "Auckland City",
+  "auckland-city": "Auckland City",
+  "club-america": "Club América",
+  "america": "Club América",
+  "madrid": "Real Madrid",
+  "realmadrid": "Real Madrid",
+  "boca": "Boca Juniors",
+  "boca-juniors": "Boca Juniors",
+  "sundowns": "Mamelodi Sundowns",
+  "sundown": "Mamelodi Sundowns",
+  "ural": "Urawa Red Diamonds",
+  "urawa": "Urawa Red Diamonds",
+  "leon": "Club León",
+  "feyenoord": "Feyenoord",
+  "atletico": "Atlético Mineiro",
+  "atletico-mg": "Atlético Mineiro",
+  "inter-miami": "Inter Miami",
+  "miami": "Inter Miami",
+  "al-hilal": "Al Hilal",
+  "hilal": "Al Hilal",
+  "palmeiras": "Palmeiras",
+  "zamalek": "Zamalek"
+};
+
+export default aliasMap;
